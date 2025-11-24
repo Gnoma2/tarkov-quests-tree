@@ -1,7 +1,6 @@
 <html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Árbol de quests - Escape from Tarkov 1.0</title>
   <style>
 	  .toolbar-btn {
@@ -729,11 +728,7 @@ body.edge-edit-mode .quest-edge-special {
         margin-top: 4px;
       }
       .graph-container {
-        height: calc(100vh - 140px);
-      }
-      .help-btn,
-      .edge-edit-indicator {
-        display: none !important;
+        height: calc(100vh - 150px);
       }
     }
 </style>
@@ -1165,8 +1160,7 @@ body.edge-edit-mode .quest-edge-special {
     defs.appendChild(portraitClip);
   }
 
-	  // Cargar layout guardado (si existe) y aplicado al HTML
-  function loadCompletion() {
+	  // Cargar layout guardado (si existe) y aplicfunction loadCompletion() {
     try {
       // Clonamos los datos iniciales embebidos en el propio HTML
       const base = window.INITIAL_COMPLETION || {};
@@ -1583,7 +1577,7 @@ function drawEdge(fromQ, toQ) {
 
   quests.forEach(createNode);
 	drawAllEdges();
-	// enableDrag();   // desactivado en versión móvil (solo consulta)
+	enableDrag();   // 👈 lo añadiremos ahora
   setupLevelFilterUI();
   applyLevelFilter();
   setupSearchUI();
