@@ -99,6 +99,12 @@
       align-items: center;
       gap: 8px;
     }
+    .legend.legend-help {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      row-gap: 4px;
+    }
+
 
     .legend span {
       display: inline-flex;
@@ -166,20 +172,26 @@
 	  position: relative;
 	  overflow: auto;              /* ya permite scroll en ambas direcciones */
 	  background: radial-gradient(circle at 10% 0,#1b2234 0,#080a0f 35%,#050609 100%);
+	  cursor: grab;
+	}
+
+	.graph-container.panning {
+	  cursor: grabbing;
 	}
 
 	/* AUMENTAMOS el ancho del lienzo para forzar scroll horizontal */
 	.graph-inner {
-	  width: 8000px;      /* antes 2600 / 3000 */
-	  height: 10000px;     /* un pelín más alto también */
+	  /* tamaño base modesto; luego JS lo ajusta según las quests */
+	  width: 2600px;
+	  height: 1200px;
 	  margin: 32px 0 32px 40px;  /* sin margen a la derecha */
 	  position: relative;
 	  transform-origin: 0 0;
 	}
 
 	svg#quest-svg {
-	  width: 8000px;      /* que coincida con graph-inner */
-	  height: 10000px;
+	  width: 2600px;
+	  height: 1200px;
 	}
 
     .quest-node rect {
@@ -341,9 +353,9 @@ body.edge-edit-mode .quest-edge-special {
     }
 
     .selection-rect {
-      fill: rgba(229,192,123,0.10);
-      stroke: #e5c07b;
-      stroke-width: 1;
+      fill: rgba(229,192,123,0.20);  /* un poco más opaco para que se vea bien */
+      stroke: #ffd77d;               /* más contraste */
+      stroke-width: 1.6;             /* línea algo más gruesa */
       stroke-dasharray: 4 2;
       pointer-events: none;
     }
@@ -710,9 +722,66 @@ body.edge-edit-mode .quest-edge-special {
     .quest-node.relation-post {
       filter: drop-shadow(0 0 4px rgba(208,135,112,0.8));
     }
+
+    .quest-inline-editor {
+      position: fixed;
+      z-index: 30;
+      background: rgba(15,18,25,0.98);
+      border-radius: 8px;
+      border: 1px solid #3b4252;
+      padding: 8px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.7);
+      font-size: 11px;
+      color: var(--text);
+      min-width: 260px;
+      display: none;
+    }
+
+    .quest-inline-editor.visible {
+      display: block;
+    }
+
+    .quest-inline-editor-header {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .quest-inline-editor textarea {
+      width: 100%;
+      min-height: 70px;
+      resize: vertical;
+      border-radius: 4px;
+      border: 1px solid #3b4252;
+      background: #111319;
+      color: var(--text);
+      font-size: 11px;
+      padding: 4px;
+      margin-bottom: 6px;
+      outline: none;
+    }
+
+    .quest-inline-editor .editor-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .quest-inline-editor button {
+      border-radius: 999px;
+      border: 1px solid #3b4252;
+      background: #1b1f2a;
+      color: var(--text);
+      font-size: 11px;
+      padding: 2px 8px;
+      cursor: pointer;
+    }
+
+    .quest-inline-editor button:hover {
+      background: #2a3140;
+    }
 </style>
 </head>
-<body>
+<body class="">
 <header>
   <div>
     <h1>Árbol de quests – Tarkov 1.0</h1>
@@ -720,20 +789,9 @@ body.edge-edit-mode .quest-edge-special {
   </div>
   <div class="toolbar">
     <div class="legend">
-      <span><span class="legend-dot prapor"></span> Prapor</span>
-      <span><span class="legend-dot therapist"></span> Terapeuta</span>
-      <span><span class="legend-dot skier"></span> Skier</span>
-      <span><span class="legend-dot peacekeeper"></span> Peacekeeper</span>
-      <span><span class="legend-dot ragman"></span> Ragman</span>
-      <span><span class="legend-dot mechanic"></span> Mechanic</span>
-      <span><span class="legend-dot jaeger"></span> Jaeger</span>
-      <span><span class="legend-dot fence"></span> Fence</span>
-      <span><span class="legend-dot ref"></span> Ref</span>
-      <span><span class="legend-dot lightkeeper"></span> Lightkeeper</span>
-      <span><span class="legend-dot completed"></span> Completada</span>
-      <span><span class="legend-dot in-progress"></span> En curso</span>
-	  <button class="toolbar-btn" id="save-html">Guardar HTML</button>
+<button class="toolbar-btn" id="save-html">Guardar HTML</button>
 	  <button class="toolbar-btn" id="save-quests-js">Guardar quests_data.txt</button>
+	  <button class="toolbar-btn" id="save-all">Guardar TODO</button>
 
     <div class="level-filter">
       <span class="level-label">Nv.</span>
@@ -776,7 +834,7 @@ body.edge-edit-mode .quest-edge-special {
 
 <main>
   <div class="graph-container" id="graph-container">
-    <div class="graph-inner" id="graph-inner" style="transform: scale(1);">
+    <div class="graph-inner" id="graph-inner" style="transform: scale(0.57); transform-origin: 0px 0px;">
       <svg id="quest-svg"></svg></svg>
     </div>
   </div>
@@ -801,9 +859,25 @@ body.edge-edit-mode .quest-edge-special {
     <li>Filtro de trader: muestra destacadas solo las quests del vendedor elegido.</li>
     <li>Buscar: centra y resalta la quest cuyo nombre contenga el texto.</li>
   </ul>
+  <h4>Colores de los traders</h4>
+  <div class="legend legend-help">
+    <span><span class="legend-dot prapor"></span> Prapor</span>
+    <span><span class="legend-dot therapist"></span> Terapeuta</span>
+    <span><span class="legend-dot skier"></span> Skier</span>
+    <span><span class="legend-dot peacekeeper"></span> Peacekeeper</span>
+    <span><span class="legend-dot ragman"></span> Ragman</span>
+    <span><span class="legend-dot mechanic"></span> Mechanic</span>
+    <span><span class="legend-dot jaeger"></span> Jaeger</span>
+    <span><span class="legend-dot fence"></span> Fence</span>
+    <span><span class="legend-dot ref"></span> Ref</span>
+    <span><span class="legend-dot lightkeeper"></span> Lightkeeper</span>
+    <span><span class="legend-dot completed"></span> Completada</span>
+    <span><span class="legend-dot in-progress"></span> En curso</span>
+  </div>
+
 </div>
   Modo edición de curvas (E)
-</div>
+
 
 
 <div class="modal-backdrop" id="modal-backdrop"></div>
@@ -811,7 +885,7 @@ body.edge-edit-mode .quest-edge-special {
   <div class="modal-card">
     <div class="modal-header">
       <div class="modal-title-block">
-        <h2 class="modal-title" id="modal-title">37. Más allá de la carne roja – Parte 2 (Beyond the Red Meat – Part 2)</h2>
+        <h2 class="modal-title" id="modal-title">25. Corredor seguro (Safe Corridor)</h2>
         <div class="modal-trader" id="modal-trader">Skier</div>
         <div class="modal-chip" id="modal-chip">
           <span class="dot skier"></span><span id="modal-chip-text">Pendiente</span>
@@ -820,11 +894,11 @@ body.edge-edit-mode .quest-edge-special {
       <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
     </div>
     <div class="modal-body">
-      <p id="modal-desc">Siguiendo la pista del diario del chef, Skier quiere que encuentres el aditivo químico secreto que usaba TerraGroup en sus oficinas de Streets of Tarkov.</p>
+      <p id="modal-desc">Misión posterior a la cadena química: Skier quiere que investigues y asegures un corredor seguro usado por TerraGroup y sus contactos.</p>
       <h3>Objetivos</h3>
-      <ul id="modal-objectives"><li>Localizar las oficinas de TerraGroup en Streets of Tarkov.</li><li>Encontrar EN RAID el componente químico secreto (vial rojo).</li><li>Entregar el aditivo químico a Skier.</li></ul>
+      <ul id="modal-objectives"><li>Investigar las ubicaciones señaladas en Customs/Labs relacionadas con el corredor seguro.</li><li>Localizar y asegurar los documentos/contratos del corredor.</li><li>Ocultar los documentos en el punto muerto indicado.</li><li>Sobrevivir y extraer de la incursión.</li></ul>
       <h3>Recompensas</h3>
-      <ul id="modal-rewards"><li>+21 300 EXP.</li><li>+0.03 reputación con Skier.</li><li>120 000 rublos (126 000 / 138 000 con Centro de inteligencia).</li><li>1× fusil de asalto SIG MCX .300 Blackout.</li><li>3× cargador STANAG de 30 balas para AR-15 5,56×45.</li><li>3× paquete de 50 cartuchos .300 Blackout CBJ.</li><li>Desbloquea compra del grip táctico Zenit RK-1 en montura B-25U en Skier LL4.</li></ul>
+      <ul id="modal-rewards"><li>EXP (misión de historia de nivel medio-alto).</li><li>+0.05 reputación con Skier.</li><li>Buen pago en rublos.</li><li>Recompensa extra de equipo táctico.</li><li>Progreso hacia misiones de Skier de rango alto.</li></ul>
       <div class="modal-footer">
         <div class="modal-checkboxes">
           <label class="checkbox-row completed">
@@ -838,11 +912,21 @@ body.edge-edit-mode .quest-edge-special {
         </div>
         <div class="yt-link">
           Vídeo guía:
-          <a id="modal-youtube" href="https://www.youtube.com/watch?v=authZNaJERE" target="_blank" rel="noopener">Abrir en YouTube</a>
+          <a id="modal-youtube" href="https://www.youtube.com/watch?v=PAKuKX7jdrY" target="_blank" rel="noopener">Abrir en YouTube</a>
           <div class="hint">Se abre en una pestaña nueva.</div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div class="quest-inline-editor" id="quest-inline-editor" style="left: 1253px; top: 626px;">
+  <div class="quest-inline-editor-header">Editar texto de la quest</div>
+  <textarea id="quest-inline-editor-text"></textarea>
+  <div class="editor-actions">
+    <button id="quest-inline-editor-cancel">Cancelar</button>
+    <button id="quest-inline-editor-save">Guardar</button>
   </div>
 </div>
 
@@ -858,9 +942,9 @@ body.edge-edit-mode .quest-edge-special {
   const LAYOUT_KEY  = "tarkov_quest_layout_v1_demo";
   const EDGE_LAYOUT_KEY = "tarkov_quest_edge_layout_v1_demo";
   // Datos iniciales de progreso y curvas (se guardan dentro del propio HTML)
-  window.INITIAL_COMPLETION = {"sanitary-standards-2":true,"sanitary-standards-1":true,"shortage":true,"operation-aquarius-1":true,"painkiller":true,"operation-aquarius-2":true,"first-in-line":true,"easy-money-part-2":true,"balancing-part-1":true,"burning-rubber":true,"easy-money-part-1":true,"supplier":true,"acquaintance":true,"saving-the-mole":true,"gunsmith-part-1":true};
-  window.INITIAL_INPROGRESS = {"pharmacist":true,"balancing-part-2":true,"provide-viewership":true,"friend-from-the-west-1":true,"the-extortionist":true,"gunsmith-part-3":true,"gunsmith-part-2":true,"farming-part-1":true};
-  window.INITIAL_EDGE_LAYOUT = {"chemical-part-4->out-of-curiosity":{"cx":2079.5,"cy":1347.7578125},"getting-acquainted->information-source":{"cx":3950.015625,"cy":8277.0390625},"knock-knock->keepers-word":{"cx":3674.015625,"cy":8295.0390625},"scout->huntsman-factory-chief":{"cx":2458.111328125,"cy":6232.11474609375},"hunting-trip->northern-connections":{"cx":2763.33349609375,"cy":4519.33349609375},"silent-caliber->northern-connections":{"cx":2038.666748046875,"cy":4741},"fishing-gear->samples":{"cx":2472.666748046875,"cy":4291.33349609375},"revision-streets-of-tarkov->worst-job-in-the-world":{"cx":3677.015625,"cy":3767.0625},"friend-from-the-west-1->friend-from-the-west-2":{"cx":732.015625,"cy":2724.5390625},"whats-on-the-flash-drive->shady-business":{"cx":623.015625,"cy":4900.5390625},"tarkov-shooter-part-3->huntsman-secured-perimeter":{"cx":1635.015625,"cy":5497.5390625},"huntsman-secured-perimeter->huntsman-forest-cleaning":{"cx":338.015625,"cy":5875.5390625},"gunsmith-part-3->insider":{"cx":2803.515625,"cy":6837.5390625},"sales-night->huntsman-sellout":{"cx":1996.515625,"cy":6088.5390625},"inevitable-response->order-from-outside":{"cx":3635.015625,"cy":9539.0625},"anesthesia->samples":{"cx":4181.015625,"cy":4280.0625},"pharmacist->health-care-privacy-1":{"cx":1252,"cy":1157},"easy-money-part-1->easy-money-part-2":{"cx":614,"cy":164},"kind-of-sabotage->dangerous-road":{"cx":1908,"cy":860.6666641235352},"pharmacist->kind-of-sabotage":{"cx":1482,"cy":519.6666641235352},"pharmacist->car-repair":{"cx":1430,"cy":976.6666641235352},"pharmacist->general-wares":{"cx":1457,"cy":890.6666641235352},"pharmacist->supply-plans":{"cx":1470,"cy":838.6666641235352},"chemical-part-1->polikhim-hobo":{"cx":1474,"cy":1680.666748046875},"chemical-part-4->big-customer":{"cx":2222,"cy":1715.666748046875},"chemical-part-4->secure-corridor":{"cx":2949,"cy":1430.666748046875},"big-customer->secure-corridor":{"cx":3176,"cy":1804.666748046875}};
+  window.INITIAL_COMPLETION = {"sanitary-standards-2":true,"sanitary-standards-1":true,"shortage":true,"operation-aquarius-1":true,"painkiller":true,"operation-aquarius-2":true,"first-in-line":true,"easy-money-part-2":true,"balancing-part-1":true,"burning-rubber":true,"easy-money-part-1":true,"supplier":true,"acquaintance":true,"saving-the-mole":true,"gunsmith-part-1":true,"the-extortionist":true,"whats-on-the-flash-drive":true,"shooting-cans":true,"debut":true,"luxurious-life":true,"pharmacist":true};
+  window.INITIAL_INPROGRESS = {"balancing-part-2":true,"provide-viewership":true,"friend-from-the-west-1":true,"gunsmith-part-3":true,"gunsmith-part-2":true,"farming-part-1":true,"agitation":true,"tarkov-shooter-part-1":true,"work-smarter":true,"survivalist-unprotected-but-dangerous":true,"rough-tarkov":true,"search-mission":true,"grenadier":true,"supply-plans":true,"general-wares":true,"population-census":true,"car-repair":true,"kind-of-sabotage":true};
+  window.INITIAL_EDGE_LAYOUT = {"chemical-part-4->out-of-curiosity":{"cx":3474,"cy":1666},"getting-acquainted->information-source":{"cx":3950.015625,"cy":8277.0390625},"knock-knock->keepers-word":{"cx":3674.015625,"cy":8295.0390625},"scout->huntsman-factory-chief":{"cx":2458.111328125,"cy":6232.11474609375},"hunting-trip->northern-connections":{"cx":2763.33349609375,"cy":4519.33349609375},"revision-streets-of-tarkov->worst-job-in-the-world":{"cx":3677.015625,"cy":3767.0625},"tarkov-shooter-part-3->huntsman-secured-perimeter":{"cx":1559.015625,"cy":5017.5390625},"huntsman-secured-perimeter->huntsman-forest-cleaning":{"cx":231.015625,"cy":5434.5390625},"sales-night->huntsman-sellout":{"cx":1996.515625,"cy":6088.5390625},"inevitable-response->order-from-outside":{"cx":3635.015625,"cy":9539.0625},"anesthesia->samples":{"cx":4181.015625,"cy":4280.0625},"chemical-part-1->polikhim-hobo":{"cx":2499,"cy":1882},"chemical-part-4->big-customer":{"cx":3382,"cy":1688},"chemical-part-4->secure-corridor":{"cx":3908,"cy":1397}};
 
   const nodeWidth = 200;
   const nodeHeight = 65;
@@ -1199,9 +1283,8 @@ body.edge-edit-mode .quest-edge-special {
 
 		
 	
-  function saveHtmlToFile() {
-	  try {
-		// Clonamos el HTML actual del documento (estado actual)
+  function buildCurrentHtmlForSaving() {
+// Clonamos el HTML actual del documento (estado actual)
 		let htmlText = document.documentElement.outerHTML;
 
 		// Actualizamos la posición de cada quest en el bloque "quests"
@@ -1281,7 +1364,14 @@ body.edge-edit-mode .quest-edge-special {
 		  }
 		}
 
-		// Descargar archivo
+		
+		return htmlText;
+	}
+
+	function saveHtmlToFile() {
+	  try {
+		const htmlText = buildCurrentHtmlForSaving();
+
 		const blob = new Blob([htmlText], { type: "text/html" });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement("a");
@@ -1293,6 +1383,7 @@ body.edge-edit-mode .quest-edge-special {
 		  document.body.removeChild(a);
 		  URL.revokeObjectURL(url);
 		}, 0);
+	  
 	  } catch (e) {
 		console.warn("No se pudo generar el HTML:", e);
 		alert("Error al generar el HTML. Revisa la consola.");
@@ -1479,6 +1570,22 @@ body.edge-edit-mode .quest-edge-special {
   if (!completed) checkText.style.opacity = "0";
   g.appendChild(checkText);
 
+  // Edición rápida del texto de la quest con botón derecho en modo edición
+  g.addEventListener("contextmenu", ev => {
+    if (!document.body.classList.contains("edge-edit-mode")) return;
+    if (!inlineEditor || !inlineEditorText) return;
+    ev.preventDefault();
+    currentInlineQuestId = q.id;
+    inlineEditorText.value = (q.nombre || "").replace(/\r/g, "");
+    inlineEditor.classList.add("visible");
+    const viewportX = ev.clientX + 8;
+    const viewportY = ev.clientY + 8;
+    inlineEditor.style.left = viewportX + "px";
+    inlineEditor.style.top = viewportY + "px";
+    inlineEditorText.focus();
+    inlineEditorText.select();
+  });
+
   svg.appendChild(g);
 }
 function drawEdge(fromQ, toQ) {
@@ -1562,6 +1669,71 @@ function drawEdge(fromQ, toQ) {
   applyLevelFilter();
   setupSearchUI();
 
+  // Ajuste automático del tamaño del lienzo según la extensión actual de las quests
+  function adjustCanvasSize() {
+    let maxX = 0, maxY = 0;
+
+    if (svg) {
+      const nodes = svg.querySelectorAll(".quest-node");
+      nodes.forEach(g => {
+        // Ignoramos nodos ocultos
+        if (typeof window !== "undefined" && window.getComputedStyle) {
+          const cs = window.getComputedStyle(g);
+          if (cs && cs.display === "none") return;
+        }
+
+        const tr = g.getAttribute("transform") || "";
+        const m = /translate\(([-0-9.]+),\s*([-0-9.]+)\)/.exec(tr);
+        let x = 0, y = 0;
+        if (m) {
+          x = parseFloat(m[1]) || 0;
+          y = parseFloat(m[2]) || 0;
+        }
+        const x2 = x + nodeWidth;
+        const y2 = y + nodeHeight;
+        if (x2 > maxX) maxX = x2;
+        if (y2 > maxY) maxY = y2;
+      });
+    }
+
+    // Si por lo que sea no hemos encontrado nodos, usamos un tamaño base
+    if (maxX === 0 && maxY === 0) {
+      maxX = 2200;
+      maxY = 1200;
+    }
+
+    // Margen adicional alrededor del contenido visible
+    const marginRight = 400;
+    const marginBottom = 200;
+
+    const width = Math.max(maxX + marginRight, 2200);
+    const height = Math.max(maxY + marginBottom, 1200);
+
+    // Guardamos las dimensiones "de mundo" para poder
+    // limitar correctamente el scroll con distintos niveles de zoom
+    window.CANVAS_WORLD_WIDTH = width;
+    window.CANVAS_WORLD_HEIGHT = height;
+    // Y también el borde real del contenido (sin márgenes extra)
+    window.CANVAS_CONTENT_RIGHT = maxX;
+    window.CANVAS_CONTENT_BOTTOM = maxY;
+
+    const inner = document.getElementById("graph-inner");
+    if (inner) {
+      inner.style.width = width + "px";
+      inner.style.height = height + "px";
+    }
+    if (svg) {
+      // Usamos estilos inline para que prevalezcan sobre el CSS
+      svg.style.width = width + "px";
+      svg.style.height = height + "px";
+      svg.setAttribute("width", width);
+      svg.setAttribute("height", height);
+    }
+  }
+
+
+  adjustCanvasSize();
+
 	function drawAllEdges() {
 	  // borrar edges antiguos
 	  [...svg.querySelectorAll(".quest-edge")].forEach(el => el.remove());
@@ -1630,8 +1802,11 @@ function drawEdge(fromQ, toQ) {
     boxSelectionAdditive = !!(e.ctrlKey || e.metaKey);
 
     const svgRect = svg.getBoundingClientRect();
-    boxStartX = e.clientX - svgRect.left;
-    boxStartY = e.clientY - svgRect.top;
+    const scale = (typeof zoom === "number" && zoom > 0) ? zoom : 1;
+
+    // Pasamos el ratón a coordenadas de "mundo" (antes de aplicar zoom)
+    boxStartX = (e.clientX - svgRect.left) / scale;
+    boxStartY = (e.clientY - svgRect.top) / scale;
 
     isBoxSelecting = true;
 
@@ -1643,17 +1818,24 @@ function drawEdge(fromQ, toQ) {
     selectionRect.setAttribute("height", 0);
     selectionRect.setAttribute("rx", 4);
     selectionRect.setAttribute("ry", 4);
+    // Estilo explícito para garantizar visibilidad independientemente del CSS
+    selectionRect.setAttribute("fill", "rgba(229,192,123,0.25)");
+    selectionRect.setAttribute("stroke", "#ffd77d");
+    selectionRect.setAttribute("stroke-width", "1.8");
+    selectionRect.setAttribute("stroke-dasharray", "4 2");
     selectionRect.style.pointerEvents = "none";
 
     svg.appendChild(selectionRect);
   }
 
-  function updateBoxSelection(e) {
+
+function updateBoxSelection(e) {
     if (!isBoxSelecting || !selectionRect) return;
 
     const svgRect = svg.getBoundingClientRect();
-    const currentX = e.clientX - svgRect.left;
-    const currentY = e.clientY - svgRect.top;
+    const scale = (typeof zoom === "number" && zoom > 0) ? zoom : 1;
+    const currentX = (e.clientX - svgRect.left) / scale;
+    const currentY = (e.clientY - svgRect.top) / scale;
 
     const x = Math.min(currentX, boxStartX);
     const y = Math.min(currentY, boxStartY);
@@ -1666,7 +1848,8 @@ function drawEdge(fromQ, toQ) {
     selectionRect.setAttribute("height", h);
   }
 
-  function finishBoxSelection() {
+
+function finishBoxSelection() {
     if (!isBoxSelecting) return;
     isBoxSelecting = false;
 
@@ -1685,12 +1868,11 @@ function drawEdge(fromQ, toQ) {
       return;
     }
 
-    // Convertimos a coordenadas "de mundo" teniendo en cuenta el zoom
-    const scale = (typeof zoom === "number" && zoom > 0) ? zoom : 1;
-    const minX = rectX / scale;
-    const minY = rectY / scale;
-    const maxX = (rectX + rectW) / scale;
-    const maxY = (rectY + rectH) / scale;
+    // Las coordenadas del rectángulo ya están en sistema "de mundo"
+    const minX = rectX;
+    const minY = rectY;
+    const maxX = rectX + rectW;
+    const maxY = rectY + rectH;
 
     const newlySelected = [];
 
@@ -1935,8 +2117,14 @@ function enableDrag() {
     }
 
     svg.addEventListener("mousedown", (e) => {
+      const isEditMode = document.body.classList.contains("edge-edit-mode");
+
       const handle = e.target.closest(".edge-handle");
       if (handle) {
+        // Sólo permitimos arrastrar manejadores de flechas en modo edición
+        if (!isEditMode) {
+          return;
+        }
         const key = handle.dataset.edgeKey;
         const cx = parseFloat(handle.getAttribute("cx"));
         const cy = parseFloat(handle.getAttribute("cy"));
@@ -1949,6 +2137,15 @@ function enableDrag() {
           startMouseY: e.clientY
         };
         return;
+      }
+
+      // En modo edición, si es clic derecho sobre una quest no iniciamos drag
+      if (document.body.classList.contains("edge-edit-mode") && e.button === 2) {
+        const questNode = e.target.closest(".quest-node");
+        if (questNode) {
+          // El manejador de contextmenu del nodo se encarga de la edición
+          return;
+        }
       }
 
       // En modo edición de flechas, Shift+click sobre una flecha
@@ -1975,7 +2172,12 @@ function enableDrag() {
 
       const g = e.target.closest(".quest-node");
       if (!g) {
-        // Click/drag en el fondo → iniciar selección por ventana
+        // Fondo: sólo iniciamos selección por ventana en modo edición.
+        if (!isEditMode) {
+          // Fuera de modo edición, el drag del fondo se usa para encuadre (pan),
+          // así que no arrancamos selección aquí.
+          return;
+        }
         if (!(e.ctrlKey || e.metaKey)) {
           clearSelection();
         }
@@ -2078,6 +2280,13 @@ function enableDrag() {
       }
 
       if (!dragging || !anchorNode || dragGroup.length === 0) return;
+
+      // Sólo movemos nodos en modo edición. Fuera de modo edición,
+      // el arrastre del ratón se utiliza para encuadre (pan) y para
+      // distinguir click/drag, pero no se actualizan posiciones.
+      if (!document.body.classList.contains("edge-edit-mode")) {
+        return;
+      }
 
       const dxMouse = e.clientX - startMouseX;
       const dyMouse = e.clientY - startMouseY;
@@ -2198,8 +2407,13 @@ function enableDrag() {
   const modalClose = document.getElementById("modal-close");
   const helpToggle = document.getElementById("help-toggle");
   const helpPanel = document.getElementById("help-panel");
+  const inlineEditor = document.getElementById("quest-inline-editor");
+  const inlineEditorText = document.getElementById("quest-inline-editor-text");
+  const inlineEditorSave = document.getElementById("quest-inline-editor-save");
+  const inlineEditorCancel = document.getElementById("quest-inline-editor-cancel");
   let currentQuestId = null;
   let currentEnglishTitle = null;
+  let currentInlineQuestId = null;
 
   // Extrae el nombre en inglés de "15. Documentos (Documents)"
   function getEnglishTitle(fullName) {
@@ -2209,9 +2423,31 @@ function enableDrag() {
     if (open === -1 || close === -1 || close <= open) return null;
     const en = fullName.slice(open + 1, close).trim();
     return en || null;
-  }
+}
 
-  function openModal(id) {
+function closeInlineEditor() {
+    if (!inlineEditor) return;
+    inlineEditor.classList.remove("visible");
+    currentInlineQuestId = null;
+}
+
+function applyInlineEditor() {
+    if (!inlineEditor || !inlineEditorText || !currentInlineQuestId) return;
+    const q = questsById[currentInlineQuestId];
+    if (!q) return;
+    const newText = inlineEditorText.value
+        ? inlineEditorText.value.replace(/\r/g, "")
+        : "";
+    q.nombre = newText;
+
+    const existing = svg.querySelector(`.quest-node[data-id="${currentInlineQuestId}"]`);
+    if (existing) {
+        svg.removeChild(existing);
+        createNode(q);
+    }
+    closeInlineEditor();
+}
+function openModal(id) {
     const q = questsById[id];
     if (!q) return;
     currentQuestId = id;
@@ -2301,6 +2537,24 @@ function enableDrag() {
   modalClose.addEventListener("click", closeModal);
   backdrop.addEventListener("click", closeModal);
 
+  if (inlineEditorSave) {
+    inlineEditorSave.addEventListener("click", applyInlineEditor);
+  }
+  if (inlineEditorCancel) {
+    inlineEditorCancel.addEventListener("click", closeInlineEditor);
+  }
+  if (inlineEditorText) {
+    inlineEditorText.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeInlineEditor();
+      } else if ((e.key === "Enter") && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        applyInlineEditor();
+      }
+    });
+  }
+
   if (helpToggle && helpPanel) {
     helpToggle.addEventListener("click", () => {
       helpPanel.classList.toggle("active");
@@ -2363,23 +2617,206 @@ function enableDrag() {
 
   // Zoom
   const graphInner = document.getElementById("graph-inner");
+  const graphContainer = document.getElementById("graph-container");
+  const MIN_ZOOM = 0.25;
+  const MAX_ZOOM = 1.5;
   let zoom = 1;
 
+  // Usamos origen de transformación en la esquina superior izquierda
+  if (graphInner) {
+    graphInner.style.transformOrigin = "0 0";
+  }
+
+  function clampScrollToContent() {
+    if (!graphContainer) return;
+
+    const contentBottom = window.CANVAS_CONTENT_BOTTOM || window.CANVAS_WORLD_HEIGHT;
+    const contentRight  = window.CANVAS_CONTENT_RIGHT  || window.CANVAS_WORLD_WIDTH;
+    if (!contentBottom && !contentRight) return;
+
+    const viewportW = graphContainer.clientWidth  || 0;
+    const viewportH = graphContainer.clientHeight || 0;
+    const z = zoom || 1;
+
+    // Con transform: scale(z), el rango visible en coordenadas de mundo es:
+    //   Y: [scrollTop / z,  (scrollTop + viewportH) / z]
+    //   X: [scrollLeft / z, (scrollLeft + viewportW) / z]
+    // Para no pasar de la última quest:
+    //   (scrollTop  + viewportH) / z <= contentBottom  => scrollTop  <= contentBottom  * z - viewportH
+    //   (scrollLeft + viewportW)  / z <= contentRight  => scrollLeft <= contentRight  * z - viewportW
+    const maxScrollTop  = Math.max(0, contentBottom * z - viewportH);
+    const maxScrollLeft = Math.max(0, contentRight  * z - viewportW);
+
+    if (graphContainer.scrollTop > maxScrollTop) {
+      graphContainer.scrollTop = maxScrollTop;
+    } else if (graphContainer.scrollTop < 0) {
+      graphContainer.scrollTop = 0;
+    }
+
+    if (graphContainer.scrollLeft > maxScrollLeft) {
+      graphContainer.scrollLeft = maxScrollLeft;
+    } else if (graphContainer.scrollLeft < 0) {
+      graphContainer.scrollLeft = 0;
+    }
+  }
+
   function applyZoom() {
+    if (!graphInner) return;
     graphInner.style.transform = `scale(${zoom})`;
+    clampScrollToContent();
+  }
+
+  if (graphContainer) {
+    graphContainer.addEventListener("scroll", () => {
+      clampScrollToContent();
+    });
   }
 
   document.getElementById("zoom-in").addEventListener("click", () => {
-    zoom = Math.min(1.5, zoom + 0.1);
+    zoom = Math.min(MAX_ZOOM, zoom + 0.1);
     applyZoom();
   });
 
   document.getElementById("zoom-out").addEventListener("click", () => {
-    zoom = Math.max(0.6, zoom - 0.1);
+    zoom = Math.max(MIN_ZOOM, zoom - 0.1);
     applyZoom();
   });
 
+    // Rueda del ratón = zoom tipo AutoCAD centrado en la posición del cursor.
+  // Si ya estamos en el zoom mínimo y seguimos alejando, dejamos que haga scroll.
+  if (graphContainer) {
+    graphContainer.addEventListener(
+      "wheel",
+      (e) => {
+        // Con Ctrl dejamos el zoom normal del navegador (incluye menú superior)
+        if (e.ctrlKey) return;
+
+        const header = document.querySelector("header");
+        if (header) {
+          const headerRect = header.getBoundingClientRect();
+          // Si el cursor está sobre el header, no hacemos zoom: dejamos scroll normal
+          if (e.clientY <= headerRect.bottom) {
+            return;
+          }
+        }
+
+        const rect = graphContainer.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Si el ratón está sobre las barras de scroll (zona cercana al borde),
+        // no interceptamos: que funcione como rueda normal.
+        const SCROLLBAR_MARGIN = 22;
+        const overVerticalBar = mouseX >= rect.width - SCROLLBAR_MARGIN;
+        const overHorizontalBar = mouseY >= rect.height - SCROLLBAR_MARGIN;
+        if (overVerticalBar || overHorizontalBar) {
+          return;
+        }
+
+        const prevZoom = zoom;
+        const step = 0.08;
+        let newZoom = prevZoom;
+
+        if (e.deltaY < 0) {
+          // rueda hacia arriba -> acercar
+          newZoom = Math.min(MAX_ZOOM, prevZoom + step);
+        } else if (e.deltaY > 0) {
+          // rueda hacia abajo -> alejar
+          newZoom = Math.max(MIN_ZOOM, prevZoom - step);
+        }
+
+        // Si no hay cambio de zoom (estamos en el límite),
+        // dejamos que el evento siga su curso normal para que haga scroll.
+        if (newZoom === prevZoom) {
+          return;
+        }
+
+        // Aquí sí vamos a cambiar el zoom, bloqueamos el scroll por defecto
+        e.preventDefault();
+
+        // Coordenadas "mundo" del punto bajo el cursor antes del zoom
+        const worldX = (graphContainer.scrollLeft + mouseX) / prevZoom;
+        const worldY = (graphContainer.scrollTop + mouseY) / prevZoom;
+
+        // Aplicamos el nuevo zoom
+        zoom = newZoom;
+        applyZoom();
+
+        // Ajustamos el scroll para que ese mismo punto siga bajo el cursor
+        graphContainer.scrollLeft = worldX * newZoom - mouseX;
+        graphContainer.scrollTop  = worldY * newZoom - mouseY;
+      },
+      { passive: false }
+    );
+  }
+
   applyZoom();
+
+  // =========================
+  //  ENCUADRE (PAN) CON DRAG
+  //  cuando NO hay modo edición
+  // =========================
+  let isPanning = false;
+  let panStartX = 0, panStartY = 0;
+  let panScrollLeftStart = 0, panScrollTopStart = 0;
+  let panMoved = false;
+
+  if (graphContainer) {
+    graphContainer.addEventListener("mousedown", (e) => {
+      // Solo botón izquierdo para pan en modo normal
+      if (e.button !== 0) return;
+
+      // Si estamos en modo edición, aquí NO hacemos pan (se usa para mover/editar casillas)
+      if (document.body.classList.contains("edge-edit-mode")) return;
+
+      const inner = document.getElementById("graph-inner");
+      if (!inner || !inner.contains(e.target)) return;
+
+      // Evitamos confundir click en las barras de scroll con pan
+      const rect = graphContainer.getBoundingClientRect();
+      const SCROLLBAR_MARGIN = 22;
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const overVerticalBar = mouseX >= rect.width - SCROLLBAR_MARGIN;
+      const overHorizontalBar = mouseY >= rect.height - SCROLLBAR_MARGIN;
+      if (overVerticalBar || overHorizontalBar) {
+        return;
+      }
+
+      isPanning = true;
+      panMoved = false;
+      panStartX = e.clientX;
+      panStartY = e.clientY;
+      panScrollLeftStart = graphContainer.scrollLeft;
+      panScrollTopStart = graphContainer.scrollTop;
+      graphContainer.classList.add("panning");
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isPanning) return;
+
+      const dx = e.clientX - panStartX;
+      const dy = e.clientY - panStartY;
+
+      if (!panMoved && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
+        panMoved = true;
+      }
+
+      graphContainer.scrollLeft = panScrollLeftStart - dx;
+      graphContainer.scrollTop  = panScrollTopStart - dy;
+
+      if (panMoved) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener("mouseup", () => {
+      if (!isPanning) return;
+      isPanning = false;
+      graphContainer.classList.remove("panning");
+    });
+  }
+
 
   // Botones de layout
   
@@ -2425,6 +2862,90 @@ function enableDrag() {
       saveQuestsDataJs();
     }
   });
+
+  // =========================
+  //  Guardar TODO en disco
+  //  (HTML + quests_data.js)
+  // =========================
+  let htmlFileHandle = null;
+  let questsFileHandle = null;
+
+  async function ensureFileHandles() {
+    if (!window.showOpenFilePicker || !window.FileSystemHandle) {
+      alert("Tu navegador no soporta guardado directo en disco (File System Access API). Usa los botones de descarga.");
+      return false;
+    }
+    try {
+      if (!htmlFileHandle) {
+        const [handle] = await window.showOpenFilePicker({
+          multiple: false,
+          types: [{
+            description: "HTML del árbol de quests",
+            accept: { "text/html": [".html", ".htm"] }
+          }]
+        });
+        htmlFileHandle = handle;
+      }
+      if (!questsFileHandle) {
+        const [handle] = await window.showOpenFilePicker({
+          multiple: false,
+          types: [{
+            description: "Archivo quests_data.js",
+            accept: { "application/javascript": [".js"] }
+          }]
+        });
+        questsFileHandle = handle;
+      }
+      return true;
+    } catch (err) {
+      console.error("Selección de archivos cancelada o error:", err);
+      return false;
+    }
+  }
+
+  async function saveAllToDisk() {
+    const ok = await ensureFileHandles();
+    if (!ok) return;
+
+    try {
+      // 1) HTML actualizado (mismo contenido que usaría saveHtmlToFile)
+      const htmlText = buildCurrentHtmlForSaving();
+
+      // 2) quests_data.js actualizado
+      if (typeof snapToGridX === "function" && typeof snapToGridY === "function") {
+        quests.forEach(q => {
+          if (!q.position) return;
+          q.position.x = snapToGridX(q.position.x);
+          q.position.y = snapToGridY(q.position.y);
+        });
+      }
+      const questsDataText = "const quests = " + JSON.stringify(quests, null, 2) + "\n";
+
+      // Escribir HTML
+      const htmlWritable = await htmlFileHandle.createWritable();
+      await htmlWritable.write(htmlText);
+      await htmlWritable.close();
+
+      // Escribir quests_data.js
+      const questsWritable = await questsFileHandle.createWritable();
+      await questsWritable.write(questsDataText);
+      await questsWritable.close();
+
+      alert("Guardado TODO: HTML y quests_data.js actualizados en disco.");
+    } catch (err) {
+      console.error("Error al guardar TODO:", err);
+      alert("Error al guardar TODO. Revisa la consola.");
+    }
+  }
+
+  const saveAllBtn = document.getElementById("save-all");
+  if (saveAllBtn) {
+    saveAllBtn.addEventListener("click", () => {
+      saveAllToDisk();
+    });
+  }
+
+
 
   
   

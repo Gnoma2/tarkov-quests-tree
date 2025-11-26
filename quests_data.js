@@ -1,7 +1,7 @@
 const quests = [
   {
     "id": "shooting-cans",
-    "nombre": "1. Disparando a las latas (Shooting Cans)",
+    "nombre": "1. Disparando latas\n(Shooting Cans)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 1,
@@ -21,8 +21,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 2927,
-      "y": 4788.222389221191
+      "x": 2847,
+      "y": 4344.222389221191
     }
   },
   {
@@ -51,8 +51,8 @@ const quests = [
       "shooting-cans"
     ],
     "position": {
-      "x": 3176,
-      "y": 4788.222389221191
+      "x": 3072,
+      "y": 4344.222389221191
     }
   },
   {
@@ -80,8 +80,8 @@ const quests = [
       "debut"
     ],
     "position": {
-      "x": 3360,
-      "y": 4788.222389221191
+      "x": 3280,
+      "y": 4344.222389221191
     }
   },
   {
@@ -109,8 +109,8 @@ const quests = [
       "glory-to-cpsu-part-2"
     ],
     "position": {
-      "x": 5545,
-      "y": 4613.444580078125
+      "x": 5465,
+      "y": 4169.444580078125
     }
   },
   {
@@ -138,8 +138,8 @@ const quests = [
       "debut"
     ],
     "position": {
-      "x": 3360,
-      "y": 4693.444580078125
+      "x": 3280,
+      "y": 4249.444580078125
     }
   },
   {
@@ -166,8 +166,8 @@ const quests = [
       "luxurious-life"
     ],
     "position": {
-      "x": 3570,
-      "y": 4788.222389221191
+      "x": 3490,
+      "y": 4344.222389221191
     }
   },
   {
@@ -197,8 +197,8 @@ const quests = [
       "background-check"
     ],
     "position": {
-      "x": 3799,
-      "y": 4788.222389221191
+      "x": 3719,
+      "y": 4344.222389221191
     }
   },
   {
@@ -227,8 +227,8 @@ const quests = [
       "background-check"
     ],
     "position": {
-      "x": 3803,
-      "y": 4693.444580078125
+      "x": 3723,
+      "y": 4249.444580078125
     }
   },
   {
@@ -258,8 +258,8 @@ const quests = [
       "delivery-from-the-past"
     ],
     "position": {
-      "x": 4023,
-      "y": 4693.444580078125
+      "x": 3943,
+      "y": 4249.444580078125
     }
   },
   {
@@ -288,8 +288,8 @@ const quests = [
       "bp-depot"
     ],
     "position": {
-      "x": 4240,
-      "y": 4693.444580078125
+      "x": 4160,
+      "y": 4249.444580078125
     }
   },
   {
@@ -321,8 +321,8 @@ const quests = [
       "the-bunker-part-1"
     ],
     "position": {
-      "x": 4454,
-      "y": 4693.444580078125
+      "x": 4374,
+      "y": 4249.444580078125
     }
   },
   {
@@ -354,8 +354,8 @@ const quests = [
       "bp-depot"
     ],
     "position": {
-      "x": 4240,
-      "y": 4774.444580078125
+      "x": 4160,
+      "y": 4330.444580078125
     }
   },
   {
@@ -384,8 +384,8 @@ const quests = [
       "bad-rep-evidence"
     ],
     "position": {
-      "x": 4454,
-      "y": 4774.444580078125
+      "x": 4374,
+      "y": 4330.444580078125
     }
   },
   {
@@ -413,8 +413,8 @@ const quests = [
       "the-bunker-part-2"
     ],
     "position": {
-      "x": 4670,
-      "y": 4693.444580078125
+      "x": 4590,
+      "y": 4249.444580078125
     }
   },
   {
@@ -445,8 +445,8 @@ const quests = [
       "no-place-for-renegades"
     ],
     "position": {
-      "x": 4891,
-      "y": 4613.444580078125
+      "x": 4811,
+      "y": 4169.444580078125
     }
   },
   {
@@ -475,8 +475,8 @@ const quests = [
       "ice-cream-cones"
     ],
     "position": {
-      "x": 4670,
-      "y": 4774.444580078125
+      "x": 4590,
+      "y": 4330.444580078125
     }
   },
   {
@@ -504,8 +504,8 @@ const quests = [
       "ice-cream-cones"
     ],
     "position": {
-      "x": 4670,
-      "y": 4856.7779541015625
+      "x": 4590,
+      "y": 4412.7779541015625
     }
   },
   {
@@ -531,8 +531,8 @@ const quests = [
       "shaking-up-the-teller"
     ],
     "position": {
-      "x": 4891,
-      "y": 4862.555847167969
+      "x": 4811,
+      "y": 4418.555847167969
     }
   },
   {
@@ -559,8 +559,8 @@ const quests = [
       "the-punisher-part-1"
     ],
     "position": {
-      "x": 5106,
-      "y": 4862.555847167969
+      "x": 5026,
+      "y": 4418.555847167969
     }
   },
   {
@@ -586,8 +586,8 @@ const quests = [
       "the-punisher-part-2"
     ],
     "position": {
-      "x": 5327,
-      "y": 4862.555847167969
+      "x": 5247,
+      "y": 4418.555847167969
     }
   },
   {
@@ -614,8 +614,8 @@ const quests = [
       "the-punisher-part-3"
     ],
     "position": {
-      "x": 5545,
-      "y": 4862.555847167969
+      "x": 5465,
+      "y": 4418.555847167969
     }
   },
   {
@@ -647,8 +647,8 @@ const quests = [
       "the-punisher-part-4"
     ],
     "position": {
-      "x": 5761,
-      "y": 4862.555847167969
+      "x": 5681,
+      "y": 4418.555847167969
     }
   },
   {
@@ -679,8 +679,8 @@ const quests = [
       "the-punisher-part-5"
     ],
     "position": {
-      "x": 5984,
-      "y": 4862.555847167969
+      "x": 5904,
+      "y": 4418.555847167969
     }
   },
   {
@@ -709,8 +709,8 @@ const quests = [
       "shaking-up-the-teller"
     ],
     "position": {
-      "x": 4891,
-      "y": 4953.7779541015625
+      "x": 4811,
+      "y": 4509.7779541015625
     }
   },
   {
@@ -737,8 +737,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 3215,
-      "y": 4982
+      "x": 3093,
+      "y": 4538
     }
   },
   {
@@ -764,8 +764,8 @@ const quests = [
       "grenadier"
     ],
     "position": {
-      "x": 3429,
-      "y": 4982
+      "x": 3349,
+      "y": 4538
     }
   },
   {
@@ -793,8 +793,8 @@ const quests = [
       "test-drive-part-1"
     ],
     "position": {
-      "x": 3645,
-      "y": 4982
+      "x": 3565,
+      "y": 4538
     }
   },
   {
@@ -820,8 +820,8 @@ const quests = [
       "test-drive-part-2"
     ],
     "position": {
-      "x": 3866,
-      "y": 4982
+      "x": 3786,
+      "y": 4538
     }
   },
   {
@@ -847,8 +847,8 @@ const quests = [
       "test-drive-part-3"
     ],
     "position": {
-      "x": 4082,
-      "y": 4982
+      "x": 4002,
+      "y": 4538
     }
   },
   {
@@ -874,8 +874,8 @@ const quests = [
       "test-drive-part-4"
     ],
     "position": {
-      "x": 4297,
-      "y": 4982
+      "x": 4217,
+      "y": 4538
     }
   },
   {
@@ -899,8 +899,8 @@ const quests = [
       "test-drive-part-5"
     ],
     "position": {
-      "x": 4520,
-      "y": 4982
+      "x": 4440,
+      "y": 4538
     }
   },
   {
@@ -931,8 +931,8 @@ const quests = [
       "shaking-up-the-teller"
     ],
     "position": {
-      "x": 4891,
-      "y": 4774.444580078125
+      "x": 4811,
+      "y": 4330.444580078125
     }
   },
   {
@@ -956,8 +956,8 @@ const quests = [
       "bp-depot"
     ],
     "position": {
-      "x": 4240,
-      "y": 4613.444580078125
+      "x": 4160,
+      "y": 4169.444580078125
     }
   },
   {
@@ -984,8 +984,8 @@ const quests = [
       "chemical-part-1"
     ],
     "position": {
-      "x": 2618,
-      "y": 2280
+      "x": 2538,
+      "y": 1836
     }
   },
   {
@@ -1013,8 +1013,8 @@ const quests = [
       "polikhim-hobo"
     ],
     "position": {
-      "x": 2847,
-      "y": 2280
+      "x": 2767,
+      "y": 1836
     }
   },
   {
@@ -1041,8 +1041,8 @@ const quests = [
       "chemical-part-4"
     ],
     "position": {
-      "x": 2991,
-      "y": 1534
+      "x": 3667,
+      "y": 1566.7778091430664
     }
   },
   {
@@ -1064,8 +1064,8 @@ const quests = [
       "out-of-curiosity"
     ],
     "position": {
-      "x": 3257,
-      "y": 1493
+      "x": 3933,
+      "y": 1525.7778091430664
     }
   },
   {
@@ -1091,8 +1091,8 @@ const quests = [
       "the-punisher-part-6"
     ],
     "position": {
-      "x": 6207,
-      "y": 4827.555847167969
+      "x": 6127,
+      "y": 4383.555847167969
     }
   },
   {
@@ -1116,8 +1116,8 @@ const quests = [
       "the-punisher-part-6"
     ],
     "position": {
-      "x": 6207,
-      "y": 4903.7779541015625
+      "x": 6127,
+      "y": 4459.7779541015625
     }
   },
   {
@@ -1153,8 +1153,8 @@ const quests = [
       "the-punisher-part-6"
     ],
     "position": {
-      "x": 6207,
-      "y": 4750.444580078125
+      "x": 6127,
+      "y": 4306.444580078125
     }
   },
   {
@@ -1181,8 +1181,8 @@ const quests = [
       "the-punisher-part-2"
     ],
     "position": {
-      "x": 5322,
-      "y": 4774.444580078125
+      "x": 5242,
+      "y": 4330.444580078125
     }
   },
   {
@@ -1206,8 +1206,8 @@ const quests = [
       "easy-job-part-1"
     ],
     "position": {
-      "x": 5545,
-      "y": 4693.444580078125
+      "x": 5465,
+      "y": 4249.444580078125
     }
   },
   {
@@ -1233,8 +1233,8 @@ const quests = [
       "the-punisher-part-5"
     ],
     "position": {
-      "x": 5984,
-      "y": 4774.444580078125
+      "x": 5904,
+      "y": 4330.444580078125
     }
   },
   {
@@ -1263,8 +1263,8 @@ const quests = [
       "easy-job-part-1"
     ],
     "position": {
-      "x": 5545,
-      "y": 4774.444580078125
+      "x": 5465,
+      "y": 4330.444580078125
     }
   },
   {
@@ -1291,8 +1291,8 @@ const quests = [
       "postman-pat-part-1"
     ],
     "position": {
-      "x": 4891,
-      "y": 4693.444580078125
+      "x": 4811,
+      "y": 4249.444580078125
     }
   },
   {
@@ -1317,8 +1317,8 @@ const quests = [
       "you-have-mail"
     ],
     "position": {
-      "x": 5107,
-      "y": 4693.444580078125
+      "x": 5027,
+      "y": 4249.444580078125
     }
   },
   {
@@ -1348,8 +1348,8 @@ const quests = [
       "glory-to-cpsu-part-1"
     ],
     "position": {
-      "x": 5322,
-      "y": 4693.444580078125
+      "x": 5242,
+      "y": 4249.444580078125
     }
   },
   {
@@ -1374,8 +1374,8 @@ const quests = [
       "the-punisher-part-6"
     ],
     "position": {
-      "x": 6207,
-      "y": 4983.444580078125
+      "x": 6127,
+      "y": 4539.444580078125
     }
   },
   {
@@ -1399,8 +1399,8 @@ const quests = [
       "the-punisher-part-4"
     ],
     "position": {
-      "x": 5761,
-      "y": 4953.7779541015625
+      "x": 5681,
+      "y": 4509.7779541015625
     }
   },
   {
@@ -1428,8 +1428,8 @@ const quests = [
       "spa-tour-part-7"
     ],
     "position": {
-      "x": 3775,
-      "y": 3333
+      "x": 4915,
+      "y": 2749
     }
   },
   {
@@ -1456,8 +1456,8 @@ const quests = [
       "the-punisher-part-6"
     ],
     "position": {
-      "x": 6207,
-      "y": 4671.444580078125
+      "x": 6127,
+      "y": 4227.444580078125
     }
   },
   {
@@ -1484,8 +1484,8 @@ const quests = [
       "gendarmerie-security-guard"
     ],
     "position": {
-      "x": 6427,
-      "y": 4671.444580078125
+      "x": 6347,
+      "y": 4227.444580078125
     }
   },
   {
@@ -1512,8 +1512,8 @@ const quests = [
       "gendarmerie-tickets-please"
     ],
     "position": {
-      "x": 6655,
-      "y": 4671.444580078125
+      "x": 6575,
+      "y": 4227.444580078125
     }
   },
   {
@@ -1539,8 +1539,8 @@ const quests = [
       "shooting-cans"
     ],
     "position": {
-      "x": 3143,
-      "y": 4693.444580078125
+      "x": 3063,
+      "y": 4249.444580078125
     }
   },
   {
@@ -1564,8 +1564,8 @@ const quests = [
       "airmail"
     ],
     "position": {
-      "x": 3734,
-      "y": 2492.7778091430664
+      "x": 3654,
+      "y": 2048.7778091430664
     }
   },
   {
@@ -1590,8 +1590,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 3828,
-      "y": 5137
+      "x": 3748,
+      "y": 4693
     }
   },
   {
@@ -1616,8 +1616,8 @@ const quests = [
       "the-good-old-days-part-1"
     ],
     "position": {
-      "x": 3360,
-      "y": 4613.444580078125
+      "x": 3280,
+      "y": 4169.444580078125
     }
   },
   {
@@ -1643,8 +1643,8 @@ const quests = [
       "hell-on-earth-part-1"
     ],
     "position": {
-      "x": 3574,
-      "y": 4613.444580078125
+      "x": 3494,
+      "y": 4169.444580078125
     }
   },
   {
@@ -1664,8 +1664,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 3590,
-      "y": 5137
+      "x": 3510,
+      "y": 4693
     }
   },
   {
@@ -1684,8 +1684,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 3353,
-      "y": 5137
+      "x": 3273,
+      "y": 4693
     }
   },
   {
@@ -1712,8 +1712,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 2157,
-      "y": 7001.778076171875
+      "x": 2077,
+      "y": 6557.778076171875
     }
   },
   {
@@ -1741,8 +1741,8 @@ const quests = [
       "saving-the-mole"
     ],
     "position": {
-      "x": 2360,
-      "y": 7001.778076171875
+      "x": 2280,
+      "y": 6557.778076171875
     }
   },
   {
@@ -1770,8 +1770,8 @@ const quests = [
       "gunsmith-part-1"
     ],
     "position": {
-      "x": 2597,
-      "y": 7001.778076171875
+      "x": 2517,
+      "y": 6557.778076171875
     }
   },
   {
@@ -1798,8 +1798,8 @@ const quests = [
       "gunsmith-part-1"
     ],
     "position": {
-      "x": 2597,
-      "y": 6918.778076171875
+      "x": 2517,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1828,8 +1828,8 @@ const quests = [
       "gunsmith-part-3"
     ],
     "position": {
-      "x": 2828,
-      "y": 6918.778076171875
+      "x": 2748,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1855,8 +1855,8 @@ const quests = [
       "gunsmith-part-4"
     ],
     "position": {
-      "x": 3055,
-      "y": 6918.778076171875
+      "x": 2975,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1884,8 +1884,8 @@ const quests = [
       "gunsmith-part-5"
     ],
     "position": {
-      "x": 3272,
-      "y": 6918.778076171875
+      "x": 3192,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1912,8 +1912,8 @@ const quests = [
       "gunsmith-part-6"
     ],
     "position": {
-      "x": 3486,
-      "y": 6918.778076171875
+      "x": 3406,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1940,8 +1940,8 @@ const quests = [
       "gunsmith-part-7"
     ],
     "position": {
-      "x": 3699,
-      "y": 6918.778076171875
+      "x": 3619,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1968,8 +1968,8 @@ const quests = [
       "gunsmith-part-8"
     ],
     "position": {
-      "x": 3906,
-      "y": 6918.778076171875
+      "x": 3826,
+      "y": 6474.778076171875
     }
   },
   {
@@ -1994,8 +1994,8 @@ const quests = [
       "gunsmith-part-9"
     ],
     "position": {
-      "x": 4103,
-      "y": 6918.778076171875
+      "x": 4023,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2020,8 +2020,8 @@ const quests = [
       "gunsmith-part-10"
     ],
     "position": {
-      "x": 4309,
-      "y": 6918.778076171875
+      "x": 4229,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2046,8 +2046,8 @@ const quests = [
       "gunsmith-part-11"
     ],
     "position": {
-      "x": 4528,
-      "y": 6918.778076171875
+      "x": 4448,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2072,8 +2072,8 @@ const quests = [
       "gunsmith-part-12"
     ],
     "position": {
-      "x": 4744,
-      "y": 6918.778076171875
+      "x": 4664,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2098,8 +2098,8 @@ const quests = [
       "gunsmith-part-13"
     ],
     "position": {
-      "x": 4954,
-      "y": 6918.778076171875
+      "x": 4874,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2125,8 +2125,8 @@ const quests = [
       "gunsmith-part-14"
     ],
     "position": {
-      "x": 5152,
-      "y": 6918.778076171875
+      "x": 5072,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2154,8 +2154,8 @@ const quests = [
       "gunsmith-part-15"
     ],
     "position": {
-      "x": 5358,
-      "y": 6918.778076171875
+      "x": 5278,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2185,8 +2185,8 @@ const quests = [
       "gunsmith-part-16"
     ],
     "position": {
-      "x": 5570,
-      "y": 6918.778076171875
+      "x": 5490,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2215,8 +2215,8 @@ const quests = [
       "gunsmith-part-17"
     ],
     "position": {
-      "x": 5778,
-      "y": 6918.778076171875
+      "x": 5698,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2243,8 +2243,8 @@ const quests = [
       "gunsmith-part-18"
     ],
     "position": {
-      "x": 5983,
-      "y": 6918.778076171875
+      "x": 5903,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2270,8 +2270,8 @@ const quests = [
       "gunsmith-part-19"
     ],
     "position": {
-      "x": 6191,
-      "y": 6918.778076171875
+      "x": 6111,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2297,8 +2297,8 @@ const quests = [
       "gunsmith-part-20"
     ],
     "position": {
-      "x": 6403,
-      "y": 6918.778076171875
+      "x": 6323,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2323,8 +2323,8 @@ const quests = [
       "gunsmith-part-21"
     ],
     "position": {
-      "x": 6614,
-      "y": 6918.778076171875
+      "x": 6534,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2350,8 +2350,8 @@ const quests = [
       "gunsmith-part-22"
     ],
     "position": {
-      "x": 6828,
-      "y": 6918.778076171875
+      "x": 6748,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2378,8 +2378,8 @@ const quests = [
       "gunsmith-part-23"
     ],
     "position": {
-      "x": 7040,
-      "y": 6918.778076171875
+      "x": 6960,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2407,8 +2407,8 @@ const quests = [
       "gunsmith-part-24"
     ],
     "position": {
-      "x": 7256,
-      "y": 6918.778076171875
+      "x": 7176,
+      "y": 6474.778076171875
     }
   },
   {
@@ -2435,17 +2435,17 @@ const quests = [
       "gunsmith-part-7"
     ],
     "position": {
-      "x": 3699,
-      "y": 7001.778076171875
+      "x": 3619,
+      "y": 6557.778076171875
     }
   },
   {
     "id": "farming-part-1",
-    "nombre": "28. Agricultura – Parte 1 (Farming - Part 1)",
+    "nombre": "28. Minando – Parte 1 (Farming - Part 1)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 12,
-    "descripcion": "Inicio de la cadena Agricultura. Mechanic quiere montar una granja de bitcoins y necesita que restaures parte de la infraestructura eléctrica de Fábrica. Te pide reparar dos paneles de control usando juegos de herramientas, siguiendo las luces rojas de emergencia.",
+    "descripcion": "Inicio de la cadena 'Minando'. Mechanic quiere montar una granja de bitcoins y necesita que restaures parte de la infraestructura eléctrica de Fábrica. Te pide reparar dos paneles de control usando juegos de herramientas, siguiendo las luces rojas de emergencia.",
     "objetivos": [
       "Reparar el primer panel de control con un Game set de herramientas (Toolset) en Factory.",
       "Reparar el segundo panel de control con un Game set de herramientas (Toolset) en Factory."
@@ -2462,17 +2462,17 @@ const quests = [
       "gunsmith-part-1"
     ],
     "position": {
-      "x": 2597,
-      "y": 7093.778076171875
+      "x": 2517,
+      "y": 6649.778076171875
     }
   },
   {
     "id": "farming-part-2",
-    "nombre": "29. Agricultura – Parte 2 (Farming - Part 2)",
+    "nombre": "29. Minando – Parte 2 (Farming - Part 2)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 12,
-    "descripcion": "Segunda parte de Agricultura. Mechanic ya tiene la base de la granja, pero necesita cableado y componentes electrónicos para seguir ampliando la capacidad. Te encarga reunir cables de alimentación, enchufes en T y placas base para montar nuevos racks.",
+    "descripcion": "Segunda parte de Minando. Mechanic ya tiene la base de la granja, pero necesita cableado y componentes electrónicos para seguir ampliando la capacidad. Te encarga reunir cables de alimentación, enchufes en T y placas base para montar nuevos racks.",
     "objetivos": [
       "Encontrar en incursión 2× cable de alimentación (Power cord).",
       "Encontrar en incursión 4× enchufe en forma de T (T-Shaped plug).",
@@ -2493,17 +2493,17 @@ const quests = [
       "farming-part-1"
     ],
     "position": {
-      "x": 2816,
-      "y": 7184.778076171875
+      "x": 2736,
+      "y": 6740.778076171875
     }
   },
   {
     "id": "farming-part-3",
-    "nombre": "30. Agricultura – Parte 3 (Farming - Part 3)",
+    "nombre": "30. Minando – Parte 3 (Farming - Part 3)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 14,
-    "descripcion": "Tercera parte de Agricultura. Un pedido de varios kits de GPU quedó retenido en Aduanas cuando empezó el caos. Mechanic quiere que localices el almacén de mercancía incautada, encuentres el paquete de tarjetas gráficas y salgas con él con vida.",
+    "descripcion": "Tercera parte de Minando. Un pedido de varios kits de GPU quedó retenido en Aduanas cuando empezó el caos. Mechanic quiere que localices el almacén de mercancía incautada, encuentres el paquete de tarjetas gráficas y salgas con él con vida.",
     "objetivos": [
       "Localizar el almacén de mercancía incautada en Customs.",
       "Obtener el paquete de tarjetas gráficas (Package of graphics cards) en el almacén incautado.",
@@ -2521,17 +2521,17 @@ const quests = [
       "farming-part-2"
     ],
     "position": {
-      "x": 3055,
-      "y": 7184.778076171875
+      "x": 2975,
+      "y": 6740.778076171875
     }
   },
   {
     "id": "farming-part-4",
-    "nombre": "31. Agricultura – Parte 4 (Farming - Part 4)",
+    "nombre": "31. Minando – Parte 4 (Farming - Part 4)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 14,
-    "descripcion": "Cuarta parte de la cadena Agricultura. Mechanic ya tiene la infraestructura básica de la granja de bitcoins, pero ahora quiere ampliar la capacidad y necesita un buen lote de tarjetas gráficas y ventiladores de CPU encontrados en incursión.",
+    "descripcion": "Cuarta parte de la cadena Minando. Mechanic ya tiene la infraestructura básica de la granja de bitcoins, pero ahora quiere ampliar la capacidad y necesita un buen lote de tarjetas gráficas y ventiladores de CPU encontrados en incursión.",
     "objetivos": [
       "Encontrar en incursión 3× tarjeta gráfica (Graphics card).",
       "Encontrar en incursión 15× ventilador de CPU (CPU fan).",
@@ -2552,8 +2552,8 @@ const quests = [
       "farming-part-3"
     ],
     "position": {
-      "x": 3272,
-      "y": 7184.778076171875
+      "x": 3192,
+      "y": 6740.778076171875
     }
   },
   {
@@ -2579,8 +2579,8 @@ const quests = [
       "gunsmith-part-2"
     ],
     "position": {
-      "x": 2828,
-      "y": 7001.778076171875
+      "x": 2748,
+      "y": 6557.778076171875
     }
   },
   {
@@ -2610,8 +2610,8 @@ const quests = [
       "signal-part-1"
     ],
     "position": {
-      "x": 3055,
-      "y": 7001.778076171875
+      "x": 2975,
+      "y": 6557.778076171875
     }
   },
   {
@@ -2640,8 +2640,8 @@ const quests = [
       "signal-part-2"
     ],
     "position": {
-      "x": 3274,
-      "y": 7001.778076171875
+      "x": 3194,
+      "y": 6557.778076171875
     }
   },
   {
@@ -2665,8 +2665,8 @@ const quests = [
       "signal-part-3"
     ],
     "position": {
-      "x": 3486,
-      "y": 7001.778076171875
+      "x": 3406,
+      "y": 6557.778076171875
     }
   },
   {
@@ -2697,8 +2697,8 @@ const quests = [
       "farming-part-2"
     ],
     "position": {
-      "x": 3035,
-      "y": 7288.778076171875
+      "x": 2955,
+      "y": 6844.778076171875
     }
   },
   {
@@ -2726,8 +2726,8 @@ const quests = [
       "signal-part-2"
     ],
     "position": {
-      "x": 3274,
-      "y": 6812.55615234375
+      "x": 3194,
+      "y": 6368.55615234375
     }
   },
   {
@@ -2752,8 +2752,8 @@ const quests = [
       "gunsmith-part-3"
     ],
     "position": {
-      "x": 3055,
-      "y": 6817.778076171875
+      "x": 2975,
+      "y": 6373.778076171875
     }
   },
   {
@@ -2784,8 +2784,8 @@ const quests = [
       "farming-part-4"
     ],
     "position": {
-      "x": 3486,
-      "y": 7184.778076171875
+      "x": 3406,
+      "y": 6740.778076171875
     }
   },
   {
@@ -2813,8 +2813,8 @@ const quests = [
       "farming-part-4"
     ],
     "position": {
-      "x": 3486,
-      "y": 7097.778076171875
+      "x": 3406,
+      "y": 6653.778076171875
     }
   },
   {
@@ -2836,8 +2836,8 @@ const quests = [
       "scout"
     ],
     "position": {
-      "x": 3903,
-      "y": 6690
+      "x": 3823,
+      "y": 6246
     }
   },
   {
@@ -2863,8 +2863,8 @@ const quests = [
       "chemistry-closet"
     ],
     "position": {
-      "x": 4348,
-      "y": 7374.778076171875
+      "x": 4268,
+      "y": 6930.778076171875
     }
   },
   {
@@ -2889,8 +2889,8 @@ const quests = [
       "calibration"
     ],
     "position": {
-      "x": 4559,
-      "y": 7374.778076171875
+      "x": 4479,
+      "y": 6930.778076171875
     }
   },
   {
@@ -2912,8 +2912,8 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 998,
-      "y": 6979
+      "x": 918,
+      "y": 6515
     }
   },
   {
@@ -2942,8 +2942,8 @@ const quests = [
       "farming-part-4"
     ],
     "position": {
-      "x": 3486,
-      "y": 7268.778076171875
+      "x": 3406,
+      "y": 6824.778076171875
     }
   },
   {
@@ -2969,8 +2969,8 @@ const quests = [
       "chemistry-closet"
     ],
     "position": {
-      "x": 523,
-      "y": 6773
+      "x": 443,
+      "y": 6329
     }
   },
   {
@@ -2998,8 +2998,8 @@ const quests = [
       "broadcast-part-1"
     ],
     "position": {
-      "x": 756,
-      "y": 6773
+      "x": 676,
+      "y": 6329
     }
   },
   {
@@ -3027,8 +3027,8 @@ const quests = [
       "broadcast-part-2"
     ],
     "position": {
-      "x": 998,
-      "y": 6773
+      "x": 918,
+      "y": 6329
     }
   },
   {
@@ -3055,8 +3055,8 @@ const quests = [
       "surveillance"
     ],
     "position": {
-      "x": 1231,
-      "y": 6861
+      "x": 1151,
+      "y": 6417
     }
   },
   {
@@ -3083,8 +3083,8 @@ const quests = [
       "energy-crisis"
     ],
     "position": {
-      "x": 3699,
-      "y": 7268.778076171875
+      "x": 3619,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3112,8 +3112,8 @@ const quests = [
       "network-provider-part-1"
     ],
     "position": {
-      "x": 3922,
-      "y": 7268.778076171875
+      "x": 3842,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3139,8 +3139,8 @@ const quests = [
       "psycho-sniper"
     ],
     "position": {
-      "x": 2521,
-      "y": 7386.778076171875
+      "x": 2441,
+      "y": 6942.778076171875
     }
   },
   {
@@ -3166,8 +3166,8 @@ const quests = [
       "assessment-part-1"
     ],
     "position": {
-      "x": 2762,
-      "y": 7386.778076171875
+      "x": 2682,
+      "y": 6942.778076171875
     }
   },
   {
@@ -3194,8 +3194,8 @@ const quests = [
       "assessment-part-2"
     ],
     "position": {
-      "x": 3035,
-      "y": 7386.778076171875
+      "x": 2955,
+      "y": 6942.778076171875
     }
   },
   {
@@ -3222,8 +3222,8 @@ const quests = [
       "network-provider-part-2"
     ],
     "position": {
-      "x": 4137,
-      "y": 7268.778076171875
+      "x": 4057,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3247,8 +3247,8 @@ const quests = [
       "key-to-the-tower"
     ],
     "position": {
-      "x": 4348,
-      "y": 7268.778076171875
+      "x": 4268,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3273,8 +3273,8 @@ const quests = [
       "knock-knock"
     ],
     "position": {
-      "x": 4569,
-      "y": 7268.778076171875
+      "x": 4489,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3303,8 +3303,8 @@ const quests = [
       "steady-signal"
     ],
     "position": {
-      "x": 4348,
-      "y": 7184.778076171875
+      "x": 4268,
+      "y": 6740.778076171875
     }
   },
   {
@@ -3333,8 +3333,8 @@ const quests = [
       "surveillance"
     ],
     "position": {
-      "x": 1231,
-      "y": 6773
+      "x": 1151,
+      "y": 6329
     }
   },
   {
@@ -3360,8 +3360,8 @@ const quests = [
       "developers-secrets-part-1"
     ],
     "position": {
-      "x": 1460,
-      "y": 6773
+      "x": 1380,
+      "y": 6329
     }
   },
   {
@@ -3387,8 +3387,8 @@ const quests = [
       "network-provider-part-2"
     ],
     "position": {
-      "x": 4137,
-      "y": 7184.778076171875
+      "x": 4057,
+      "y": 6740.778076171875
     }
   },
   {
@@ -3412,8 +3412,8 @@ const quests = [
       "getting-acquainted"
     ],
     "position": {
-      "x": 4794,
-      "y": 7268.778076171875
+      "x": 4714,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3437,8 +3437,8 @@ const quests = [
       "make-amends-buyout"
     ],
     "position": {
-      "x": 5020,
-      "y": 7268.778076171875
+      "x": 4940,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3462,8 +3462,8 @@ const quests = [
       "make-amends-equipment"
     ],
     "position": {
-      "x": 5240,
-      "y": 7268.778076171875
+      "x": 5160,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3487,8 +3487,8 @@ const quests = [
       "make-amends-security"
     ],
     "position": {
-      "x": 5464,
-      "y": 7268.778076171875
+      "x": 5384,
+      "y": 6824.778076171875
     }
   },
   {
@@ -3515,13 +3515,13 @@ const quests = [
     "youtube": "",
     "prereqIds": [],
     "position": {
-      "x": 486,
-      "y": 5153
+      "x": 406,
+      "y": 4709
     }
   },
   {
     "id": "survivalist-unprotected-but-dangerous",
-    "nombre": "2. El camino del superviviente – Desprotegido pero peligroso (The Survivalist Path - Unprotected but Dangerous)",
+    "nombre": "2. La senda del superviviente – Desprotegido pero peligroso (The Survivalist Path - Unprotected but Dangerous)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3541,13 +3541,13 @@ const quests = [
       "acquaintance"
     ],
     "position": {
-      "x": 733,
-      "y": 5153
+      "x": 653,
+      "y": 4709
     }
   },
   {
     "id": "survivalist-thrifty",
-    "nombre": "3. El camino del superviviente – Ahorrador (The Survivalist Path - Thrifty)",
+    "nombre": "3. La senda del superviviente – Ahorrador (The Survivalist Path - Thrifty)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3571,13 +3571,13 @@ const quests = [
       "survivalist-unprotected-but-dangerous"
     ],
     "position": {
-      "x": 958,
-      "y": 5153
+      "x": 878,
+      "y": 4709
     }
   },
   {
     "id": "survivalist-zhivchik",
-    "nombre": "4. El camino del superviviente – Zhivchik (The Survivalist Path - Zhivchik)",
+    "nombre": "4. La senda del superviviente – Zhivchik (The Survivalist Path - Zhivchik)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3598,13 +3598,13 @@ const quests = [
       "survivalist-thrifty"
     ],
     "position": {
-      "x": 1183,
-      "y": 5071
+      "x": 1103,
+      "y": 4627
     }
   },
   {
     "id": "survivalist-wounded-beast",
-    "nombre": "5. El camino del superviviente – Bestia herida (The Survivalist Path - Wounded Beast)",
+    "nombre": "5. La senda del superviviente – Bestia herida (The Survivalist Path - Wounded Beast)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3625,13 +3625,13 @@ const quests = [
       "survivalist-zhivchik"
     ],
     "position": {
-      "x": 1408,
-      "y": 5071
+      "x": 1328,
+      "y": 4627
     }
   },
   {
     "id": "survivalist-tough-guy",
-    "nombre": "6. El camino del superviviente – Tipo duro (The Survivalist Path - Tough Guy)",
+    "nombre": "6. La senda del superviviente – Tipo duro (The Survivalist Path - Tough Guy)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3652,13 +3652,13 @@ const quests = [
       "survivalist-wounded-beast"
     ],
     "position": {
-      "x": 1643,
-      "y": 5153
+      "x": 1563,
+      "y": 4709
     }
   },
   {
     "id": "survivalist-cold-blooded",
-    "nombre": "7. El camino del superviviente – Sangre fría (The Survivalist Path - Cold Blooded)",
+    "nombre": "7. La senda del superviviente – Sangre fría (The Survivalist Path - Cold Blooded)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3677,13 +3677,13 @@ const quests = [
       "survivalist-wounded-beast"
     ],
     "position": {
-      "x": 1643,
-      "y": 5071
+      "x": 1563,
+      "y": 4627
     }
   },
   {
     "id": "survivalist-junkie",
-    "nombre": "8. El camino del superviviente – Yonqui (The Survivalist Path - Junkie)",
+    "nombre": "8. La senda del superviviente – Yonqui (The Survivalist Path - Junkie)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3705,13 +3705,13 @@ const quests = [
       "survivalist-combat-medic"
     ],
     "position": {
-      "x": 2383,
-      "y": 5235
+      "x": 2303,
+      "y": 4791
     }
   },
   {
     "id": "survivalist-eagle-owl",
-    "nombre": "9. El camino del superviviente – Búho real (The Survivalist Path - Eagle-Owl)",
+    "nombre": "9. La senda del superviviente – Búho real (The Survivalist Path - Eagle-Owl)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3731,13 +3731,13 @@ const quests = [
       "survivalist-tough-guy"
     ],
     "position": {
-      "x": 1880,
-      "y": 5235
+      "x": 1800,
+      "y": 4791
     }
   },
   {
     "id": "survivalist-combat-medic",
-    "nombre": "10. El camino del superviviente – Médico de combate (The Survivalist Path - Combat Medic)",
+    "nombre": "10. La senda del superviviente – Médico de combate (The Survivalist Path - Combat Medic)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -3756,8 +3756,8 @@ const quests = [
       "survivalist-eagle-owl"
     ],
     "position": {
-      "x": 2124,
-      "y": 5235
+      "x": 2044,
+      "y": 4791
     }
   },
   {
@@ -3785,8 +3785,8 @@ const quests = [
       "tarkov-shooter-part-3"
     ],
     "position": {
-      "x": 1880,
-      "y": 5432.111328125
+      "x": 1800,
+      "y": 4988.111328125
     }
   },
   {
@@ -3815,8 +3815,8 @@ const quests = [
       "huntsman-secured-perimeter"
     ],
     "position": {
-      "x": 2383,
-      "y": 5534.111328125
+      "x": 2303,
+      "y": 5090.111328125
     }
   },
   {
@@ -3841,8 +3841,8 @@ const quests = [
       "huntsman-secured-perimeter"
     ],
     "position": {
-      "x": 508,
-      "y": 5967.778076171875
+      "x": 428,
+      "y": 5523.778076171875
     }
   },
   {
@@ -3866,8 +3866,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 1388,
-      "y": 6303.778076171875
+      "x": 1308,
+      "y": 5859.778076171875
     }
   },
   {
@@ -3898,8 +3898,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 2263,
-      "y": 6015.3333740234375
+      "x": 2183,
+      "y": 5571.3333740234375
     }
   },
   {
@@ -3927,8 +3927,8 @@ const quests = [
       "huntsman-administrator"
     ],
     "position": {
-      "x": 1625,
-      "y": 6303.778076171875
+      "x": 1545,
+      "y": 5859.778076171875
     }
   },
   {
@@ -3956,8 +3956,8 @@ const quests = [
       "huntsman-secured-perimeter"
     ],
     "position": {
-      "x": 2124,
-      "y": 5332
+      "x": 2044,
+      "y": 4888
     }
   },
   {
@@ -3983,8 +3983,8 @@ const quests = [
       "huntsman-secured-perimeter"
     ],
     "position": {
-      "x": 2124,
-      "y": 5432.111328125
+      "x": 2044,
+      "y": 4988.111328125
     }
   },
   {
@@ -4009,8 +4009,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 1388,
-      "y": 6198.778076171875
+      "x": 1308,
+      "y": 5754.778076171875
     }
   },
   {
@@ -4035,8 +4035,8 @@ const quests = [
       "pest-control"
     ],
     "position": {
-      "x": 2064,
-      "y": 5746.778076171875
+      "x": 1984,
+      "y": 5302.778076171875
     }
   },
   {
@@ -4062,8 +4062,8 @@ const quests = [
       "huntsman-secured-perimeter"
     ],
     "position": {
-      "x": 2360,
-      "y": 5696.778076171875
+      "x": 2280,
+      "y": 5252.778076171875
     }
   },
   {
@@ -4091,8 +4091,8 @@ const quests = [
       "chemistry-closet"
     ],
     "position": {
-      "x": 5322,
-      "y": 4953.7779541015625
+      "x": 5242,
+      "y": 4509.7779541015625
     }
   },
   {
@@ -4122,8 +4122,8 @@ const quests = [
       "shady-business"
     ],
     "position": {
-      "x": 959,
-      "y": 4903.7779541015625
+      "x": 879,
+      "y": 4459.7779541015625
     }
   },
   {
@@ -4149,8 +4149,8 @@ const quests = [
       "acquaintance"
     ],
     "position": {
-      "x": 733,
-      "y": 4903.7779541015625
+      "x": 701,
+      "y": 4459.7779541015625
     }
   },
   {
@@ -4177,8 +4177,8 @@ const quests = [
       "courtesy-visit"
     ],
     "position": {
-      "x": 2124,
-      "y": 5153
+      "x": 2044,
+      "y": 4709
     }
   },
   {
@@ -4204,8 +4204,8 @@ const quests = [
       "nostalgia"
     ],
     "position": {
-      "x": 2383,
-      "y": 5071
+      "x": 2303,
+      "y": 4627
     }
   },
   {
@@ -4233,8 +4233,8 @@ const quests = [
       "survivalist-tough-guy"
     ],
     "position": {
-      "x": 1880,
-      "y": 5153
+      "x": 1800,
+      "y": 4709
     }
   },
   {
@@ -4261,8 +4261,8 @@ const quests = [
       "huntsman-woods-keeper"
     ],
     "position": {
-      "x": 2383,
-      "y": 5332
+      "x": 2303,
+      "y": 4888
     }
   },
   {
@@ -4290,13 +4290,13 @@ const quests = [
       "delicious-sausage"
     ],
     "position": {
-      "x": 1583,
-      "y": 5746.778076171875
+      "x": 1503,
+      "y": 5302.778076171875
     }
   },
   {
     "id": "tarkov-shooter-part-1",
-    "nombre": "30. The Tarkov Shooter - Part 1",
+    "nombre": "30. El tirador de Tarkov – Parte 1 (The Tarkov Shooter - Part 1)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 0,
@@ -4317,8 +4317,8 @@ const quests = [
       "acquaintance"
     ],
     "position": {
-      "x": 733,
-      "y": 4982
+      "x": 661,
+      "y": 4538
     }
   },
   {
@@ -4345,8 +4345,8 @@ const quests = [
       "tarkov-shooter-part-1"
     ],
     "position": {
-      "x": 958,
-      "y": 4982
+      "x": 878,
+      "y": 4538
     }
   },
   {
@@ -4376,8 +4376,8 @@ const quests = [
       "tarkov-shooter-part-2"
     ],
     "position": {
-      "x": 1183,
-      "y": 4982
+      "x": 1103,
+      "y": 4538
     }
   },
   {
@@ -4404,8 +4404,8 @@ const quests = [
       "tarkov-shooter-part-3"
     ],
     "position": {
-      "x": 1401,
-      "y": 4982
+      "x": 1321,
+      "y": 4538
     }
   },
   {
@@ -4431,8 +4431,8 @@ const quests = [
       "tarkov-shooter-part-4"
     ],
     "position": {
-      "x": 1648,
-      "y": 4982
+      "x": 1568,
+      "y": 4538
     }
   },
   {
@@ -4458,8 +4458,8 @@ const quests = [
       "tarkov-shooter-part-5"
     ],
     "position": {
-      "x": 1880,
-      "y": 4982
+      "x": 1800,
+      "y": 4538
     }
   },
   {
@@ -4486,8 +4486,8 @@ const quests = [
       "tarkov-shooter-part-6"
     ],
     "position": {
-      "x": 2124,
-      "y": 4982
+      "x": 2044,
+      "y": 4538
     }
   },
   {
@@ -4514,8 +4514,8 @@ const quests = [
       "tarkov-shooter-part-7"
     ],
     "position": {
-      "x": 2383,
-      "y": 4982
+      "x": 2303,
+      "y": 4538
     }
   },
   {
@@ -4542,8 +4542,8 @@ const quests = [
       "reserve-quest"
     ],
     "position": {
-      "x": 1818,
-      "y": 5746.778076171875
+      "x": 1738,
+      "y": 5302.778076171875
     }
   },
   {
@@ -4570,8 +4570,8 @@ const quests = [
       "colleagues-part-3"
     ],
     "position": {
-      "x": 5545,
-      "y": 4953.7779541015625
+      "x": 5465,
+      "y": 4509.7779541015625
     }
   },
   {
@@ -4609,8 +4609,8 @@ const quests = [
       "colleagues-part-3"
     ],
     "position": {
-      "x": 3400,
-      "y": 5800.111328125
+      "x": 3320,
+      "y": 5356.111328125
     }
   },
   {
@@ -4637,8 +4637,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 2597,
-      "y": 6141.666748046875
+      "x": 2517,
+      "y": 5697.666748046875
     }
   },
   {
@@ -4662,8 +4662,8 @@ const quests = [
       "huntsman-woods-keeper"
     ],
     "position": {
-      "x": 2383,
-      "y": 5432.111328125
+      "x": 2303,
+      "y": 4988.111328125
     }
   },
   {
@@ -4688,8 +4688,8 @@ const quests = [
       "survivalist-tough-guy"
     ],
     "position": {
-      "x": 1880,
-      "y": 5332
+      "x": 1800,
+      "y": 4888
     }
   },
   {
@@ -4713,8 +4713,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 1404,
-      "y": 5940
+      "x": 1324,
+      "y": 5496
     }
   },
   {
@@ -4745,8 +4745,8 @@ const quests = [
       "huntsman-woods-keeper"
     ],
     "position": {
-      "x": 3400,
-      "y": 5942.111328125
+      "x": 3320,
+      "y": 5498.111328125
     }
   },
   {
@@ -4776,8 +4776,8 @@ const quests = [
       "survivalist-thrifty"
     ],
     "position": {
-      "x": 1183,
-      "y": 5153
+      "x": 1103,
+      "y": 4709
     }
   },
   {
@@ -4802,8 +4802,8 @@ const quests = [
       "the-delicious-sausage"
     ],
     "position": {
-      "x": 1408,
-      "y": 5235
+      "x": 1328,
+      "y": 4791
     }
   },
   {
@@ -4828,8 +4828,8 @@ const quests = [
       "broadcast-part-2"
     ],
     "position": {
-      "x": 1139,
-      "y": 6501
+      "x": 1059,
+      "y": 6057
     }
   },
   {
@@ -4855,8 +4855,8 @@ const quests = [
       "broadcast-part-3"
     ],
     "position": {
-      "x": 1388,
-      "y": 6501
+      "x": 1308,
+      "y": 6057
     }
   },
   {
@@ -4881,8 +4881,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 1388,
-      "y": 6399
+      "x": 1308,
+      "y": 5955
     }
   },
   {
@@ -4915,8 +4915,8 @@ const quests = [
       "broadcast-part-4"
     ],
     "position": {
-      "x": 1625,
-      "y": 6399
+      "x": 1545,
+      "y": 5955
     }
   },
   {
@@ -4945,8 +4945,8 @@ const quests = [
       "huntsman-forest-cleaning"
     ],
     "position": {
-      "x": 1388,
-      "y": 6105.666748046875
+      "x": 1308,
+      "y": 5661.666748046875
     }
   },
   {
@@ -4975,8 +4975,8 @@ const quests = [
       "broadcast-part-4"
     ],
     "position": {
-      "x": 1625,
-      "y": 6493
+      "x": 1545,
+      "y": 6049
     }
   },
   {
@@ -4999,8 +4999,8 @@ const quests = [
       "the-delicious-sausage"
     ],
     "position": {
-      "x": 1408,
-      "y": 5153
+      "x": 1328,
+      "y": 4709
     }
   },
   {
@@ -5025,13 +5025,13 @@ const quests = [
       "rough-tarkov"
     ],
     "position": {
-      "x": 958,
-      "y": 5235
+      "x": 878,
+      "y": 4791
     }
   },
   {
     "id": "rough-tarkov",
-    "nombre": "56. Rough Tarkov",
+    "nombre": "56. Tarkov despiadado\n(Rough Tarkov)\n",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 2,
@@ -5053,8 +5053,8 @@ const quests = [
       "acquaintance"
     ],
     "position": {
-      "x": 733,
-      "y": 5235
+      "x": 653,
+      "y": 4791
     }
   },
   {
@@ -5083,8 +5083,8 @@ const quests = [
       "a-healthy-alternative"
     ],
     "position": {
-      "x": 2895,
-      "y": 3518
+      "x": 4035,
+      "y": 2934
     }
   },
   {
@@ -5110,8 +5110,8 @@ const quests = [
       "the-huntsman-path-forest-cleaning"
     ],
     "position": {
-      "x": 486,
-      "y": 5513.111328125
+      "x": 406,
+      "y": 5069.111328125
     }
   },
   {
@@ -5137,13 +5137,13 @@ const quests = [
       "nostalgia"
     ],
     "position": {
-      "x": 2383,
-      "y": 5153
+      "x": 2303,
+      "y": 4709
     }
   },
   {
     "id": "work-smarter",
-    "nombre": "60. Trabaja con cabeza (Work Smarter)",
+    "nombre": "60. trabaja más inteligentemente (Work Smarter)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 2,
@@ -5164,8 +5164,8 @@ const quests = [
       "acquaintance"
     ],
     "position": {
-      "x": 733,
-      "y": 5071
+      "x": 653,
+      "y": 4627
     }
   },
   {
@@ -5190,8 +5190,8 @@ const quests = [
       "work-smarter"
     ],
     "position": {
-      "x": 958,
-      "y": 5071
+      "x": 878,
+      "y": 4627
     }
   },
   {
@@ -5221,8 +5221,8 @@ const quests = [
       "friend-from-the-west-2"
     ],
     "position": {
-      "x": 1040,
-      "y": 3381
+      "x": 2180,
+      "y": 2797
     }
   },
   {
@@ -5251,8 +5251,8 @@ const quests = [
       "fishing-gear"
     ],
     "position": {
-      "x": 1265,
-      "y": 3381
+      "x": 2405,
+      "y": 2797
     }
   },
   {
@@ -5282,8 +5282,8 @@ const quests = [
       "tigr-safari"
     ],
     "position": {
-      "x": 1473,
-      "y": 3381
+      "x": 2613,
+      "y": 2797
     }
   },
   {
@@ -5314,8 +5314,8 @@ const quests = [
       "scrap-metal"
     ],
     "position": {
-      "x": 1691,
-      "y": 3381
+      "x": 2831,
+      "y": 2797
     }
   },
   {
@@ -5348,8 +5348,8 @@ const quests = [
       "eagle-eye"
     ],
     "position": {
-      "x": 1915,
-      "y": 3381
+      "x": 3055,
+      "y": 2797
     }
   },
   {
@@ -5374,8 +5374,8 @@ const quests = [
       "humanitarian-supplies"
     ],
     "position": {
-      "x": 2144,
-      "y": 3333
+      "x": 3284,
+      "y": 2749
     }
   },
   {
@@ -5402,8 +5402,8 @@ const quests = [
       "the-cult-part-1"
     ],
     "position": {
-      "x": 2425,
-      "y": 3333
+      "x": 3565,
+      "y": 2749
     }
   },
   {
@@ -5430,8 +5430,8 @@ const quests = [
       "humanitarian-supplies"
     ],
     "position": {
-      "x": 2144,
-      "y": 3422
+      "x": 3284,
+      "y": 2838
     }
   },
   {
@@ -5458,8 +5458,8 @@ const quests = [
       "spa-tour-part-1"
     ],
     "position": {
-      "x": 2425,
-      "y": 3422
+      "x": 3565,
+      "y": 2838
     }
   },
   {
@@ -5493,8 +5493,8 @@ const quests = [
       "spa-tour-part-2"
     ],
     "position": {
-      "x": 2664,
-      "y": 3422
+      "x": 3804,
+      "y": 2838
     }
   },
   {
@@ -5520,8 +5520,8 @@ const quests = [
       "spa-tour-part-3"
     ],
     "position": {
-      "x": 2895,
-      "y": 3422
+      "x": 4035,
+      "y": 2838
     }
   },
   {
@@ -5546,8 +5546,8 @@ const quests = [
       "spa-tour-part-4"
     ],
     "position": {
-      "x": 3115,
-      "y": 3422
+      "x": 4255,
+      "y": 2838
     }
   },
   {
@@ -5569,8 +5569,8 @@ const quests = [
       "spa-tour-part-5"
     ],
     "position": {
-      "x": 3335,
-      "y": 3422
+      "x": 4475,
+      "y": 2838
     }
   },
   {
@@ -5602,8 +5602,8 @@ const quests = [
       "spa-tour-part-6"
     ],
     "position": {
-      "x": 3555,
-      "y": 3422
+      "x": 4695,
+      "y": 2838
     }
   },
   {
@@ -5630,8 +5630,8 @@ const quests = [
       "spa-tour-part-7"
     ],
     "position": {
-      "x": 3775,
-      "y": 3422
+      "x": 4915,
+      "y": 2838
     }
   },
   {
@@ -5659,8 +5659,8 @@ const quests = [
       "cargo-x-part-1"
     ],
     "position": {
-      "x": 3995,
-      "y": 3422
+      "x": 5135,
+      "y": 2838
     }
   },
   {
@@ -5685,8 +5685,8 @@ const quests = [
       "cargo-x-part-2"
     ],
     "position": {
-      "x": 4215,
-      "y": 3422
+      "x": 5355,
+      "y": 2838
     }
   },
   {
@@ -5711,8 +5711,8 @@ const quests = [
       "spa-tour-part-7"
     ],
     "position": {
-      "x": 3775,
-      "y": 3518
+      "x": 4915,
+      "y": 2934
     }
   },
   {
@@ -5740,8 +5740,8 @@ const quests = [
       "wet-job-part-1"
     ],
     "position": {
-      "x": 3995,
-      "y": 3518
+      "x": 5135,
+      "y": 2934
     }
   },
   {
@@ -5767,8 +5767,8 @@ const quests = [
       "wet-job-part-2"
     ],
     "position": {
-      "x": 4207,
-      "y": 3518
+      "x": 5347,
+      "y": 2934
     }
   },
   {
@@ -5794,8 +5794,8 @@ const quests = [
       "wet-job-part-3"
     ],
     "position": {
-      "x": 4439,
-      "y": 3518
+      "x": 5579,
+      "y": 2934
     }
   },
   {
@@ -5822,8 +5822,8 @@ const quests = [
       "wet-job-part-4"
     ],
     "position": {
-      "x": 4674,
-      "y": 3619
+      "x": 5814,
+      "y": 3035
     }
   },
   {
@@ -5850,8 +5850,8 @@ const quests = [
       "wet-job-part-5"
     ],
     "position": {
-      "x": 4933,
-      "y": 3619
+      "x": 6073,
+      "y": 3035
     }
   },
   {
@@ -5890,8 +5890,8 @@ const quests = [
       "wet-job-part-6"
     ],
     "position": {
-      "x": 5169,
-      "y": 3619
+      "x": 6309,
+      "y": 3035
     }
   },
   {
@@ -5922,8 +5922,8 @@ const quests = [
       "lend-lease-part-2"
     ],
     "position": {
-      "x": 3094,
-      "y": 3796
+      "x": 4234,
+      "y": 3212
     }
   },
   {
@@ -5955,8 +5955,8 @@ const quests = [
       "lend-lease-part-1"
     ],
     "position": {
-      "x": 2861,
-      "y": 3796
+      "x": 4001,
+      "y": 3212
     }
   },
   {
@@ -5980,8 +5980,8 @@ const quests = [
       "wet-job-part-5"
     ],
     "position": {
-      "x": 4933,
-      "y": 3518
+      "x": 6073,
+      "y": 2934
     }
   },
   {
@@ -6024,8 +6024,8 @@ const quests = [
       "fishing-gear"
     ],
     "position": {
-      "x": 2449,
-      "y": 3899.3333740234375
+      "x": 3589,
+      "y": 3315.3333740234375
     }
   },
   {
@@ -6056,8 +6056,8 @@ const quests = [
       "samples"
     ],
     "position": {
-      "x": 2674,
-      "y": 3899.3333740234375
+      "x": 3814,
+      "y": 3315.3333740234375
     }
   },
   {
@@ -6094,8 +6094,8 @@ const quests = [
       "humanitarian-supplies"
     ],
     "position": {
-      "x": 2144,
-      "y": 3604
+      "x": 3284,
+      "y": 3020
     }
   },
   {
@@ -6123,8 +6123,8 @@ const quests = [
       "revision-reserve"
     ],
     "position": {
-      "x": 2425,
-      "y": 3705
+      "x": 3565,
+      "y": 3121
     }
   },
   {
@@ -6150,8 +6150,8 @@ const quests = [
       "the-guide"
     ],
     "position": {
-      "x": 5393,
-      "y": 3619
+      "x": 6533,
+      "y": 3035
     }
   },
   {
@@ -6177,8 +6177,8 @@ const quests = [
       "revision-reserve"
     ],
     "position": {
-      "x": 2425,
-      "y": 3796
+      "x": 3565,
+      "y": 3212
     }
   },
   {
@@ -6212,8 +6212,8 @@ const quests = [
       "trophies"
     ],
     "position": {
-      "x": 3564,
-      "y": 3796
+      "x": 4704,
+      "y": 3212
     }
   },
   {
@@ -6239,8 +6239,8 @@ const quests = [
       "cargo-x-part-3"
     ],
     "position": {
-      "x": 4439,
-      "y": 3422
+      "x": 5579,
+      "y": 2838
     }
   },
   {
@@ -6269,8 +6269,8 @@ const quests = [
       "cargo-x-part-4"
     ],
     "position": {
-      "x": 4674,
-      "y": 3518
+      "x": 5814,
+      "y": 2934
     }
   },
   {
@@ -6300,8 +6300,8 @@ const quests = [
       "spa-tour-part-3"
     ],
     "position": {
-      "x": 2895,
-      "y": 3333
+      "x": 4035,
+      "y": 2749
     }
   },
   {
@@ -6327,8 +6327,8 @@ const quests = [
       "spa-tour-part-1"
     ],
     "position": {
-      "x": 2425,
-      "y": 3518
+      "x": 3565,
+      "y": 2934
     }
   },
   {
@@ -6356,8 +6356,8 @@ const quests = [
       "the-huntsman-path-forest-cleaning"
     ],
     "position": {
-      "x": 3322,
-      "y": 3796
+      "x": 4462,
+      "y": 3212
     }
   },
   {
@@ -6385,8 +6385,8 @@ const quests = [
       "revision-reserve"
     ],
     "position": {
-      "x": 2425,
-      "y": 3604
+      "x": 3565,
+      "y": 3020
     }
   },
   {
@@ -6414,8 +6414,8 @@ const quests = [
       "spa-tour-part-7"
     ],
     "position": {
-      "x": 3775,
-      "y": 3604
+      "x": 4915,
+      "y": 3020
     }
   },
   {
@@ -6440,8 +6440,8 @@ const quests = [
       "wet-job-part-5"
     ],
     "position": {
-      "x": 4933,
-      "y": 3718
+      "x": 6073,
+      "y": 3134
     }
   },
   {
@@ -6466,8 +6466,8 @@ const quests = [
       "cargo-x-part-4"
     ],
     "position": {
-      "x": 4674,
-      "y": 3422
+      "x": 5814,
+      "y": 2838
     }
   },
   {
@@ -6495,8 +6495,8 @@ const quests = [
       "overpopulation"
     ],
     "position": {
-      "x": 2646,
-      "y": 3518
+      "x": 3786,
+      "y": 2934
     }
   },
   {
@@ -6524,8 +6524,8 @@ const quests = [
       "revision-streets-of-tarkov"
     ],
     "position": {
-      "x": 2646,
-      "y": 3705
+      "x": 3786,
+      "y": 3121
     }
   },
   {
@@ -6550,8 +6550,8 @@ const quests = [
       "humanitarian-supplies"
     ],
     "position": {
-      "x": 2144,
-      "y": 3518
+      "x": 3284,
+      "y": 2934
     }
   },
   {
@@ -6580,8 +6580,8 @@ const quests = [
       "offensive-reconnaissance"
     ],
     "position": {
-      "x": 2646,
-      "y": 3796
+      "x": 3786,
+      "y": 3212
     }
   },
   {
@@ -6603,13 +6603,13 @@ const quests = [
     "youtube": "https://www.youtube.com/watch?v=I25w3xEVihk",
     "prereqIds": [],
     "position": {
-      "x": 160,
-      "y": 704
+      "x": 326,
+      "y": 301
     }
   },
   {
     "id": "sanitary-standards-1",
-    "nombre": "Normas sanitarias – Parte 1",
+    "nombre": "Normas sanitarias – Parte 1\n(Sanitary Standards - Part 1)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 4,
@@ -6628,8 +6628,8 @@ const quests = [
       "shortage"
     ],
     "position": {
-      "x": 400,
-      "y": 704
+      "x": 584,
+      "y": 301
     }
   },
   {
@@ -6653,8 +6653,8 @@ const quests = [
       "sanitary-standards-1"
     ],
     "position": {
-      "x": 620,
-      "y": 705
+      "x": 829,
+      "y": 301
     }
   },
   {
@@ -6678,8 +6678,8 @@ const quests = [
       "sanitary-standards-2"
     ],
     "position": {
-      "x": 839,
-      "y": 705
+      "x": 1059,
+      "y": 301
     }
   },
   {
@@ -6703,13 +6703,13 @@ const quests = [
       "painkiller"
     ],
     "position": {
-      "x": 1056,
-      "y": 705
+      "x": 1328,
+      "y": 301
     }
   },
   {
     "id": "operation-aquarius-1",
-    "nombre": "Operación Acuario – Parte 1",
+    "nombre": "Operación Acuario – Parte 1\n(Operation Aquarius - Part 1)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 6,
@@ -6728,8 +6728,8 @@ const quests = [
       "shortage"
     ],
     "position": {
-      "x": 400,
-      "y": 784
+      "x": 584,
+      "y": 215
     }
   },
   {
@@ -6752,8 +6752,8 @@ const quests = [
       "operation-aquarius-1"
     ],
     "position": {
-      "x": 620,
-      "y": 784
+      "x": 829,
+      "y": 215
     }
   },
   {
@@ -6778,8 +6778,8 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1679,
-      "y": 824
+      "x": 1568,
+      "y": 122
     }
   },
   {
@@ -6803,8 +6803,8 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1679,
-      "y": 905
+      "x": 1568,
+      "y": 208
     }
   },
   {
@@ -6829,13 +6829,13 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1679,
-      "y": 987
+      "x": 1568,
+      "y": 394
     }
   },
   {
     "id": "health-care-privacy-1",
-    "nombre": "Privacidad sanitaria – Parte 1",
+    "nombre": "Privacidad sanitaria – Parte 1 (Health Care Privacy - Part 1)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6854,13 +6854,13 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1291,
-      "y": 1116
+      "x": 1568,
+      "y": 483
     }
   },
   {
     "id": "health-care-privacy-2",
-    "nombre": "Privacidad sanitaria – Parte 2",
+    "nombre": "Privacidad sanitaria – Parte 2 (Health Care Privacy - Part 2)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6880,13 +6880,13 @@ const quests = [
       "health-care-privacy-1"
     ],
     "position": {
-      "x": 1496,
-      "y": 1116
+      "x": 1797,
+      "y": 483
     }
   },
   {
     "id": "health-care-privacy-3",
-    "nombre": "Privacidad sanitaria – Parte 3",
+    "nombre": "Privacidad sanitaria – Parte 3 (Health Care Privacy - Part 3)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6906,13 +6906,13 @@ const quests = [
       "health-care-privacy-2"
     ],
     "position": {
-      "x": 1701,
-      "y": 1116
+      "x": 2021,
+      "y": 483
     }
   },
   {
     "id": "health-care-privacy-4",
-    "nombre": "Privacidad sanitaria – Parte 4",
+    "nombre": "Privacidad sanitaria – Parte 4 (Health Care Privacy - Part 4)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "descripcion": "Demuestra buena condición física alcanzando un nivel concreto de la habilidad de Salud.",
@@ -6929,13 +6929,13 @@ const quests = [
       "health-care-privacy-3"
     ],
     "position": {
-      "x": 1909,
-      "y": 1116
+      "x": 2242,
+      "y": 483
     }
   },
   {
     "id": "health-care-privacy-5",
-    "nombre": "Privacidad sanitaria – Parte 5",
+    "nombre": "Privacidad sanitaria – Parte 5 (Health Care Privacy - Part 5)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6955,13 +6955,13 @@ const quests = [
       "health-care-privacy-4"
     ],
     "position": {
-      "x": 2140,
-      "y": 1135
+      "x": 2517,
+      "y": 483
     }
   },
   {
     "id": "health-care-privacy-6",
-    "nombre": "Privacidad sanitaria – Parte 6",
+    "nombre": "Privacidad sanitaria – Parte 6 (Health Care Privacy - Part 6)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6981,8 +6981,8 @@ const quests = [
       "health-care-privacy-5"
     ],
     "position": {
-      "x": 2380,
-      "y": 1071
+      "x": 2801,
+      "y": 483
     }
   },
   {
@@ -7006,8 +7006,8 @@ const quests = [
       "postman-pat-1"
     ],
     "position": {
-      "x": 388,
-      "y": 1116
+      "x": 801,
+      "y": 523
     }
   },
   {
@@ -7033,8 +7033,8 @@ const quests = [
       "chemical-part-4"
     ],
     "position": {
-      "x": 2127,
-      "y": 1321
+      "x": 3662,
+      "y": 1649.7778091430664
     }
   },
   {
@@ -7058,8 +7058,8 @@ const quests = [
       "out-of-curiosity"
     ],
     "position": {
-      "x": 2372,
-      "y": 1321
+      "x": 3933,
+      "y": 1649.7778091430664
     }
   },
   {
@@ -7082,8 +7082,8 @@ const quests = [
       "health-care-privacy-4"
     ],
     "position": {
-      "x": 2140,
-      "y": 986
+      "x": 2547,
+      "y": 372
     }
   },
   {
@@ -7107,8 +7107,8 @@ const quests = [
       "health-care-privacy-5"
     ],
     "position": {
-      "x": 2380,
-      "y": 1156
+      "x": 2801,
+      "y": 372
     }
   },
   {
@@ -7135,8 +7135,8 @@ const quests = [
       "health-care-privacy-4"
     ],
     "position": {
-      "x": 2140,
-      "y": 1225
+      "x": 2547,
+      "y": 693
     }
   },
   {
@@ -7159,8 +7159,8 @@ const quests = [
       "health-care-privacy-4"
     ],
     "position": {
-      "x": 2140,
-      "y": 1066
+      "x": 2547,
+      "y": 605
     }
   },
   {
@@ -7185,8 +7185,8 @@ const quests = [
       "general-wares"
     ],
     "position": {
-      "x": 1912,
-      "y": 905
+      "x": 1797,
+      "y": 208
     }
   },
   {
@@ -7210,8 +7210,8 @@ const quests = [
       "colleagues-1"
     ],
     "position": {
-      "x": 2142,
-      "y": 905
+      "x": 2023,
+      "y": 208
     }
   },
   {
@@ -7237,8 +7237,8 @@ const quests = [
       "colleagues-2"
     ],
     "position": {
-      "x": 2355,
-      "y": 905
+      "x": 2247,
+      "y": 208
     }
   },
   {
@@ -7263,8 +7263,8 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1438,
-      "y": 705
+      "x": 1568,
+      "y": 588
     }
   },
   {
@@ -7292,8 +7292,8 @@ const quests = [
       "private-clinic"
     ],
     "position": {
-      "x": 2380,
-      "y": 1232
+      "x": 2801,
+      "y": 629
     }
   },
   {
@@ -7317,8 +7317,8 @@ const quests = [
       "disease-history"
     ],
     "position": {
-      "x": 1679,
-      "y": 739
+      "x": 1797,
+      "y": 588
     }
   },
   {
@@ -7342,8 +7342,8 @@ const quests = [
       "seaside-vacation"
     ],
     "position": {
-      "x": 1909,
-      "y": 739
+      "x": 2021,
+      "y": 588
     }
   },
   {
@@ -7371,8 +7371,8 @@ const quests = [
       "lost-contact"
     ],
     "position": {
-      "x": 2142,
-      "y": 739
+      "x": 2242,
+      "y": 588
     }
   },
   {
@@ -7398,8 +7398,8 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1438,
-      "y": 627
+      "x": 1568,
+      "y": 301
     }
   },
   {
@@ -7425,8 +7425,8 @@ const quests = [
       "supply-plans"
     ],
     "position": {
-      "x": 1912,
-      "y": 824
+      "x": 1797,
+      "y": 122
     }
   },
   {
@@ -7453,8 +7453,8 @@ const quests = [
       "population-census"
     ],
     "position": {
-      "x": 1679,
-      "y": 569
+      "x": 1797,
+      "y": 394
     }
   },
   {
@@ -7482,8 +7482,8 @@ const quests = [
       "population-census"
     ],
     "position": {
-      "x": 1679,
-      "y": 651
+      "x": 1797,
+      "y": 301
     }
   },
   {
@@ -7513,8 +7513,8 @@ const quests = [
       "pets-wont-need-it-1"
     ],
     "position": {
-      "x": 1909,
-      "y": 651
+      "x": 2021,
+      "y": 301
     }
   },
   {
@@ -7542,8 +7542,8 @@ const quests = [
       "urban-medicine"
     ],
     "position": {
-      "x": 1909,
-      "y": 569
+      "x": 2021,
+      "y": 394
     }
   },
   {
@@ -7565,8 +7565,8 @@ const quests = [
     "youtube": "https://www.youtube.com/watch?v=CB4oTaqFL1w",
     "prereqIds": [],
     "position": {
-      "x": 160,
-      "y": 1097
+      "x": 326,
+      "y": 394
     }
   },
   {
@@ -7592,8 +7592,8 @@ const quests = [
       "the-good-times-1"
     ],
     "position": {
-      "x": 1438,
-      "y": 1277
+      "x": 1250,
+      "y": 523
     }
   },
   {
@@ -7620,8 +7620,8 @@ const quests = [
       "thirsty-delivery"
     ],
     "position": {
-      "x": 3104,
-      "y": 1936.7778091430664
+      "x": 2965,
+      "y": 1496
     }
   },
   {
@@ -7642,8 +7642,8 @@ const quests = [
     "youtube": "https://www.youtube.com/watch?v=w0W1l_yOYOo",
     "prereqIds": [],
     "position": {
-      "x": 160,
-      "y": 1348
+      "x": 364,
+      "y": 1647
     }
   },
   {
@@ -7668,8 +7668,8 @@ const quests = [
       "burning-rubber"
     ],
     "position": {
-      "x": 388,
-      "y": 1353
+      "x": 580,
+      "y": 1647
     }
   },
   {
@@ -7695,13 +7695,13 @@ const quests = [
       "supplier"
     ],
     "position": {
-      "x": 603,
-      "y": 1447
+      "x": 795,
+      "y": 1647
     }
   },
   {
     "id": "agitation",
-    "nombre": "4. Agitación (Hustle)",
+    "nombre": "4. Liarla parda (Hustle)",
     "trader": "Skier",
     "traderColor": "skier",
     "nivel": 8,
@@ -7721,8 +7721,8 @@ const quests = [
       "the-extortionist"
     ],
     "position": {
-      "x": 741,
-      "y": 1648
+      "x": 1011,
+      "y": 1647
     }
   },
   {
@@ -7747,13 +7747,13 @@ const quests = [
       "the-extortionist"
     ],
     "position": {
-      "x": 821,
-      "y": 1534
+      "x": 1011,
+      "y": 1734.7778091430664
     }
   },
   {
     "id": "bling-bling",
-    "nombre": "6. Bling-Bling (Golden Swag)",
+    "nombre": "6. Chapado en oro (Golden Swag)",
     "trader": "Skier",
     "traderColor": "skier",
     "nivel": 8,
@@ -7773,8 +7773,8 @@ const quests = [
       "whats-on-the-flash-drive"
     ],
     "position": {
-      "x": 1023,
-      "y": 1534
+      "x": 1283,
+      "y": 1734.7778091430664
     }
   },
   {
@@ -7800,8 +7800,8 @@ const quests = [
       "bling-bling"
     ],
     "position": {
-      "x": 1223,
-      "y": 1534
+      "x": 2242,
+      "y": 1734.7778091430664
     }
   },
   {
@@ -7825,8 +7825,8 @@ const quests = [
       "chemical-part-1"
     ],
     "position": {
-      "x": 1420,
-      "y": 1534
+      "x": 2547,
+      "y": 1734.7778091430664
     }
   },
   {
@@ -7850,8 +7850,8 @@ const quests = [
       "chemical-part-2"
     ],
     "position": {
-      "x": 1618,
-      "y": 1534
+      "x": 2767,
+      "y": 1734.7778091430664
     }
   },
   {
@@ -7874,8 +7874,8 @@ const quests = [
       "chemical-part-3"
     ],
     "position": {
-      "x": 1809,
-      "y": 1534
+      "x": 2977,
+      "y": 1734.7778091430664
     }
   },
   {
@@ -7896,8 +7896,8 @@ const quests = [
       "out-of-curiosity"
     ],
     "position": {
-      "x": 2372,
-      "y": 1416
+      "x": 3933,
+      "y": 1771.7778091430664
     }
   },
   {
@@ -7925,8 +7925,8 @@ const quests = [
       "chemical-part-4"
     ],
     "position": {
-      "x": 2006,
-      "y": 1534
+      "x": 3198,
+      "y": 1859.7778091430664
     }
   },
   {
@@ -7952,8 +7952,8 @@ const quests = [
       "vitamins-part-1"
     ],
     "position": {
-      "x": 2206,
-      "y": 1534
+      "x": 3432,
+      "y": 1859.7778091430664
     }
   },
   {
@@ -7978,8 +7978,8 @@ const quests = [
       "supplier"
     ],
     "position": {
-      "x": 603,
-      "y": 1353
+      "x": 774,
+      "y": 2223
     }
   },
   {
@@ -8002,8 +8002,8 @@ const quests = [
       "friend-from-the-west-1"
     ],
     "position": {
-      "x": 873,
-      "y": 1251
+      "x": 1020,
+      "y": 2223
     }
   },
   {
@@ -8031,8 +8031,8 @@ const quests = [
       "friend-from-the-west-2"
     ],
     "position": {
-      "x": 1329,
-      "y": 2667
+      "x": 1249,
+      "y": 2223
     }
   },
   {
@@ -8060,8 +8060,8 @@ const quests = [
       "knowledge-is-power"
     ],
     "position": {
-      "x": 1549,
-      "y": 2667
+      "x": 1490,
+      "y": 2223
     }
   },
   {
@@ -8087,8 +8087,8 @@ const quests = [
       "baiting"
     ],
     "position": {
-      "x": 1766,
-      "y": 2667
+      "x": 1756,
+      "y": 2223
     }
   },
   {
@@ -8119,8 +8119,8 @@ const quests = [
       "silent-caliber"
     ],
     "position": {
-      "x": 1986,
-      "y": 2667
+      "x": 1976,
+      "y": 2223
     }
   },
   {
@@ -8146,8 +8146,8 @@ const quests = [
       "bullshit"
     ],
     "position": {
-      "x": 2206,
-      "y": 2667
+      "x": 2196,
+      "y": 2223
     }
   },
   {
@@ -8173,8 +8173,8 @@ const quests = [
       "baiting"
     ],
     "position": {
-      "x": 1766,
-      "y": 2437
+      "x": 1756,
+      "y": 1993
     }
   },
   {
@@ -8202,8 +8202,8 @@ const quests = [
       "friend-from-the-west-2"
     ],
     "position": {
-      "x": 1336,
-      "y": 2572
+      "x": 1256,
+      "y": 2128
     }
   },
   {
@@ -8230,8 +8230,8 @@ const quests = [
       "pharmacist"
     ],
     "position": {
-      "x": 1648,
-      "y": 461
+      "x": 1568,
+      "y": 17
     }
   },
   {
@@ -8258,13 +8258,13 @@ const quests = [
       "anesthesia"
     ],
     "position": {
-      "x": 5107,
-      "y": 4953.7779541015625
+      "x": 5027,
+      "y": 4509.7779541015625
     }
   },
   {
     "id": "secure-corridor",
-    "nombre": "25. Corredor seguro (Secure Corridor)",
+    "nombre": "25. Corredor seguro (Safe Corridor)",
     "trader": "Skier",
     "traderColor": "skier",
     "nivel": 15,
@@ -8289,8 +8289,8 @@ const quests = [
       "big-customer"
     ],
     "position": {
-      "x": 3257,
-      "y": 1385
+      "x": 3933,
+      "y": 1417.7778091430664
     }
   },
   {
@@ -8315,8 +8315,8 @@ const quests = [
       "rigged-game"
     ],
     "position": {
-      "x": 5322,
-      "y": 5043.555908203125
+      "x": 5242,
+      "y": 4599.555908203125
     }
   },
   {
@@ -8342,8 +8342,8 @@ const quests = [
       "baiting"
     ],
     "position": {
-      "x": 1766,
-      "y": 2588
+      "x": 1756,
+      "y": 2144
     }
   },
   {
@@ -8367,8 +8367,8 @@ const quests = [
       "friend-from-the-west-2"
     ],
     "position": {
-      "x": 1323,
-      "y": 2759
+      "x": 1243,
+      "y": 2315
     }
   },
   {
@@ -8396,8 +8396,8 @@ const quests = [
       "long-road"
     ],
     "position": {
-      "x": 1543,
-      "y": 2759
+      "x": 1484,
+      "y": 2315
     }
   },
   {
@@ -8425,8 +8425,8 @@ const quests = [
       "missing-cargo"
     ],
     "position": {
-      "x": 1760,
-      "y": 2759
+      "x": 1750,
+      "y": 2315
     }
   },
   {
@@ -8451,8 +8451,8 @@ const quests = [
       "debtor"
     ],
     "position": {
-      "x": 1983,
-      "y": 2303.7778091430664
+      "x": 1903,
+      "y": 1859.7778091430664
     }
   },
   {
@@ -8478,8 +8478,8 @@ const quests = [
       "house-arrest-part-1"
     ],
     "position": {
-      "x": 2197,
-      "y": 2303.7778091430664
+      "x": 2117,
+      "y": 1859.7778091430664
     }
   },
   {
@@ -8503,8 +8503,8 @@ const quests = [
       "chumming"
     ],
     "position": {
-      "x": 1766,
-      "y": 2303.7778091430664
+      "x": 1686,
+      "y": 1859.7778091430664
     }
   },
   {
@@ -8532,8 +8532,8 @@ const quests = [
       "exit-here"
     ],
     "position": {
-      "x": 4124,
-      "y": 6817.778076171875
+      "x": 4044,
+      "y": 6373.778076171875
     }
   },
   {
@@ -8557,8 +8557,8 @@ const quests = [
       "scout"
     ],
     "position": {
-      "x": 3903,
-      "y": 6817.778076171875
+      "x": 3823,
+      "y": 6373.778076171875
     }
   },
   {
@@ -8587,8 +8587,8 @@ const quests = [
       "vitamins-part-2"
     ],
     "position": {
-      "x": 3742,
-      "y": 2393.7778091430664
+      "x": 3662,
+      "y": 1949.7778091430664
     }
   },
   {
@@ -8617,8 +8617,8 @@ const quests = [
       "beyond-red-meat-part-1"
     ],
     "position": {
-      "x": 3977,
-      "y": 2393.7778091430664
+      "x": 3897,
+      "y": 1949.7778091430664
     }
   },
   {
@@ -8642,8 +8642,8 @@ const quests = [
       "vitamins-part-2"
     ],
     "position": {
-      "x": 3747,
-      "y": 2303.7778091430664
+      "x": 3667,
+      "y": 1859.7778091430664
     }
   },
   {
@@ -8672,8 +8672,8 @@ const quests = [
       "baiting"
     ],
     "position": {
-      "x": 1766,
-      "y": 2513
+      "x": 1756,
+      "y": 2069
     }
   },
   {
@@ -8699,8 +8699,8 @@ const quests = [
       "hardening"
     ],
     "position": {
-      "x": 1986,
-      "y": 2437
+      "x": 1976,
+      "y": 1993
     }
   },
   {
@@ -8724,8 +8724,8 @@ const quests = [
       "irresistible"
     ],
     "position": {
-      "x": 2206,
-      "y": 2437
+      "x": 2196,
+      "y": 1993
     }
   },
   {
@@ -8752,8 +8752,8 @@ const quests = [
       "hunting-trip"
     ],
     "position": {
-      "x": 2727,
-      "y": 4430
+      "x": 2831,
+      "y": 3982
     }
   },
   {
@@ -8778,8 +8778,8 @@ const quests = [
       "inevitable-reaction"
     ],
     "position": {
-      "x": 1074,
-      "y": 1936.7778091430664
+      "x": 990,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -8802,8 +8802,8 @@ const quests = [
       "burning-rubber"
     ],
     "position": {
-      "x": 388,
-      "y": 1251
+      "x": 586,
+      "y": 1555
     }
   },
   {
@@ -8830,8 +8830,8 @@ const quests = [
       "the-good-old-days-part-2"
     ],
     "position": {
-      "x": 3964,
-      "y": 2492.7778091430664
+      "x": 3884,
+      "y": 2048.7778091430664
     }
   },
   {
@@ -8856,8 +8856,8 @@ const quests = [
     "youtube": "https://www.youtube.com/watch?v=G90CrbidYhg",
     "prereqIds": [],
     "position": {
-      "x": 1336,
-      "y": 2167
+      "x": 1011,
+      "y": 1836
     }
   },
   {
@@ -8882,8 +8882,8 @@ const quests = [
     "youtube": "https://www.youtube.com/watch?v=TFp9MMJpBME",
     "prereqIds": [],
     "position": {
-      "x": 2388,
-      "y": 1936.7778091430664
+      "x": 2308,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -8908,8 +8908,8 @@ const quests = [
       "proper-comeback"
     ],
     "position": {
-      "x": 2618,
-      "y": 1936.7778091430664
+      "x": 2538,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -8936,8 +8936,8 @@ const quests = [
       "thirsty-breadwinner"
     ],
     "position": {
-      "x": 2832,
-      "y": 1936.7778091430664
+      "x": 2752,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -8968,8 +8968,8 @@ const quests = [
       "the-bigger-they-are"
     ],
     "position": {
-      "x": 1293,
-      "y": 1936.7778091430664
+      "x": 1213,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -8996,8 +8996,8 @@ const quests = [
       "bypass"
     ],
     "position": {
-      "x": 1514,
-      "y": 1936.7778091430664
+      "x": 1434,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -9021,8 +9021,8 @@ const quests = [
       "20-20-retrospective"
     ],
     "position": {
-      "x": 1734,
-      "y": 1936.7778091430664
+      "x": 1654,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -9049,8 +9049,8 @@ const quests = [
       "key-partner"
     ],
     "position": {
-      "x": 1954,
-      "y": 1936.7778091430664
+      "x": 1874,
+      "y": 1492.7778091430664
     }
   },
   {
@@ -9079,8 +9079,8 @@ const quests = [
       "discombobulate"
     ],
     "position": {
-      "x": 2851,
-      "y": 8478.666748046875
+      "x": 2771,
+      "y": 8034.666748046875
     }
   },
   {
@@ -9107,8 +9107,8 @@ const quests = [
       "offensive-reconnaissance"
     ],
     "position": {
-      "x": 1074,
-      "y": 1818.7778091430664
+      "x": 994,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9133,8 +9133,8 @@ const quests = [
       "unquestionable-authority"
     ],
     "position": {
-      "x": 1297,
-      "y": 1818.7778091430664
+      "x": 1217,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9160,8 +9160,8 @@ const quests = [
       "profitable-venture"
     ],
     "position": {
-      "x": 1517,
-      "y": 1818.7778091430664
+      "x": 1437,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9187,8 +9187,8 @@ const quests = [
       "safety-guarantee"
     ],
     "position": {
-      "x": 1737,
-      "y": 1818.7778091430664
+      "x": 1657,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9219,8 +9219,8 @@ const quests = [
       "never-too-late-to-learn"
     ],
     "position": {
-      "x": 1957,
-      "y": 1818.7778091430664
+      "x": 1877,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9246,8 +9246,8 @@ const quests = [
       "get-a-foothold"
     ],
     "position": {
-      "x": 2177,
-      "y": 1818.7778091430664
+      "x": 2097,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9274,8 +9274,8 @@ const quests = [
       "profit-retention"
     ],
     "position": {
-      "x": 2398,
-      "y": 1818.7778091430664
+      "x": 2318,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9314,8 +9314,8 @@ const quests = [
       "a-life-lesson"
     ],
     "position": {
-      "x": 2618,
-      "y": 1818.7778091430664
+      "x": 2538,
+      "y": 1374.7778091430664
     }
   },
   {
@@ -9337,8 +9337,8 @@ const quests = [
     "youtube": "https://www.youtube.com/watch?v=CmilLNRlV2A",
     "prereqIds": [],
     "position": {
-      "x": 439,
-      "y": 7903
+      "x": 443,
+      "y": 7451
     }
   },
   {
@@ -9363,8 +9363,8 @@ const quests = [
       "only-business"
     ],
     "position": {
-      "x": 697,
-      "y": 7864
+      "x": 701,
+      "y": 7412
     }
   },
   {
@@ -9393,8 +9393,8 @@ const quests = [
       "only-business"
     ],
     "position": {
-      "x": 697,
-      "y": 7971
+      "x": 701,
+      "y": 7519
     }
   },
   {
@@ -9421,8 +9421,8 @@ const quests = [
       "big-sale"
     ],
     "position": {
-      "x": 998,
-      "y": 7335.778076171875
+      "x": 918,
+      "y": 6891.778076171875
     }
   },
   {
@@ -9449,8 +9449,8 @@ const quests = [
       "blood-of-war-1"
     ],
     "position": {
-      "x": 1257,
-      "y": 7436.778076171875
+      "x": 1177,
+      "y": 6992.778076171875
     }
   },
   {
@@ -9478,8 +9478,8 @@ const quests = [
       "blood-of-war-2"
     ],
     "position": {
-      "x": 1497,
-      "y": 7436.778076171875
+      "x": 1417,
+      "y": 6992.778076171875
     }
   },
   {
@@ -9507,8 +9507,8 @@ const quests = [
       "blood-of-war-1"
     ],
     "position": {
-      "x": 1257,
-      "y": 7553.778076171875
+      "x": 1177,
+      "y": 7109.778076171875
     }
   },
   {
@@ -9539,8 +9539,8 @@ const quests = [
       "database-part-2"
     ],
     "position": {
-      "x": 1497,
-      "y": 7553.778076171875
+      "x": 1417,
+      "y": 7109.778076171875
     }
   },
   {
@@ -9566,8 +9566,8 @@ const quests = [
       "gratitude"
     ],
     "position": {
-      "x": 1743,
-      "y": 7553.778076171875
+      "x": 1663,
+      "y": 7109.778076171875
     }
   },
   {
@@ -9594,8 +9594,8 @@ const quests = [
       "gratitude"
     ],
     "position": {
-      "x": 1743,
-      "y": 7645.778076171875
+      "x": 1663,
+      "y": 7201.778076171875
     }
   },
   {
@@ -9628,8 +9628,8 @@ const quests = [
       "big-sale"
     ],
     "position": {
-      "x": 998,
-      "y": 7761
+      "x": 918,
+      "y": 7317
     }
   },
   {
@@ -9655,8 +9655,8 @@ const quests = [
       "database-part-1"
     ],
     "position": {
-      "x": 1270,
-      "y": 7761
+      "x": 1190,
+      "y": 7317
     }
   },
   {
@@ -9684,8 +9684,8 @@ const quests = [
       "database-part-2"
     ],
     "position": {
-      "x": 1510,
-      "y": 7911
+      "x": 1430,
+      "y": 7467
     }
   },
   {
@@ -9714,8 +9714,8 @@ const quests = [
       "database-part-2"
     ],
     "position": {
-      "x": 1510,
-      "y": 7824
+      "x": 1430,
+      "y": 7380
     }
   },
   {
@@ -9743,8 +9743,8 @@ const quests = [
       "sew-it-good-part-1"
     ],
     "position": {
-      "x": 1750,
-      "y": 7824
+      "x": 1670,
+      "y": 7380
     }
   },
   {
@@ -9770,8 +9770,8 @@ const quests = [
       "sew-it-good-part-2"
     ],
     "position": {
-      "x": 1979,
-      "y": 7824
+      "x": 1899,
+      "y": 7380
     }
   },
   {
@@ -9798,8 +9798,8 @@ const quests = [
       "sew-it-good-part-3"
     ],
     "position": {
-      "x": 2203,
-      "y": 7824
+      "x": 2123,
+      "y": 7380
     }
   },
   {
@@ -9827,8 +9827,8 @@ const quests = [
       "sew-it-good-part-4"
     ],
     "position": {
-      "x": 2424,
-      "y": 7824
+      "x": 2344,
+      "y": 7380
     }
   },
   {
@@ -9857,8 +9857,8 @@ const quests = [
       "textile-part-1"
     ],
     "position": {
-      "x": 2642,
-      "y": 7824
+      "x": 2562,
+      "y": 7380
     }
   },
   {
@@ -9886,8 +9886,8 @@ const quests = [
       "sew-it-good-part-4"
     ],
     "position": {
-      "x": 2424,
-      "y": 7911
+      "x": 2344,
+      "y": 7467
     }
   },
   {
@@ -9915,8 +9915,8 @@ const quests = [
       "the-key-to-success"
     ],
     "position": {
-      "x": 2642,
-      "y": 7911
+      "x": 2562,
+      "y": 7467
     }
   },
   {
@@ -9943,8 +9943,8 @@ const quests = [
       "living-high-is-not-a-crime-part-1"
     ],
     "position": {
-      "x": 2864,
-      "y": 7911
+      "x": 2784,
+      "y": 7467
     }
   },
   {
@@ -9968,8 +9968,8 @@ const quests = [
       "living-high-is-not-a-crime-part-2"
     ],
     "position": {
-      "x": 3104,
-      "y": 7911
+      "x": 3024,
+      "y": 7467
     }
   },
   {
@@ -9996,8 +9996,8 @@ const quests = [
       "the-key-to-success"
     ],
     "position": {
-      "x": 2642,
-      "y": 8026
+      "x": 2562,
+      "y": 7582
     }
   },
   {
@@ -10024,8 +10024,8 @@ const quests = [
       "database-part-2"
     ],
     "position": {
-      "x": 1510,
-      "y": 7745.777809143066
+      "x": 1430,
+      "y": 7301.777809143066
     }
   },
   {
@@ -10049,8 +10049,8 @@ const quests = [
       "hot-delivery"
     ],
     "position": {
-      "x": 1977,
-      "y": 7645.778076171875
+      "x": 1897,
+      "y": 7201.778076171875
     }
   },
   {
@@ -10080,8 +10080,8 @@ const quests = [
       "a-fuel-matter"
     ],
     "position": {
-      "x": 1497,
-      "y": 7335.778076171875
+      "x": 1417,
+      "y": 6891.778076171875
     }
   },
   {
@@ -10107,8 +10107,8 @@ const quests = [
       "blood-of-war-1"
     ],
     "position": {
-      "x": 1257,
-      "y": 7335.778076171875
+      "x": 1177,
+      "y": 6891.778076171875
     }
   },
   {
@@ -10131,8 +10131,8 @@ const quests = [
       "supervisor"
     ],
     "position": {
-      "x": 1750,
-      "y": 7745.777809143066
+      "x": 1670,
+      "y": 7301.777809143066
     }
   },
   {
@@ -10163,8 +10163,8 @@ const quests = [
       "long-line"
     ],
     "position": {
-      "x": 1979,
-      "y": 7745.777809143066
+      "x": 1899,
+      "y": 7301.777809143066
     }
   },
   {
@@ -10189,8 +10189,8 @@ const quests = [
       "only-business"
     ],
     "position": {
-      "x": 697,
-      "y": 8065.222190856934
+      "x": 701,
+      "y": 7613.222190856934
     }
   },
   {
@@ -10219,8 +10219,8 @@ const quests = [
       "ballet-lover"
     ],
     "position": {
-      "x": 1750,
-      "y": 8001
+      "x": 1670,
+      "y": 7557
     }
   },
   {
@@ -10246,8 +10246,8 @@ const quests = [
       "audit"
     ],
     "position": {
-      "x": 1023,
-      "y": 8057.222190856934
+      "x": 943,
+      "y": 7613.222190856934
     }
   },
   {
@@ -10274,8 +10274,8 @@ const quests = [
       "ballet-lover"
     ],
     "position": {
-      "x": 1270,
-      "y": 8057.222190856934
+      "x": 1190,
+      "y": 7613.222190856934
     }
   },
   {
@@ -10300,8 +10300,8 @@ const quests = [
       "big-sale"
     ],
     "position": {
-      "x": 1011,
-      "y": 7963
+      "x": 931,
+      "y": 7519
     }
   },
   {
@@ -10325,8 +10325,8 @@ const quests = [
       "minibus"
     ],
     "position": {
-      "x": 1750,
-      "y": 7911
+      "x": 1670,
+      "y": 7467
     }
   },
   {
@@ -10350,8 +10350,8 @@ const quests = [
       "dandies"
     ],
     "position": {
-      "x": 1510,
-      "y": 8057.222190856934
+      "x": 1430,
+      "y": 7613.222190856934
     }
   },
   {
@@ -10375,8 +10375,8 @@ const quests = [
       "only-business"
     ],
     "position": {
-      "x": 697,
-      "y": 8179.666748046875
+      "x": 701,
+      "y": 7727.666748046875
     }
   },
   {
@@ -10400,8 +10400,8 @@ const quests = [
       "the-invisible-hand"
     ],
     "position": {
-      "x": 1011,
-      "y": 8171.666748046875
+      "x": 931,
+      "y": 7727.666748046875
     }
   },
   {
@@ -10435,8 +10435,8 @@ const quests = [
       "circulate"
     ],
     "position": {
-      "x": 1270,
-      "y": 8171.666748046875
+      "x": 1190,
+      "y": 7727.666748046875
     }
   },
   {
@@ -10462,8 +10462,8 @@ const quests = [
       "special-offer"
     ],
     "position": {
-      "x": 1510,
-      "y": 8171.666748046875
+      "x": 1430,
+      "y": 7727.666748046875
     }
   },
   {
@@ -10485,8 +10485,8 @@ const quests = [
       "combat-proven"
     ],
     "position": {
-      "x": 1750,
-      "y": 8171.666748046875
+      "x": 1670,
+      "y": 7727.666748046875
     }
   },
   {
@@ -10511,8 +10511,8 @@ const quests = [
       "proper-comeback"
     ],
     "position": {
-      "x": 2618,
-      "y": 2026.5556182861328
+      "x": 2538,
+      "y": 1582.5556182861328
     }
   },
   {
@@ -10538,8 +10538,8 @@ const quests = [
       "blood-of-war-3"
     ],
     "position": {
-      "x": 1737,
-      "y": 7436.778076171875
+      "x": 1657,
+      "y": 6992.778076171875
     }
   },
   {
@@ -10566,8 +10566,8 @@ const quests = [
       "make-ultra-great-again"
     ],
     "position": {
-      "x": 1023,
-      "y": 7864
+      "x": 943,
+      "y": 7420
     }
   },
   {
@@ -10595,8 +10595,8 @@ const quests = [
       "special-offer"
     ],
     "position": {
-      "x": 1510,
-      "y": 8258
+      "x": 1430,
+      "y": 7814
     }
   },
   {
@@ -10622,8 +10622,8 @@ const quests = [
       "another-shipping-delay"
     ],
     "position": {
-      "x": 1750,
-      "y": 8258
+      "x": 1670,
+      "y": 7814
     }
   },
   {
@@ -10649,8 +10649,8 @@ const quests = [
       "stabilize-business"
     ],
     "position": {
-      "x": 1979,
-      "y": 8258
+      "x": 1899,
+      "y": 7814
     }
   },
   {
@@ -10676,8 +10676,8 @@ const quests = [
       "new-beginning-prestige-1"
     ],
     "position": {
-      "x": 2203,
-      "y": 8258
+      "x": 2123,
+      "y": 7814
     }
   },
   {
@@ -10704,8 +10704,8 @@ const quests = [
       "new-beginning-prestige-2"
     ],
     "position": {
-      "x": 2424,
-      "y": 8258
+      "x": 2344,
+      "y": 7814
     }
   },
   {
@@ -10743,8 +10743,8 @@ const quests = [
       "new-beginning-prestige-3"
     ],
     "position": {
-      "x": 2657,
-      "y": 8258
+      "x": 2577,
+      "y": 7814
     }
   },
   {
@@ -10771,8 +10771,8 @@ const quests = [
       "hidden-layer"
     ],
     "position": {
-      "x": 2851,
-      "y": 8683.44482421875
+      "x": 2771,
+      "y": 8239.44482421875
     }
   },
   {
@@ -10800,8 +10800,8 @@ const quests = [
       "sensory-analysis-part-2"
     ],
     "position": {
-      "x": 3338,
-      "y": 8578.778076171875
+      "x": 3258,
+      "y": 8134.778076171875
     }
   },
   {
@@ -10826,8 +10826,8 @@ const quests = [
       "offensive-reconnaissance"
     ],
     "position": {
-      "x": 983,
-      "y": 8349
+      "x": 903,
+      "y": 7905
     }
   },
   {
@@ -10851,8 +10851,8 @@ const quests = [
       "easy-money-part-1"
     ],
     "position": {
-      "x": 756,
-      "y": 161
+      "x": 811,
+      "y": 904
     }
   },
   {
@@ -10884,8 +10884,8 @@ const quests = [
       "easy-money-part-2"
     ],
     "position": {
-      "x": 971,
-      "y": 244
+      "x": 1026,
+      "y": 987
     }
   },
   {
@@ -10913,8 +10913,8 @@ const quests = [
       "easy-money-part-2"
     ],
     "position": {
-      "x": 971,
-      "y": 161
+      "x": 1026,
+      "y": 904
     }
   },
   {
@@ -10938,8 +10938,8 @@ const quests = [
       "balancing-part-1"
     ],
     "position": {
-      "x": 1206,
-      "y": 161
+      "x": 1261,
+      "y": 904
     }
   },
   {
@@ -10963,8 +10963,8 @@ const quests = [
       "balancing-part-2"
     ],
     "position": {
-      "x": 1435,
-      "y": 161
+      "x": 1490,
+      "y": 904
     }
   },
   {
@@ -10990,8 +10990,8 @@ const quests = [
       "surprise"
     ],
     "position": {
-      "x": 1666,
-      "y": 161
+      "x": 1721,
+      "y": 904
     }
   },
   {
@@ -11017,13 +11017,13 @@ const quests = [
       "create-a-distraction-part-1"
     ],
     "position": {
-      "x": 1890,
-      "y": 81.88887786865234
+      "x": 1972,
+      "y": 825
     }
   },
   {
     "id": "to-great-heights-part-1",
-    "nombre": "8. ¡A la cima! – Parte 1 (To Great Heights! – Part 1)",
+    "nombre": "8. ¡Hacia grandes alturas! – Parte 1 (To Great Heights! – Part 1)",
     "trader": "Ref",
     "traderColor": "ref",
     "nivel": 3,
@@ -11045,13 +11045,13 @@ const quests = [
       "balancing-part-1"
     ],
     "position": {
-      "x": 1201,
-      "y": 244
+      "x": 1256,
+      "y": 987
     }
   },
   {
     "id": "to-great-heights-part-2",
-    "nombre": "9. ¡A la cima! – Parte 2 (To Great Heights! – Part 2)",
+    "nombre": "9. ¡Hacia grandes alturas! – Parte 2 (To Great Heights! – Part 2)",
     "trader": "Ref",
     "traderColor": "ref",
     "nivel": 3,
@@ -11072,13 +11072,13 @@ const quests = [
       "to-great-heights-part-1"
     ],
     "position": {
-      "x": 1435,
-      "y": 244
+      "x": 1490,
+      "y": 987
     }
   },
   {
     "id": "to-great-heights-part-3",
-    "nombre": "10. ¡A la cima! – Parte 3 (To Great Heights! – Part 3)",
+    "nombre": "10. ¡Hacia grandes alturas! – Parte 3 (To Great Heights! – Part 3)",
     "trader": "Ref",
     "traderColor": "ref",
     "nivel": 3,
@@ -11099,13 +11099,13 @@ const quests = [
       "to-great-heights-part-2"
     ],
     "position": {
-      "x": 1666,
-      "y": 244
+      "x": 1721,
+      "y": 987
     }
   },
   {
     "id": "to-great-heights-part-4",
-    "nombre": "11. ¡A la cima! – Parte 4 (To Great Heights! – Part 4)",
+    "nombre": "11. ¡Hacia grandes alturas! – Parte 4 (To Great Heights! – Part 4)",
     "trader": "Ref",
     "traderColor": "ref",
     "nivel": 3,
@@ -11130,17 +11130,17 @@ const quests = [
       "to-great-heights-part-3"
     ],
     "position": {
-      "x": 1890,
-      "y": 244
+      "x": 1953,
+      "y": 987
     }
   },
   {
     "id": "to-great-heights-part-5",
-    "nombre": "12. ¡A la cima! – Parte 5 (To Great Heights! – Part 5)",
+    "nombre": "12. ¡Hacia grandes alturas! – Parte 5 (To Great Heights! – Part 5)",
     "trader": "Ref",
     "traderColor": "ref",
     "nivel": 3,
-    "descripcion": "Último escalón de la cadena ‘¡A la cima!’: tienes que encadenar dos victorias consecutivas en Arena en modos de equipo. Completarla desbloquea el patrocinio que permite el trueque del TWG (APOK Tactical Wasteland Gladius) en Ref LL2.",
+    "descripcion": "Último escalón de la cadena ‘¡Hacia grandes alturas!’: tienes que encadenar dos victorias consecutivas en Arena en modos de equipo. Completarla desbloquea el patrocinio que permite el trueque del TWG (APOK Tactical Wasteland Gladius) en Ref LL2.",
     "objetivos": [
       "Ganar 2 partidas SEGUIDAS en modo TeamFight, BlastGang o CheckPoint en Arena."
     ],
@@ -11155,8 +11155,8 @@ const quests = [
       "to-great-heights-part-4"
     ],
     "position": {
-      "x": 2123,
-      "y": 244
+      "x": 2186,
+      "y": 987
     }
   },
   {
@@ -11186,8 +11186,8 @@ const quests = [
       "to-great-heights-part-5"
     ],
     "position": {
-      "x": 2385,
-      "y": 161
+      "x": 2448,
+      "y": 904
     }
   },
   {
@@ -11213,8 +11213,8 @@ const quests = [
       "against-the-conscience-part-1"
     ],
     "position": {
-      "x": 2645,
-      "y": 161
+      "x": 2708,
+      "y": 904
     }
   },
   {
@@ -11240,8 +11240,8 @@ const quests = [
       "between-two-fires"
     ],
     "position": {
-      "x": 980,
-      "y": 339
+      "x": 1256,
+      "y": 785
     }
   },
   {
@@ -11263,8 +11263,8 @@ const quests = [
       "surprise-gift"
     ],
     "position": {
-      "x": 3151,
-      "y": 161
+      "x": 3214,
+      "y": 904
     }
   },
   {
@@ -11290,8 +11290,8 @@ const quests = [
       "a-helping-hand"
     ],
     "position": {
-      "x": 508,
-      "y": 8578.778076171875
+      "x": 428,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11314,8 +11314,8 @@ const quests = [
       "shipping-delay-part-2"
     ],
     "position": {
-      "x": 741,
-      "y": 8578.778076171875
+      "x": 661,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11337,8 +11337,8 @@ const quests = [
       "hot-wheels"
     ],
     "position": {
-      "x": 980,
-      "y": 8578.778076171875
+      "x": 900,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11360,8 +11360,8 @@ const quests = [
       "hot-wheels"
     ],
     "position": {
-      "x": 980,
-      "y": 8493
+      "x": 900,
+      "y": 8049
     }
   },
   {
@@ -11385,8 +11385,8 @@ const quests = [
       "hot-wheels-lets-try-again"
     ],
     "position": {
-      "x": 1219,
-      "y": 8578.778076171875
+      "x": 1139,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11412,8 +11412,8 @@ const quests = [
       "inevitable-response"
     ],
     "position": {
-      "x": 1453,
-      "y": 8578.778076171875
+      "x": 1373,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11438,8 +11438,8 @@ const quests = [
       "building-foundations"
     ],
     "position": {
-      "x": 1699,
-      "y": 8578.778076171875
+      "x": 1619,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11467,8 +11467,8 @@ const quests = [
       "another-shipping-delay"
     ],
     "position": {
-      "x": 1930,
-      "y": 8578.778076171875
+      "x": 1850,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11495,8 +11495,8 @@ const quests = [
       "stabilize-business"
     ],
     "position": {
-      "x": 2167,
-      "y": 8578.778076171875
+      "x": 2087,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11523,8 +11523,8 @@ const quests = [
       "battery-change"
     ],
     "position": {
-      "x": 2391,
-      "y": 8578.778076171875
+      "x": 2311,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11546,8 +11546,8 @@ const quests = [
       "protect-the-sky"
     ],
     "position": {
-      "x": 2615,
-      "y": 8578.778076171875
+      "x": 2535,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11569,8 +11569,8 @@ const quests = [
       "discombobulate"
     ],
     "position": {
-      "x": 2851,
-      "y": 8578.778076171875
+      "x": 2771,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11593,8 +11593,8 @@ const quests = [
       "sensory-analysis-part-1"
     ],
     "position": {
-      "x": 3104,
-      "y": 8578.778076171875
+      "x": 3024,
+      "y": 8134.778076171875
     }
   },
   {
@@ -11623,8 +11623,8 @@ const quests = [
       "getting-acquainted"
     ],
     "position": {
-      "x": 3828,
-      "y": 8057.222190856934
+      "x": 3748,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11649,8 +11649,8 @@ const quests = [
       "information-source"
     ],
     "position": {
-      "x": 4059,
-      "y": 8057.222190856934
+      "x": 3979,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11678,8 +11678,8 @@ const quests = [
       "missing-informant"
     ],
     "position": {
-      "x": 4293,
-      "y": 8057.222190856934
+      "x": 4213,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11703,8 +11703,8 @@ const quests = [
       "snatch"
     ],
     "position": {
-      "x": 4529,
-      "y": 8057.222190856934
+      "x": 4449,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11731,8 +11731,8 @@ const quests = [
       "return-the-favor"
     ],
     "position": {
-      "x": 4749,
-      "y": 8057.222190856934
+      "x": 4669,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11760,8 +11760,8 @@ const quests = [
       "payback"
     ],
     "position": {
-      "x": 4989,
-      "y": 8057.222190856934
+      "x": 4909,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11788,8 +11788,8 @@ const quests = [
       "provocation"
     ],
     "position": {
-      "x": 5233,
-      "y": 8057.222190856934
+      "x": 5153,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11816,8 +11816,8 @@ const quests = [
       "following-the-bread-crumbs"
     ],
     "position": {
-      "x": 5473,
-      "y": 8057.222190856934
+      "x": 5393,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11842,8 +11842,8 @@ const quests = [
       "spotter"
     ],
     "position": {
-      "x": 5709,
-      "y": 8057.222190856934
+      "x": 5629,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11873,8 +11873,8 @@ const quests = [
       "make-an-impression"
     ],
     "position": {
-      "x": 5930,
-      "y": 8057.222190856934
+      "x": 5850,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11899,8 +11899,8 @@ const quests = [
       "trouble-in-the-big-city"
     ],
     "position": {
-      "x": 6163,
-      "y": 8057.222190856934
+      "x": 6083,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11925,8 +11925,8 @@ const quests = [
       "inevitable-response"
     ],
     "position": {
-      "x": 3590,
-      "y": 7745.777809143066
+      "x": 2941,
+      "y": 8404.666748046875
     }
   },
   {
@@ -11953,8 +11953,8 @@ const quests = [
       "knock-knock"
     ],
     "position": {
-      "x": 3866,
-      "y": 7745.777809143066
+      "x": 3494,
+      "y": 7613.222190856934
     }
   },
   {
@@ -11979,8 +11979,8 @@ const quests = [
       "between-two-fires"
     ],
     "position": {
-      "x": 2895,
-      "y": 161
+      "x": 2965,
+      "y": 904
     }
   }
 ];
