@@ -1,6 +1,6 @@
 <html lang="es"><head>
   <meta charset="UTF-8">
-  <title>Árbol de quests - Escape from Tarkov 1.0</title>
+  <title>Tarkov Tree 1.0 – Árbol de quests</title>
   <!-- Firebase SDKs: rellena firebaseConfig con los datos de tu proyecto -->
   <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js"></script>
@@ -827,12 +827,35 @@ body.edge-edit-mode .quest-edge-special {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .cloud-save-toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: rgba(46, 204, 113, 0.12);
+      border: 1px solid rgba(46, 204, 113, 0.6);
+      color: #a3ffb0;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      z-index: 9999;
+    }
+
+    .cloud-save-toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 </style>
 </head>
 <body class="">
 <header>
   <div>
-    <h1>Árbol de quests – Tarkov 1.0</h1>
+    <h1>Tarkov Tree 1.0 – Árbol de quests</h1>
     <div class="subtitle">Progreso guardado en el HTML y en el archivo quests_data.js.</div>
   </div>
   <div class="toolbar">
@@ -1031,17 +1054,52 @@ body.edge-edit-mode .quest-edge-special {
       completion: completionState,
       inProgress: inProgressState,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true }).catch(err => {
-      console.error("Error guardando progreso remoto:", err);
-    });
+    }, { merge: true })
+      .then(() => {
+        showCloudSaveToast();
+      })
+      .catch(err => {
+        console.error("Error guardando progreso remoto:", err);
+      });
   }
+
+  function showCloudSaveToast() {
+    const el = document.getElementById("cloud-save-toast");
+    if (!el) return;
+    el.textContent = "Progreso guardado en la nube ✅";
+    el.classList.add("visible");
+    clearTimeout(showCloudSaveToast._timerId);
+    showCloudSaveToast._timerId = setTimeout(() => {
+      el.classList.remove("visible");
+    }, 2000);
+  }
+
 
   function loadUserProgressFromFirestore(uid) {
     if (!db) return;
 
     db.collection("users").doc(uid).get().then(doc => {
       if (!doc.exists) {
-        console.log("Usuario sin progreso remoto; se mantiene el local/HTML.");
+        console.log("Usuario sin progreso remoto; inicializando progreso vacío.");
+        // Limpiar estados: todas las quests sin marcar para este usuario nuevo
+        Object.keys(completionState).forEach(k => delete completionState[k]);
+        Object.keys(inProgressState).forEach(k => delete inProgressState[k]);
+
+        // Estado inicial vacío también en las variables globales usadas al guardar HTML
+        window.INITIAL_COMPLETION = {};
+        window.INITIAL_INPROGRESS = {};
+
+        // Repintar todos los nodos como "sin marcar"
+        if (Array.isArray(quests)) {
+          quests.forEach(q => {
+            if (q && q.id) {
+              updateNodeVisual(q.id);
+            }
+          });
+        }
+
+        // Guardar este estado vacío en Firestore para este usuario
+        syncProgressToFirestore();
         return;
       }
       const data = doc.data() || {};
@@ -3148,5 +3206,6 @@ function openModal(id) {
 
 </script>
 
+<div id="cloud-save-toast" class="cloud-save-toast"></div>
 
 </body></html>
