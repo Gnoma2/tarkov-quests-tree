@@ -1,0 +1,3216 @@
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <title>Tarkov Tree 1.0 – Árbol de quests</title>
+  <!-- Firebase SDKs: rellena firebaseConfig con los datos de tu proyecto -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+
+  <script>
+  
+    const firebaseConfig = {
+	  apiKey: "AIzaSyAJ4Td0qU5w6DXpiY8vSHv67oPvffRU268",
+	  authDomain: "tarkovtree-f5279.firebaseapp.com",
+	  projectId: "tarkovtree-f5279",
+	  storageBucket: "tarkovtree-f5279.firebasestorage.app",
+	  messagingSenderId: "20352322016",
+	  appId: "1:20352322016:web:4ab40df6e5b3475656c385"
+	};
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Exponer atajos globales
+    window.auth = firebase.auth();
+    window.db   = firebase.firestore();
+    window.currentUser = null;
+  </script>
+
+  <style>
+	  .toolbar-btn {
+	  border: 1px solid #3b4252;
+	  background: rgba(15,18,25,0.9);
+	  color: var(--text);
+	  font-size: 11px;
+	  padding: 4px 8px;
+	  border-radius: 999px;
+	  cursor: pointer;
+	  text-transform: uppercase;
+	  letter-spacing: .06em;
+	}
+	.toolbar-btn:hover {
+	  background: #222631;
+	}
+  
+    :root {
+      --bg: #111319;
+      --card-bg: #1b1f2a;
+      --card-border: #2a3140;
+      --text: #e5e9f0;
+      --muted: #9da5b4;
+      --accent-prapor: #cc7845;      /* naranja Prapor */
+      --accent-therapist: #4aa3ff;   /* azul claro Terapeuta */
+      --accent-skier: #c58cff;       /* lila Skier */
+      --accent-peacekeeper: #3d5fa7; /* azul oscuro Peacekeeper */
+      --accent-ragman: #00bcd4;      /* turquesa Ragman (ya no rojo) */
+      --accent-mechanic: #e0c04f;    /* amarillo Mechanic */
+      --accent-jaeger: #a1887f;      /* marrón Jaeger, bien distinto del resto */
+      --accent-fence: #ff9b3a;       /* naranja claro Fence */
+      --accent-ref: #283593;         /* azul índigo Ref (Arena) */
+      --accent-lightkeeper: #b0bec5; /* gris azulado Lightkeeper */
+      --accent-completed: #4caf50;   /* verde completada */
+      --accent-in-progress: #e06c75; /* rojo/magenta en curso */
+      --edge: #888;
+      --node-width: 190px;
+      --node-height: 66px;
+      --shadow-soft: 0 6px 18px rgba(0,0,0,0.4);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      background: radial-gradient(circle at top,#171b23 0,#080a0f 55%,#000 100%);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 10px 18px;
+      border-bottom: 1px solid #222631;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(to right,#141823,#111319);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    header .subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .badge {
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      border: 1px solid #3b4252;
+      color: var(--muted);
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legend.legend-help {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      row-gap: 4px;
+    }
+
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+
+    .legend-dot.prapor { background: var(--accent-prapor); }
+    .legend-dot.therapist { background: var(--accent-therapist); }
+    .legend-dot.skier { background: var(--accent-skier); }
+    .legend-dot.peacekeeper { background: var(--accent-peacekeeper); }
+    .legend-dot.ragman { background: var(--accent-ragman); }
+    .legend-dot.mechanic { background: var(--accent-mechanic); }
+    .legend-dot.jaeger { background: var(--accent-jaeger); }
+    .legend-dot.fence { background: var(--accent-fence); }
+    .legend-dot.ref { background: var(--accent-ref); }
+    .legend-dot.lightkeeper { background: var(--accent-lightkeeper); }
+    .legend-dot.completed { background: var(--accent-completed); }
+    .legend-dot.in-progress { background: var(--accent-in-progress); }
+
+    .zoom-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(15,18,25,0.9);
+      border-radius: 999px;
+      padding: 2px 6px;
+      border: 1px solid #2a3140;
+    }
+
+    .zoom-btn {
+      border: none;
+      padding: 2px 6px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .zoom-btn:hover {
+      background: #222631;
+      border-radius: 999px;
+    }
+
+    .zoom-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    main { flex: 1; display: flex; min-height: 0; }
+
+    .graph-container {
+	  flex: 1;
+	  position: relative;
+	  overflow: auto;              /* ya permite scroll en ambas direcciones */
+	  background: radial-gradient(circle at 10% 0,#1b2234 0,#080a0f 35%,#050609 100%);
+	  cursor: grab;
+	}
+
+	.graph-container.panning {
+	  cursor: grabbing;
+	}
+
+	/* AUMENTAMOS el ancho del lienzo para forzar scroll horizontal */
+	.graph-inner {
+	  /* tamaño base modesto; luego JS lo ajusta según las quests */
+	  width: 2600px;
+	  height: 1200px;
+	  margin: 32px 0 32px 40px;  /* sin margen a la derecha */
+	  position: relative;
+	  transform-origin: 0 0;
+	}
+
+	svg#quest-svg {
+	  width: 2600px;
+	  height: 1200px;
+	}
+
+    .quest-node rect {
+      rx: 9;
+      ry: 9;
+      stroke-width: 1.2;
+      stroke: var(--card-border);
+      fill: var(--card-bg);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.65));
+      cursor: pointer;
+      transition: transform .12s ease-out,stroke .12s,fill .12s;
+    }
+
+    .quest-node.completed rect {
+      fill: #1d3121;
+      stroke: var(--accent-completed);
+    }
+
+    .quest-node.in-progress rect {
+      fill: #30171a;
+      stroke: var(--accent-in-progress);
+    }
+
+
+    .quest-node.prapor rect {
+      stroke: var(--accent-prapor);
+      fill: rgba(204,120,69,0.22);
+    }
+
+    .quest-node.therapist rect {
+      stroke: var(--accent-therapist);
+      fill: rgba(74,163,255,0.22);
+    }
+
+    .quest-node.skier rect {
+      stroke: var(--accent-skier);
+      fill: rgba(197,140,255,0.22);
+    }
+
+    .quest-node.peacekeeper rect {
+      stroke: var(--accent-peacekeeper);
+      fill: rgba(61,95,167,0.22);
+    }
+
+    .quest-node.ref rect {
+      stroke: var(--accent-ref);
+      fill: rgba(40,53,147,0.22);
+    }
+
+    .quest-node.lightkeeper rect {
+      stroke: var(--accent-lightkeeper);
+      fill: rgba(176,190,197,0.22);
+    }
+
+    .quest-node.ragman rect {
+      stroke: var(--accent-ragman);
+      fill: rgba(0,188,212,0.22);
+    }
+
+    .quest-node.mechanic rect {
+      stroke: var(--accent-mechanic);
+      fill: rgba(224,192,79,0.22);
+    }
+
+    .quest-node.jaeger rect {
+      stroke: var(--accent-jaeger);
+      fill: rgba(161,136,127,0.22);
+    }
+
+    .quest-node.fence rect {
+      stroke: var(--accent-fence);
+      fill: rgba(255,155,58,0.22);
+    }
+
+
+    .quest-node.selected rect {
+      stroke: #ffd54f !important;
+      stroke-width: 2.2;
+    }
+
+    .quest-node.completed rect {
+      fill: #1d3121;
+      stroke: var(--accent-completed);
+    }
+
+    .quest-node:hover rect {
+      transform: translateY(-2px);
+      stroke-width: 1.5;
+    }
+
+    .quest-node text {
+	  fill: var(--text);
+	  font-size: 10px;      /* antes 12px */
+	  pointer-events: none;
+	}
+
+	.quest-node .node-level {
+	  font-size: 9px;      /* antes 11px */
+	  fill: #d2d7e3;
+	  font-weight: 500;
+	}
+
+	.quest-node .node-trader {
+	  font-size: 9px;      /* antes 11px */
+	  fill: var(--muted);
+	}
+
+    .quest-node .node-check {
+      font-size: 14px;
+      fill: var(--accent-completed);
+      font-weight: bold;
+    }
+
+    .quest-node .trader-portrait {
+      pointer-events: none;
+    }
+
+    .quest-edge {
+	  stroke: var(--edge);
+	  stroke-width: 1.6;   /* antes 1.2: un pelín más gruesa para clics */
+	  fill: none;      /* no rellenar la curva, sólo trazo */
+	  opacity: .8;
+	}
+
+	/* Flechas largas / especiales (requisitos que cruzan el árbol) */
+	.quest-edge-special {
+	  stroke: #f6c177;        /* doradito suave */
+	  fill: none;             /* también sin relleno, sólo línea */
+	  opacity: 0.9;
+	  stroke-width: 1.8;      /* antes 1.4 */
+	  stroke-dasharray: 4 3;  /* línea discontinua */
+	}
+
+/* En modo edición, hacemos las curvas aún más gruesas para facilitar el click */
+body.edge-edit-mode .quest-edge {
+	  stroke-width: 2.8;
+}
+
+body.edge-edit-mode .quest-edge-special {
+	  stroke-width: 3.2;
+}
+
+
+    .edge-handle {
+      fill: #111319;
+      stroke: #ffd54f;
+      stroke-width: 1.2;
+      cursor: pointer;
+      display: none;
+    }
+
+    .edge-handle.active {
+      display: block;
+    }
+
+    .quest-edge-selected {
+      stroke-width: 2.2;
+      opacity: 1;
+    }
+
+    .selection-rect {
+      fill: rgba(229,192,123,0.20);  /* un poco más opaco para que se vea bien */
+      stroke: #ffd77d;               /* más contraste */
+      stroke-width: 1.6;             /* línea algo más gruesa */
+      stroke-dasharray: 4 2;
+      pointer-events: none;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      z-index: 10;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 11;
+      pointer-events: none;
+    }
+
+    .modal.open,
+    .modal-backdrop.open {
+      display: flex;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      width: 420px;
+      max-height: 80vh;
+      background: radial-gradient(circle at top,#22283a 0,#151822 45%,#12141d 100%);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #2f3747;
+      padding: 18px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--text);
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .modal-title-block { display: flex; flex-direction: column; gap: 2px; }
+
+    .modal-title {
+	  margin: 0;
+	  font-size: 17px;
+	  cursor: pointer;
+	}
+	
+	.modal-title:hover {
+	  text-decoration: underline;
+	}
+
+
+    .modal-trader {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .modal-chip {
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid #3b4252;
+      font-size: 11px;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .modal-chip span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .modal-chip .dot.prapor { background: var(--accent-prapor); }
+    .modal-chip .dot.therapist { background: var(--accent-therapist); }
+    .modal-chip .dot.skier { background: var(--accent-skier); }
+    .modal-chip .dot.peacekeeper { background: var(--accent-peacekeeper); }
+    .modal-chip .dot.ragman { background: var(--accent-ragman); }
+    .modal-chip .dot.mechanic { background: var(--accent-mechanic); }
+    .modal-chip .dot.jaeger { background: var(--accent-jaeger); }
+    .modal-chip .dot.fence { background: var(--accent-fence); }
+    .modal-chip .dot.ref { background: var(--accent-ref); }
+    .modal-chip .dot.lightkeeper { background: var(--accent-lightkeeper); }
+    .modal-chip .dot.completed { background: var(--accent-completed); }
+    .modal-chip .dot.in-progress { background: var(--accent-in-progress); }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0 0 0 6px;
+      line-height: 1;
+    }
+
+    .modal-body {
+      font-size: 13px;
+      color: var(--muted);
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .modal-body h3 {
+      margin: 10px 0 4px;
+      font-size: 13px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .modal-body ul {
+      margin: 0 0 6px 16px;
+      padding: 0;
+    }
+
+    .modal-body li { margin-bottom: 2px; }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .checkbox-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .checkbox-row.completed input {
+      accent-color: var(--accent-completed);
+    }
+
+    .checkbox-row.in-progress input {
+      accent-color: var(--accent-in-progress);
+    }
+
+    .modal-checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      align-items: flex-start;
+    }
+
+    .yt-link { font-size: 12px; text-align: right; }
+
+    .yt-link a {
+      color: #ffb347;
+      text-decoration: none;
+    }
+
+    .yt-link a:hover { text-decoration: underline; }
+
+    .hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .graph-inner,
+      svg#quest-svg {
+        width: 1400px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .modal-card { width: 95vw; }
+    }
+  
+    .quest-node.in-progress rect {
+      fill: #30171a;
+      stroke: var(--accent-in-progress);
+    }
+
+  
+    .level-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15,18,25,0.9);
+      border: 1px solid #2a3140;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .level-filter .level-label {
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: 10px;
+    }
+
+    .level-input {
+      width: 44px;
+      padding: 2px 4px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #3b4252;
+      color: var(--text);
+      font-size: 11px;
+      outline: none;
+      text-align: center;
+    }
+
+    .level-input::placeholder {
+      color: #4c566a;
+    }
+
+    .level-input:focus {
+      border-bottom-color: #88c0d0;
+    }
+
+    .quest-node.dim-level rect {
+      opacity: 0.25;
+    }
+
+    .quest-node.dim-level text,
+    .quest-node.dim-level .trader-portrait {
+      opacity: 0.35;
+    }
+
+    .edge-edit-indicator {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #f6c177;
+      background: rgba(15, 18, 25, 0.92);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.6);
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #f6c177;
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      z-index: 20;
+    }
+
+    .edge-edit-indicator.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .trader-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15,18,25,0.9);
+      border: 1px solid #2a3140;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .trader-select {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 11px;
+      outline: none;
+    }
+
+    .search-box {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 12px;
+    }
+
+    .search-input {
+      padding: 3px 6px;
+      border-radius: 999px;
+      border: 1px solid #3b4252;
+      background: rgba(15,18,25,0.9);
+      color: var(--text);
+      font-size: 11px;
+      outline: none;
+      min-width: 160px;
+    }
+
+    .search-input::placeholder {
+      color: #4c566a;
+    }
+
+    .help-btn {
+      margin-left: 8px;
+      padding: 2px 7px;
+      font-size: 12px;
+      border-radius: 999px;
+    }
+
+    .help-panel {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      max-width: 380px;
+      padding: 10px 12px;
+      background: rgba(15,18,25,0.96);
+      border-radius: 12px;
+      border: 1px solid #3b4252;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.6);
+      font-size: 11px;
+      color: var(--text);
+      z-index: 25;
+      display: none;
+    }
+
+    .help-panel.active {
+      display: block;
+    }
+
+    .help-panel h3 {
+      margin: 0 0 6px;
+      font-size: 12px;
+    }
+
+    .help-panel ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .help-panel li {
+      margin-bottom: 2px;
+    }
+
+    .quest-node.search-hit rect {
+      stroke: #88c0d0;
+      stroke-width: 2.2;
+    }
+
+    .quest-node.relation-center {
+      filter: drop-shadow(0 0 4px rgba(246,193,119,0.8));
+    }
+
+    .quest-node.relation-pre {
+      filter: drop-shadow(0 0 4px rgba(136,192,208,0.8));
+    }
+
+    .quest-node.relation-post {
+      filter: drop-shadow(0 0 4px rgba(208,135,112,0.8));
+    }
+
+    .quest-inline-editor {
+      position: fixed;
+      z-index: 30;
+      background: rgba(15,18,25,0.98);
+      border-radius: 8px;
+      border: 1px solid #3b4252;
+      padding: 8px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.7);
+      font-size: 11px;
+      color: var(--text);
+      min-width: 260px;
+      display: none;
+    }
+
+    .quest-inline-editor.visible {
+      display: block;
+    }
+
+    .quest-inline-editor-header {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .quest-inline-editor textarea {
+      width: 100%;
+      min-height: 70px;
+      resize: vertical;
+      border-radius: 4px;
+      border: 1px solid #3b4252;
+      background: #111319;
+      color: var(--text);
+      font-size: 11px;
+      padding: 4px;
+      margin-bottom: 6px;
+      outline: none;
+    }
+
+    .quest-inline-editor .editor-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .quest-inline-editor button {
+      border-radius: 999px;
+      border: 1px solid #3b4252;
+      background: #1b1f2a;
+      color: var(--text);
+      font-size: 11px;
+      padding: 2px 8px;
+      cursor: pointer;
+    }
+
+    .quest-inline-editor button:hover {
+      background: #2a3140;
+    }
+
+    /* Caja de autenticación Firebase */
+    .auth-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 8px;
+    }
+
+    .user-info {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .user-info span {
+      white-space: nowrap;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cloud-save-toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: rgba(46, 204, 113, 0.12);
+      border: 1px solid rgba(46, 204, 113, 0.6);
+      color: #a3ffb0;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      z-index: 9999;
+    }
+
+    .cloud-save-toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+</style>
+</head>
+<body class="">
+<header>
+  <div>
+    <h1>Tarkov Tree 1.0 – Árbol de quests</h1>
+    <div class="subtitle">Progreso guardado en el HTML y en el archivo quests_data.js.</div>
+  </div>
+  <div class="toolbar">
+    <div class="legend">
+<button class="toolbar-btn" id="save-html">Guardar HTML</button>
+	  <button class="toolbar-btn" id="save-quests-js">Guardar quests_data.txt</button>
+	  <button class="toolbar-btn" id="save-all">Guardar TODO</button>
+
+    <div id="auth-box" class="auth-box">
+      <button class="toolbar-btn" id="login-btn" style="display: none;">Entrar con Google</button>
+      <div id="user-info" class="user-info" style="display: inline-flex;">
+        <span id="user-email">alexissanchezmolina@gmail.com</span>
+        <button class="toolbar-btn" id="logout-btn">Salir</button>
+      </div>
+    </div>
+
+    <div class="level-filter">
+      <span class="level-label">Nv.</span>
+      <input type="number" id="min-level" class="level-input" placeholder="min" min="1" max="70">
+      <span>–</span>
+      <input type="number" id="max-level" class="level-input" placeholder="max" min="1" max="70">
+    </div>
+
+    <div class="trader-filter">
+      <span class="level-label">Trader</span>
+      <select id="trader-filter" class="trader-select">
+        <option value="">Todos</option>
+        <option value="Prapor">Prapor</option>
+        <option value="Terapeuta">Terapeuta</option>
+        <option value="Skier">Skier</option>
+        <option value="Peacekeeper">Peacekeeper</option>
+        <option value="Mechanic">Mechanic</option>
+        <option value="Ragman">Ragman</option>
+        <option value="Jaeger">Jaeger</option>
+        <option value="Fence">Fence</option>
+        <option value="Ref">Ref</option>
+        <option value="Lightkeeper">Lightkeeper</option>
+        <option value="BTR Driver">BTR Driver</option>
+      </select>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="quest-search" class="search-input" placeholder="Buscar quest...">
+    </div>
+
+    <button class="toolbar-btn help-btn" id="help-toggle">?</button>
+</div>
+    <div class="zoom-controls">
+      <button class="zoom-btn" id="zoom-out">−</button>
+      <span class="zoom-label">Zoom</span>
+      <button class="zoom-btn" id="zoom-in">+</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="graph-container" id="graph-container">
+    <div class="graph-inner" id="graph-inner" style="transform: scale(1.08); transform-origin: 0px 0px; width: 7776px; height: 8399.78px;">
+      <svg id="quest-svg" width="7776" height="8399.778076171875" style="width: 7776px; height: 8399.78px;"></svg></svg>
+    </div>
+  </div>
+</main>
+<div id="edge-edit-indicator" class="edge-edit-indicator">
+  Modo edición de curvas (E)
+</div>
+
+<div class="help-panel" id="help-panel">
+  <h3>Ayuda rápida</h3>
+  <ul>
+    <li><b>Click</b> en una quest: seleccionarla.</li>
+    <li><b>Ctrl</b> + click: añadir/quitar de la selección.</li>
+    <li><b>Ctrl + arrastre</b> en el fondo: seleccionar por ventana.</li>
+    <li><b>Ctrl + Shift + click</b> en una quest: seleccionar toda la cadena conectada.</li>
+    <li><b>Doble click</b> en una quest: abrir detalles.</li>
+    <li><b>Ctrl + Z</b>: deshacer último movimiento/curva.</li>
+    <li><b>E</b>: entrar/salir de modo edición de curvas.</li>
+    <li>En modo edición: click en una flecha → editar su curva.</li>
+    <li>En modo edición: Shift + click en una flecha → devolverla a línea recta.</li>
+    <li>Filtro de nivel: muestra destacadas solo las quests dentro del rango.</li>
+    <li>Filtro de trader: muestra destacadas solo las quests del vendedor elegido.</li>
+    <li>Buscar: centra y resalta la quest cuyo nombre contenga el texto.</li>
+  </ul>
+  <h4>Colores de los traders</h4>
+  <div class="legend legend-help">
+    <span><span class="legend-dot prapor"></span> Prapor</span>
+    <span><span class="legend-dot therapist"></span> Terapeuta</span>
+    <span><span class="legend-dot skier"></span> Skier</span>
+    <span><span class="legend-dot peacekeeper"></span> Peacekeeper</span>
+    <span><span class="legend-dot ragman"></span> Ragman</span>
+    <span><span class="legend-dot mechanic"></span> Mechanic</span>
+    <span><span class="legend-dot jaeger"></span> Jaeger</span>
+    <span><span class="legend-dot fence"></span> Fence</span>
+    <span><span class="legend-dot ref"></span> Ref</span>
+    <span><span class="legend-dot lightkeeper"></span> Lightkeeper</span>
+    <span><span class="legend-dot completed"></span> Completada</span>
+    <span><span class="legend-dot in-progress"></span> En curso</span>
+  </div>
+
+</div>
+  Modo edición de curvas (E)
+
+
+
+<div class="modal-backdrop" id="modal-backdrop"></div>
+<div class="modal" id="quest-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title-block">
+        <h2 class="modal-title" id="modal-title">12. Mala reputación bien ganada (Bad Rep Evidence)</h2>
+        <div class="modal-trader" id="modal-trader">Prapor</div>
+        <div class="modal-chip" id="modal-chip">
+          <span class="dot prapor"></span><span id="modal-chip-text">Pendiente</span>
+        </div>
+      </div>
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <p id="modal-desc">Un capataz de Polikhim ocultó una carpeta con pruebas comprometedoras. Prapor quiere que la recuperes del barracón portátil de Customs.</p>
+      <h3>Objetivos</h3>
+      <ul id="modal-objectives"><li>Obtener la carpeta segura 0031 en el barracón portátil de Customs.</li><li>(Opcional) Conseguir acceso a la sala bloqueada del pasillo de oficinas del 3.er piso en Factory.</li><li>(Opcional) Obtener la llave del barracón portátil (Portable bunkhouse key).</li><li>Entregar la carpeta segura 0031 a Prapor.</li><li>Sobrevivir y extraer de Customs.</li></ul>
+      <h3>Recompensas</h3>
+      <ul id="modal-rewards"><li>4 100 EXP.</li><li>+0.03 reputación con Prapor.</li><li>35 000 rublos (más con Centro de inteligencia).</li><li>1× subfusil PP-91-01 Kedr-B 9x18PM.</li><li>3× cargador PP-91 Kedr 9x18PM de 30 balas.</li><li>3× pack de munición 9x18mm PM PS gs PPO (50 balas).</li><li>Desbloquea compra de mira BelOMO PSO-1M2-1 4x24 en Prapor LL2.</li><li>Desbloquea compra de casco SSSh-94 SFERA-S en Prapor LL1.</li></ul>
+      <div class="modal-footer">
+        <div class="modal-checkboxes">
+          <label class="checkbox-row completed">
+            <input type="checkbox" id="modal-completed">
+            Quest completada
+          </label>
+          <label class="checkbox-row in-progress">
+            <input type="checkbox" id="modal-inprogress">
+            Quest en curso
+          </label>
+        </div>
+        <div class="yt-link">
+          Vídeo guía:
+          <a id="modal-youtube" href="#" target="_blank" rel="noopener">Abrir en YouTube</a>
+          <div class="hint">Se abre en una pestaña nueva.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="quest-inline-editor" id="quest-inline-editor" style="left: 1640px; top: 814px;">
+  <div class="quest-inline-editor-header">Editar texto de la quest</div>
+  <textarea id="quest-inline-editor-text"></textarea>
+  <div class="editor-actions">
+    <button id="quest-inline-editor-cancel">Cancelar</button>
+    <button id="quest-inline-editor-save">Guardar</button>
+  </div>
+</div>
+
+<script src="quests_data.js"></script>
+<script>
+
+
+  // =========================
+  //   Lógica de render
+  // =========================
+  const STORAGE_KEY = "tarkov_quest_progress_v1_demo";
+  const INPROG_KEY  = "tarkov_quest_inprogress_v1_demo";
+  const LAYOUT_KEY  = "tarkov_quest_layout_v1_demo";
+  const EDGE_LAYOUT_KEY = "tarkov_quest_edge_layout_v1_demo";
+  
+  // =========================
+  //   Firebase Auth + Firestore (login por usuario)
+  // =========================
+  const auth = window.auth || null;
+  const db   = window.db   || null;
+  let currentUser = window.currentUser || null;
+
+  function updateAuthUI(user) {
+    const loginBtn  = document.getElementById("login-btn");
+    const userInfo  = document.getElementById("user-info");
+    const userEmail = document.getElementById("user-email");
+
+    if (!loginBtn || !userInfo || !userEmail) return;
+
+    if (user) {
+      loginBtn.style.display = "none";
+      userInfo.style.display = "inline-flex";
+      userEmail.textContent  = user.email || user.displayName || "Usuario";
+    } else {
+      loginBtn.style.display = "inline-block";
+      userInfo.style.display = "none";
+      userEmail.textContent  = "";
+    }
+  }
+
+  function syncProgressToFirestore() {
+    if (!auth || !db || !currentUser) return;
+
+    const uid = currentUser.uid;
+    db.collection("users").doc(uid).set({
+      completion: completionState,
+      inProgress: inProgressState,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+      .then(() => {
+        showCloudSaveToast();
+      })
+      .catch(err => {
+        console.error("Error guardando progreso remoto:", err);
+      });
+  }
+
+  function showCloudSaveToast() {
+    const el = document.getElementById("cloud-save-toast");
+    if (!el) return;
+    el.textContent = "Progreso guardado en la nube ✅";
+    el.classList.add("visible");
+    clearTimeout(showCloudSaveToast._timerId);
+    showCloudSaveToast._timerId = setTimeout(() => {
+      el.classList.remove("visible");
+    }, 2000);
+  }
+
+
+  function loadUserProgressFromFirestore(uid) {
+    if (!db) return;
+
+    db.collection("users").doc(uid).get().then(doc => {
+      if (!doc.exists) {
+        console.log("Usuario sin progreso remoto; inicializando progreso vacío.");
+        // Limpiar estados: todas las quests sin marcar para este usuario nuevo
+        Object.keys(completionState).forEach(k => delete completionState[k]);
+        Object.keys(inProgressState).forEach(k => delete inProgressState[k]);
+
+        // Estado inicial vacío también en las variables globales usadas al guardar HTML
+        window.INITIAL_COMPLETION = {"debut":true,"shortage":true,"acquaintance":true,"pharmacist":true,"delivery-from-the-past":true,"provide-viewership":true,"sanitary-standards-2":true,"background-check":true,"dangerous-road":false,"supplier":true,"health-care-privacy-2":false,"operation-aquarius-2":true,"operation-aquarius-1":true,"chemical-part-1":true,"easy-money-part-1":true,"polikhim-hobo":true,"easy-money-part-2":true,"bling-bling":true,"sanitary-standards-1":true,"luxurious-life":true,"burning-rubber":true,"the-extortionist":true,"farming-part-1":true,"whats-on-the-flash-drive":true,"shooting-cans":true,"balancing-part-1":true,"saving-the-mole":true,"gunsmith-part-1":true,"painkiller":true,"first-in-line":true,"bp-depot":true};
+        window.INITIAL_INPROGRESS = {"to-great-heights-part-1":true,"kind-of-sabotage":true,"agitation":true,"balancing-part-2":true,"population-census":true,"car-repair":true,"work-smarter":true,"disease-history":true,"general-wares":true,"gunsmith-part-3":true,"tarkov-shooter-part-1":true,"survivalist-unprotected-but-dangerous":true,"farming-part-2":true,"supply-plans":true,"search-mission":true,"shootout-picnic":true,"rough-tarkov":true,"grenadier":true,"friend-from-the-west-1":true,"gunsmith-part-2":true,"health-care-privacy-1":true,"chemical-part-2":true,"belka-and-strelka":true,"the-bunker-part-1":true};
+
+        // Repintar todos los nodos como "sin marcar"
+        if (Array.isArray(quests)) {
+          quests.forEach(q => {
+            if (q && q.id) {
+              updateNodeVisual(q.id);
+            }
+          });
+        }
+
+        // Guardar este estado vacío en Firestore para este usuario
+        syncProgressToFirestore();
+        return;
+      }
+      const data = doc.data() || {};
+
+      // Vaciar objetos actuales
+      Object.keys(completionState).forEach(k => delete completionState[k]);
+      Object.keys(inProgressState).forEach(k => delete inProgressState[k]);
+
+      if (data.completion && typeof data.completion === "object") {
+        Object.assign(completionState, data.completion);
+      }
+      if (data.inProgress && typeof data.inProgress === "object") {
+        Object.assign(inProgressState, data.inProgress);
+      }
+
+      // Sincronizar también las variables globales usadas al guardar HTML
+      window.INITIAL_COMPLETION = completionState;
+      window.INITIAL_INPROGRESS = inProgressState;
+
+      // Repintar los nodos con el nuevo estado
+      if (Array.isArray(quests)) {
+        quests.forEach(q => {
+          if (q && q.id) {
+            updateNodeVisual(q.id);
+          }
+        });
+      }
+    }).catch(err => {
+      console.error("Error cargando progreso remoto:", err);
+    });
+  }
+
+  // Gestionar botones de login/logout una vez cargado el DOM
+  window.addEventListener("DOMContentLoaded", () => {
+    const loginBtn  = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    if (loginBtn && auth) {
+      loginBtn.addEventListener("click", () => {
+        try {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          auth.signInWithPopup(provider).catch(err => {
+            console.error("Error en login:", err);
+            alert("No se pudo iniciar sesión:\n" + err.message);
+          });
+        } catch (e) {
+          console.error("Firebase Auth no disponible:", e);
+        }
+      });
+    }
+
+    if (logoutBtn && auth) {
+      logoutBtn.addEventListener("click", () => {
+        auth.signOut().catch(err => {
+          console.error("Error al cerrar sesión:", err);
+          alert("No se pudo cerrar sesión:\n" + err.message);
+        });
+      });
+    }
+  });
+
+  // Datos iniciales de progreso y curvas (se guardan dentro del propio HTML)
+  window.INITIAL_COMPLETION = {};
+  window.INITIAL_INPROGRESS = {};
+  window.INITIAL_EDGE_LAYOUT = {"chemical-part-4->out-of-curiosity":{"cx":3474,"cy":1666},"scout->huntsman-factory-chief":{"cx":2458.111328125,"cy":6232.11474609375},"hunting-trip->northern-connections":{"cx":2763.33349609375,"cy":4519.33349609375},"tarkov-shooter-part-3->huntsman-secured-perimeter":{"cx":1559.015625,"cy":5017.5390625},"huntsman-secured-perimeter->huntsman-forest-cleaning":{"cx":231.015625,"cy":5434.5390625},"sales-night->huntsman-sellout":{"cx":1996.515625,"cy":6088.5390625},"anesthesia->samples":{"cx":4181.015625,"cy":4280.0625},"chemical-part-1->polikhim-hobo":{"cx":2499,"cy":1882},"chemical-part-4->big-customer":{"cx":3382,"cy":1688},"chemical-part-4->secure-corridor":{"cx":3908,"cy":1397}};
+
+  const nodeWidth = 200;
+  const nodeHeight = 65;
+  const svg = document.getElementById("quest-svg");
+  const ns = "http://www.w3.org/2000/svg";
+  const completionState = loadCompletion();
+  const inProgressState = loadInProgress();
+  const edgeLayout = loadEdgeLayout();
+  const questsById = {};
+  quests.forEach(q => { questsById[q.id] = q; });
+
+  // --- Edición de curvas ---
+  let currentEditedEdgeKey = null;
+
+  function selectEdgeForEditing(edgeKey) {
+    currentEditedEdgeKey = edgeKey;
+
+    // Quitar selección anterior
+    svg.querySelectorAll(".quest-edge-selected").forEach(el => {
+      el.classList.remove("quest-edge-selected");
+    });
+    svg.querySelectorAll(".edge-handle.active").forEach(h => {
+      h.classList.remove("active");
+    });
+
+    // Marcar la nueva flecha seleccionada
+    svg.querySelectorAll(`.quest-edge[data-edge-key="${edgeKey}"]`).forEach(el => {
+      el.classList.add("quest-edge-selected");
+    });
+
+    // Activar su handle
+    const handle = svg.querySelector(`.edge-handle[data-edge-key="${edgeKey}"]`);
+    if (handle) {
+      handle.classList.add("active");
+    }
+  }
+
+  // --- Filtro por nivel + trader ---
+  let currentMinLevel = null;
+  let currentMaxLevel = null;
+  let currentTraderFilter = "";
+
+  function applyLevelFilter() {
+    const nodes = svg.querySelectorAll(".quest-node");
+    nodes.forEach(g => {
+      const id = g.dataset.id;
+      const q = questsById[id];
+      if (!q) return;
+      const lvl = (q.nivel != null) ? q.nivel : null;
+      const trader = q.trader || "";
+
+      let dim = false;
+
+      if (currentMinLevel != null) {
+        if (lvl == null || lvl < currentMinLevel) dim = true;
+      }
+      if (currentMaxLevel != null) {
+        if (lvl == null || lvl > currentMaxLevel) dim = true;
+      }
+
+      if (currentTraderFilter && trader !== currentTraderFilter) {
+        dim = true;
+      }
+
+      g.classList.toggle("dim-level", dim);
+    });
+  }
+
+  function setupLevelFilterUI() {
+    const minInput = document.getElementById("min-level");
+    const maxInput = document.getElementById("max-level");
+    const traderSelect = document.getElementById("trader-filter");
+    if (!minInput || !maxInput) return;
+
+    function parseVal(v) {
+      if (v === "" || v == null) return null;
+      const n = parseInt(v, 10);
+      return Number.isNaN(n) ? null : n;
+    }
+
+    function onChangeLevel() {
+      currentMinLevel = parseVal(minInput.value);
+      currentMaxLevel = parseVal(maxInput.value);
+      applyLevelFilter();
+    }
+
+    minInput.addEventListener("input", onChangeLevel);
+    maxInput.addEventListener("input", onChangeLevel);
+
+    if (traderSelect) {
+      traderSelect.addEventListener("change", () => {
+        currentTraderFilter = traderSelect.value || "";
+        applyLevelFilter();
+      });
+    }
+  }
+
+
+  // --- Búsqueda de quests por nombre ---
+  let currentSearchTerm = "";
+  let currentSearchId = null;
+
+  function clearSearchHighlight() {
+    svg.querySelectorAll(".quest-node.search-hit").forEach(g => {
+      g.classList.remove("search-hit");
+    });
+  }
+
+  function centerViewOnQuest(id) {
+    const node = svg.querySelector(`.quest-node[data-id="${id}"]`);
+    const container = document.getElementById("graph-container");
+    const inner = document.getElementById("graph-inner");
+    if (!node || !container || !inner) return;
+
+    const rect = node.getBoundingClientRect();
+    const innerRect = inner.getBoundingClientRect();
+    const contRect = container.getBoundingClientRect();
+
+    const nodeCenterX = rect.left + rect.width / 2;
+    const nodeCenterY = rect.top + rect.height / 2;
+
+    const offsetX = nodeCenterX - innerRect.left;
+    const offsetY = nodeCenterY - innerRect.top;
+
+    const targetScrollLeft = offsetX - contRect.width / 2;
+    const targetScrollTop = offsetY - contRect.height / 2;
+
+    container.scrollTo({
+      left: targetScrollLeft,
+      top: targetScrollTop,
+      behavior: "smooth"
+    });
+  }
+
+  function setupSearchUI() {
+    const input = document.getElementById("quest-search");
+    if (!input) return;
+
+    input.addEventListener("input", () => {
+      const term = input.value.trim().toLowerCase();
+      currentSearchTerm = term;
+      clearSearchHighlight();
+      currentSearchId = null;
+      if (!term) return;
+
+      const match = quests.find(q => (q.nombre || "").toLowerCase().includes(term));
+      if (!match) return;
+      currentSearchId = match.id;
+      const node = svg.querySelector(`.quest-node[data-id="${match.id}"]`);
+      if (node) {
+        node.classList.add("search-hit");
+        centerViewOnQuest(match.id);
+      }
+    });
+  }
+
+  // --- Índices para relaciones entre quests (prereqs y sucesoras) ---
+  const childrenById = {};
+  quests.forEach(q => {
+    (q.prereqIds || []).forEach(pid => {
+      if (!childrenById[pid]) childrenById[pid] = [];
+      childrenById[pid].push(q.id);
+    });
+  });
+
+  function collectAncestors(id, acc) {
+    acc = acc || new Set();
+    const q = questsById[id];
+    if (!q || !q.prereqIds) return acc;
+    q.prereqIds.forEach(pid => {
+      if (!acc.has(pid)) {
+        acc.add(pid);
+        collectAncestors(pid, acc);
+      }
+    });
+    return acc;
+  }
+
+  function collectDescendants(id, acc) {
+    acc = acc || new Set();
+    const children = childrenById[id] || [];
+    children.forEach(cid => {
+      if (!acc.has(cid)) {
+        acc.add(cid);
+        collectDescendants(cid, acc);
+      }
+    });
+    return acc;
+  }
+
+  function clearRelationHighlight() {
+    svg.querySelectorAll(".quest-node").forEach(g => {
+      g.classList.remove("relation-center", "relation-pre", "relation-post");
+    });
+  }
+
+  function highlightRelations(centerId) {
+    clearRelationHighlight();
+    if (!centerId) return;
+    const ancestors = collectAncestors(centerId, new Set());
+    const descendants = collectDescendants(centerId, new Set());
+
+    svg.querySelectorAll(".quest-node").forEach(g => {
+      const id = g.dataset.id;
+      if (id === centerId) {
+        g.classList.add("relation-center");
+      } else if (ancestors.has(id)) {
+        g.classList.add("relation-pre");
+      } else if (descendants.has(id)) {
+        g.classList.add("relation-post");
+      }
+    });
+  }
+
+  // --- Retratos de traders ---
+  const traderPortraits = {
+    "Prapor":       "img/prapor.png",
+    "Terapeuta":    "img/therapist.png",
+    "Skier":        "img/skier.png",
+    "Peacekeeper":  "img/peacekeeper.png",
+    "Mechanic":     "img/mechanic.png",
+    "Ragman":       "img/ragman.png",
+    "Jaeger":       "img/jaeger.png",
+    "Fence":        "img/fence.png",
+    "Ref":          "img/ref.png",
+    "Lightkeeper":  "img/lightkeeper.png",
+    "BTR Driver":   "img/btr_driver.png"
+  };
+
+  // Calculamos la primera quest de cada trader (preferimos quests sin prereqs y con nivel más bajo)
+  const firstQuestByTrader = {};
+  quests.forEach(q => {
+    if (!q.trader) return;
+    const t = q.trader;
+    const current = firstQuestByTrader[t];
+    const prereq = Array.isArray(q.prereqIds) ? q.prereqIds : [];
+    const isRoot = prereq.length === 0;
+
+    if (!current) {
+      firstQuestByTrader[t] = q;
+      return;
+    }
+
+    const currentPrereq = Array.isArray(current.prereqIds) ? current.prereqIds : [];
+    const currentIsRoot = currentPrereq.length === 0;
+
+    if (!currentIsRoot && isRoot) {
+      firstQuestByTrader[t] = q;
+      return;
+    }
+
+    const lvl = (q.nivel != null) ? q.nivel : 999;
+    const currLvl = (current.nivel != null) ? current.nivel : 999;
+    if (isRoot === currentIsRoot && lvl < currLvl) {
+      firstQuestByTrader[t] = q;
+    }
+  });
+
+  // Clip circular para retratos
+  let defs = svg.querySelector("defs");
+  if (!defs) {
+    defs = document.createElementNS(ns, "defs");
+    svg.appendChild(defs);
+  }
+  let portraitClip = defs.querySelector("#portrait-clip");
+  if (!portraitClip) {
+    portraitClip = document.createElementNS(ns, "clipPath");
+    portraitClip.setAttribute("id", "portrait-clip");
+    // Usamos unidades relativas al bounding box del <image>
+    portraitClip.setAttribute("clipPathUnits", "objectBoundingBox");
+    const circle = document.createElementNS(ns, "circle");
+    circle.setAttribute("cx", 0.5);
+    circle.setAttribute("cy", 0.5);
+    circle.setAttribute("r", 0.5);
+    portraitClip.appendChild(circle);
+    defs.appendChild(portraitClip);
+  }
+
+	  // Cargar layout guardado (si existe) y aplicado al HTML
+  function loadCompletion() {
+    try {
+      // Clonamos los datos iniciales embebidos en el propio HTML
+      const base = window.INITIAL_COMPLETION || {};
+      return JSON.parse(JSON.stringify(base));
+    } catch (e) {
+      console.warn("No se pudo cargar progreso desde HTML:", e);
+      return {};
+    }
+  }
+
+  function saveCompletion() {
+    try {
+      // Mantener sincronizado con la variable global para que se vuelque al guardar el HTML
+      window.INITIAL_COMPLETION = completionState;
+    } catch (e) {
+      console.warn("No se pudo guardar progreso en memoria HTML:", e);
+    }
+
+    // Además, si hay usuario autenticado, sincronizamos con Firestore
+    syncProgressToFirestore();
+  }
+
+
+
+  function loadEdgeLayout() {
+    try {
+      // Clonamos los datos iniciales embebidos en el propio HTML
+      const base = window.INITIAL_EDGE_LAYOUT || {};
+      return JSON.parse(JSON.stringify(base));
+    } catch (e) {
+      console.warn("No se pudo cargar layout de edges desde HTML:", e);
+      return {};
+    }
+  }
+
+  function saveEdgeLayout() {
+    // Mantener en memoria sincronizado con la variable global
+    window.INITIAL_EDGE_LAYOUT = edgeLayout;
+  }
+
+  function loadInProgress() {
+    try {
+      // Clonamos los datos iniciales embebidos en el propio HTML
+      const base = window.INITIAL_INPROGRESS || {};
+      return JSON.parse(JSON.stringify(base));
+    } catch (e) {
+      console.warn("No se pudo cargar estado 'en curso' desde HTML:", e);
+      return {};
+    }
+  }
+
+  function saveInProgress() {
+    try {
+      // Mantener sincronizado con la variable global para que se vuelque al guardar el HTML
+      window.INITIAL_INPROGRESS = inProgressState;
+    } catch (e) {
+      console.warn("No se pudo guardar estado 'en curso' en memoria HTML:", e);
+    }
+
+    // Además, si hay usuario autenticado, sincronizamos con Firestore
+    syncProgressToFirestore();
+  }
+
+		
+	
+  function buildCurrentHtmlForSaving() {
+// Clonamos el HTML actual del documento (estado actual)
+		let htmlText = document.documentElement.outerHTML;
+
+		// Actualizamos la posición de cada quest en el bloque "quests"
+		quests.forEach(q => {
+		  if (!q.position) return;
+		  const id = q.id;
+		  const marker = 'id: "' + id + '"';
+		  const idIndex = htmlText.indexOf(marker);
+		  if (idIndex === -1) return;
+
+		  const posIndex = htmlText.indexOf("position:", idIndex);
+		  if (posIndex === -1) return;
+
+		  const braceStart = htmlText.indexOf("{", posIndex);
+		  const braceEnd = htmlText.indexOf("}", braceStart);
+		  if (braceStart === -1 || braceEnd === -1) return;
+
+		  const before = htmlText.slice(0, braceStart);
+		  const after = htmlText.slice(braceEnd + 1);
+		  const newPos = `{ x: ${q.position.x}, y: ${q.position.y} }`;
+		  htmlText = before + newPos + after;
+		});
+
+		// Actualizamos también los datos de curvas (edgeLayout) embebidos en el HTML
+		const edgeMarker = "window.INITIAL_EDGE_LAYOUT = ";
+		const edgeIndex = htmlText.indexOf(edgeMarker);
+		if (edgeIndex !== -1) {
+		  const start = edgeIndex + edgeMarker.length;
+		  const end = htmlText.indexOf(";", start);
+		  if (end !== -1) {
+			const beforeEdge = htmlText.slice(0, start);
+			const afterEdge = htmlText.slice(end);
+			const edgeJson = JSON.stringify(edgeLayout || {});
+			htmlText = beforeEdge + edgeJson + afterEdge;
+		  }
+		}
+
+		// Actualizamos también el estado de progreso (completionState) embebido en el HTML
+		const compMarker = "window.INITIAL_COMPLETION = ";
+		const compIndex = htmlText.indexOf(compMarker);
+		if (compIndex !== -1) {
+		  const startC = compIndex + compMarker.length;
+		  const endC = htmlText.indexOf(";", startC);
+		  if (endC !== -1) {
+			const beforeC = htmlText.slice(0, startC);
+			const afterC = htmlText.slice(endC);
+			const compJson = JSON.stringify(completionState || {});
+			htmlText = beforeC + compJson + afterC;
+		  }
+		}
+
+		// Actualizamos también el estado 'en curso' embebido en el HTML
+		const inprogMarker = "window.INITIAL_INPROGRESS = ";
+		const inprogIndex = htmlText.indexOf(inprogMarker);
+		if (inprogIndex !== -1) {
+		  const startI = inprogIndex + inprogMarker.length;
+		  const endI = htmlText.indexOf(";", startI);
+		  if (endI !== -1) {
+			const beforeI = htmlText.slice(0, startI);
+			const afterI = htmlText.slice(endI);
+			const inprogJson = JSON.stringify(inProgressState || {});
+			htmlText = beforeI + inprogJson + afterI;
+		  }
+		}
+
+		// Limpia el contenido del SVG (nodos y flechas dibujados en tiempo de ejecución)
+		// para que el nuevo HTML vuelva a generarlos desde el array "quests"
+		const svgMarker = '<svg id="quest-svg"';
+		const svgStart = htmlText.indexOf(svgMarker);
+		if (svgStart !== -1) {
+		  const openEnd = htmlText.indexOf('>', svgStart);
+		  const closeIdx = htmlText.indexOf('</svg>', openEnd);
+		  if (openEnd !== -1 && closeIdx !== -1) {
+			const before = htmlText.slice(0, openEnd + 1);
+			const after = htmlText.slice(closeIdx);
+			htmlText = before + '</svg>' + after;
+		  }
+		}
+
+		
+		return htmlText;
+	}
+
+	function saveHtmlToFile() {
+	  try {
+		const htmlText = buildCurrentHtmlForSaving();
+
+		const blob = new Blob([htmlText], { type: "text/html" });
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = "tarkov_quests_saved.html";
+		document.body.appendChild(a);
+		a.click();
+		setTimeout(() => {
+		  document.body.removeChild(a);
+		  URL.revokeObjectURL(url);
+		}, 0);
+	  
+	  } catch (e) {
+		console.warn("No se pudo generar el HTML:", e);
+		alert("Error al generar el HTML. Revisa la consola.");
+	  }
+	}
+
+
+
+  function isCompleted(id) { return !!completionState[id]; }
+
+  function setCompleted(id, value) {
+    if (value) {
+      completionState[id] = true;
+    } else {
+      delete completionState[id];
+    }
+    saveCompletion();
+
+    if (value && inProgressState[id]) {
+      delete inProgressState[id];
+      saveInProgress();
+    }
+
+    updateNodeVisual(id);
+  }
+
+  function isInProgress(id) { return !!inProgressState[id]; }
+
+  function setInProgress(id, value) {
+    if (value) {
+      inProgressState[id] = true;
+      if (completionState[id]) {
+        completionState[id] = false;
+        saveCompletion();
+      }
+    } else {
+      delete inProgressState[id];
+    }
+    saveInProgress();
+    updateNodeVisual(id);
+  }
+
+  function createNode(q) {
+  const g = document.createElementNS(ns, "g");
+  g.classList.add("quest-node");
+  if (q.traderColor) g.classList.add(q.traderColor);
+  g.dataset.id = q.id;
+
+  const completed = isCompleted(q.id);
+  const inProg = isInProgress(q.id);
+
+  if (completed) {
+    g.classList.add("completed");
+  } else if (inProg) {
+    g.classList.add("in-progress");
+  }
+
+  const x = q.position.x;
+  const y = q.position.y;
+  g.setAttribute("transform", `translate(${x}, ${y})`);
+
+  const rect = document.createElementNS(ns, "rect");
+  rect.setAttribute("width", nodeWidth);
+  rect.setAttribute("height", nodeHeight);
+  g.appendChild(rect);
+
+  // --- Retrato del trader en todas sus quests ---
+  if (traderPortraits[q.trader]) {
+    const img = document.createElementNS(ns, "image");
+    img.classList.add("trader-portrait");
+    // Compatibilidad: establecemos tanto href como xlink:href
+    img.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", traderPortraits[q.trader]);
+    img.setAttributeNS(null, "href", traderPortraits[q.trader]);
+    const portraitSize = 32;
+    const portraitX = nodeWidth - portraitSize - 8;
+    const portraitY = 8;
+    img.setAttribute("x", portraitX);
+    img.setAttribute("y", portraitY);
+    img.setAttribute("width", portraitSize);
+    img.setAttribute("height", portraitSize);
+    img.setAttribute("clip-path", "url(#portrait-clip)");
+    img.style.pointerEvents = "none";
+    g.appendChild(img);
+  }
+
+  // ===== TÍTULO (ES ARRIBA, EN ABAJO, SIEMPRE EN LÍNEAS SEPARADAS) =====
+  const title = document.createElementNS(ns, "text");
+  title.setAttribute("x", 10);
+  title.setAttribute("y", 16);
+
+  const rawName = (q.nombre || "").replace(/\r/g, "");
+  let main = rawName.trim();
+  let extra = null;
+
+  const newlineIdx = rawName.indexOf("\n");
+  const parenIdx = rawName.indexOf(" (");
+
+  if (newlineIdx !== -1 && (parenIdx === -1 || newlineIdx < parenIdx)) {
+    main = rawName.slice(0, newlineIdx).trim();
+    extra = rawName.slice(newlineIdx + 1).trim();
+  } else if (parenIdx !== -1) {
+    main = rawName.slice(0, parenIdx).trim();
+    extra = rawName.slice(parenIdx).trim();
+  }
+
+  let titleLines = 0;
+
+  const tspanMain = document.createElementNS(ns, "tspan");
+  tspanMain.textContent = main;
+  title.appendChild(tspanMain);
+  titleLines++;
+
+  // Envolvemos el nombre en inglés si es demasiado largo
+  if (extra) {
+    const maxCharsPerLine = 34;
+    const maxExtraLines = 2;
+    const words = extra.split(/\s+/).filter(w => w.length > 0);
+    let current = "";
+    let lineIndex = 0;
+
+    const pushLine = (text, isFirstExtra) => {
+      const t = document.createElementNS(ns, "tspan");
+      t.setAttribute("x", 10);
+      t.setAttribute("dy", isFirstExtra ? "14" : "11");
+      t.textContent = text;
+      title.appendChild(t);
+      titleLines++;
+    };
+
+    for (let i = 0; i < words.length; i++) {
+      const w = words[i];
+      const test = current ? current + " " + w : w;
+      if (test.length > maxCharsPerLine && current) {
+        pushLine(current, lineIndex === 0);
+        lineIndex++;
+        if (lineIndex >= maxExtraLines) {
+          if (i < words.length) {
+            let remaining = words.slice(i).join(" ");
+            if (remaining.length > maxCharsPerLine - 1) {
+              remaining = remaining.slice(0, maxCharsPerLine - 1) + "…";
+            }
+            pushLine(remaining, false);
+          }
+          current = "";
+          break;
+        }
+        current = w;
+      } else {
+        current = test;
+      }
+    }
+    if (current && lineIndex < maxExtraLines) {
+      pushLine(current, lineIndex === 0);
+    }
+  }
+
+  g.appendChild(title);
+
+  // ===== NIVEL =====
+  const hasSecondLine = titleLines > 1;
+  let levelY = hasSecondLine ? 24 + titleLines * 10 : 34;
+  if (q.nivel != null) {
+    const levelText = document.createElementNS(ns, "text");
+    levelText.setAttribute("x", 10);
+    levelText.setAttribute("y", levelY);
+    levelText.textContent = `Nv. ${q.nivel}`;
+    levelText.setAttribute("class", "node-level");
+    g.appendChild(levelText);
+  }
+
+  // ===== TRADER =====
+  let traderYBase = q.nivel != null ? 42 : 30;
+  let traderY = traderYBase + (titleLines - 1) * 8;
+
+  const traderText = document.createElementNS(ns, "text");
+  traderText.setAttribute("x", 10);
+  traderText.setAttribute("y", traderY);
+  traderText.textContent = q.trader;
+  traderText.setAttribute("class", "node-trader");
+  g.appendChild(traderText);
+
+  // ===== CHECK =====
+  const checkText = document.createElementNS(ns, "text");
+  checkText.setAttribute("x", nodeWidth - 16);
+  checkText.setAttribute("y", 18);
+  checkText.textContent = "✔";
+  checkText.setAttribute("class", "node-check");
+  if (!completed) checkText.style.opacity = "0";
+  g.appendChild(checkText);
+
+  // Edición rápida del texto de la quest con botón derecho en modo edición
+  g.addEventListener("contextmenu", ev => {
+    if (!document.body.classList.contains("edge-edit-mode")) return;
+    if (!inlineEditor || !inlineEditorText) return;
+    ev.preventDefault();
+    currentInlineQuestId = q.id;
+    inlineEditorText.value = (q.nombre || "").replace(/\r/g, "");
+    inlineEditor.classList.add("visible");
+    const viewportX = ev.clientX + 8;
+    const viewportY = ev.clientY + 8;
+    inlineEditor.style.left = viewportX + "px";
+    inlineEditor.style.top = viewportY + "px";
+    inlineEditorText.focus();
+    inlineEditorText.select();
+  });
+
+  svg.appendChild(g);
+}
+function drawEdge(fromQ, toQ) {
+	  const startX = fromQ.position.x + nodeWidth;
+	  const startY = fromQ.position.y + nodeHeight / 2;
+	  const endX = toQ.position.x;
+	  const endY = toQ.position.y + nodeHeight / 2;
+
+	  const dx = endX - startX;
+	  const dy = endY - startY;
+
+	  // Consideramos "especial" una flecha muy larga / muy diagonal
+	  const isLong = Math.abs(dx) > nodeWidth * 2 || Math.abs(dy) > nodeHeight * 2;
+
+	  let cls = "quest-edge";
+	  if (isLong) {
+		cls += " quest-edge-special";
+	  }
+
+	  const edgeKey = fromQ.id + "->" + toQ.id;
+	  let ctrl = edgeLayout[edgeKey];
+	  if (!ctrl) {
+		ctrl = {
+		  cx: (startX + endX) / 2,
+		  cy: (startY + endY) / 2
+		};
+	  }
+
+	  const path = document.createElementNS(ns, "path");
+	  path.setAttribute("d", `M ${startX} ${startY} Q ${ctrl.cx} ${ctrl.cy} ${endX} ${endY}`);
+	  path.setAttribute("class", cls);
+	  path.dataset.edgeKey = edgeKey;
+	  path.dataset.edgePart = "path";
+	  svg.insertBefore(path, svg.firstChild);
+
+	  const arrowSize = 6;
+	  const angle = Math.atan2(endY - ctrl.cy, endX - ctrl.cx);
+	  const ax = endX;
+	  const ay = endY;
+	  const p2x = ax - arrowSize * Math.cos(angle - Math.PI / 6);
+	  const p2y = ay - arrowSize * Math.sin(angle - Math.PI / 6);
+	  const p3x = ax - arrowSize * Math.cos(angle + Math.PI / 6);
+	  const p3y = ay - arrowSize * Math.sin(angle + Math.PI / 6);
+	  const arrow = document.createElementNS(ns, "polygon");
+	  arrow.setAttribute("points", `${ax},${ay} ${p2x},${p2y} ${p3x},${p3y}`);
+	  arrow.setAttribute("class", cls);
+	  // El cuerpo de la flecha se rellena explícitamente,
+	  // aunque la curva use fill:none en CSS
+	  arrow.setAttribute("fill", isLong ? "#f6c177" : getComputedStyle(svg).getPropertyValue('--edge') || '#f6c177');	  arrow.dataset.edgeKey = edgeKey;
+	  arrow.dataset.edgePart = "arrow";
+	  svg.insertBefore(arrow, svg.firstChild);
+
+	  const handle = document.createElementNS(ns, "circle");
+	  handle.setAttribute("class", "edge-handle");
+	  handle.setAttribute("r", 4);
+	  handle.setAttribute("cx", ctrl.cx);
+	  handle.setAttribute("cy", ctrl.cy);
+	  handle.dataset.edgeKey = edgeKey;
+	  handle.dataset.edgePart = "handle";
+	  svg.insertBefore(handle, svg.firstChild);
+	}
+
+  function updateNodeVisual(id) {
+    const g = svg.querySelector(`.quest-node[data-id="${id}"]`);
+    if (!g) return;
+
+    const completed = isCompleted(id);
+    const inProg = isInProgress(id);
+
+    g.classList.toggle("completed", completed);
+    g.classList.toggle("in-progress", !completed && inProg);
+
+    const check = g.querySelector(".node-check");
+    if (check) check.style.opacity = completed ? "1" : "0";
+  }
+
+  quests.forEach(createNode);
+	drawAllEdges();
+	enableDrag();   // 👈 lo añadiremos ahora
+  setupLevelFilterUI();
+  applyLevelFilter();
+  setupSearchUI();
+
+  // Ajuste automático del tamaño del lienzo según la extensión actual de las quests
+  function adjustCanvasSize() {
+    let maxX = 0, maxY = 0;
+
+    if (svg) {
+      const nodes = svg.querySelectorAll(".quest-node");
+      nodes.forEach(g => {
+        // Ignoramos nodos ocultos
+        if (typeof window !== "undefined" && window.getComputedStyle) {
+          const cs = window.getComputedStyle(g);
+          if (cs && cs.display === "none") return;
+        }
+
+        const tr = g.getAttribute("transform") || "";
+        const m = /translate\(([-0-9.]+),\s*([-0-9.]+)\)/.exec(tr);
+        let x = 0, y = 0;
+        if (m) {
+          x = parseFloat(m[1]) || 0;
+          y = parseFloat(m[2]) || 0;
+        }
+        const x2 = x + nodeWidth;
+        const y2 = y + nodeHeight;
+        if (x2 > maxX) maxX = x2;
+        if (y2 > maxY) maxY = y2;
+      });
+    }
+
+    // Si por lo que sea no hemos encontrado nodos, usamos un tamaño base
+    if (maxX === 0 && maxY === 0) {
+      maxX = 2200;
+      maxY = 1200;
+    }
+
+    // Margen adicional alrededor del contenido visible
+    const marginRight = 400;
+    const marginBottom = 200;
+
+    const width = Math.max(maxX + marginRight, 2200);
+    const height = Math.max(maxY + marginBottom, 1200);
+
+    // Guardamos las dimensiones "de mundo" para poder
+    // limitar correctamente el scroll con distintos niveles de zoom
+    window.CANVAS_WORLD_WIDTH = width;
+    window.CANVAS_WORLD_HEIGHT = height;
+    // Y también el borde real del contenido (sin márgenes extra)
+    window.CANVAS_CONTENT_RIGHT = maxX;
+    window.CANVAS_CONTENT_BOTTOM = maxY;
+
+    const inner = document.getElementById("graph-inner");
+    if (inner) {
+      inner.style.width = width + "px";
+      inner.style.height = height + "px";
+    }
+    if (svg) {
+      // Usamos estilos inline para que prevalezcan sobre el CSS
+      svg.style.width = width + "px";
+      svg.style.height = height + "px";
+      svg.setAttribute("width", width);
+      svg.setAttribute("height", height);
+    }
+  }
+
+
+  adjustCanvasSize();
+
+	function drawAllEdges() {
+	  // borrar edges antiguos
+	  [...svg.querySelectorAll(".quest-edge")].forEach(el => el.remove());
+
+	  // volver a dibujar todas las flechas según las posiciones actuales
+	  quests.forEach(q => {
+		(q.prereqIds || []).forEach(pid => {
+		  const fromQ = questsById[pid];
+		  if (fromQ) drawEdge(fromQ, q);
+		});
+	  });
+	}
+
+	
+  // --- Selección múltiple ---
+  const selectedIds = new Set();
+
+  function setSelection(ids) {
+    selectedIds.clear();
+    ids.forEach(id => selectedIds.add(id));
+    updateSelectionClasses();
+  }
+
+  function toggleSelection(id) {
+    if (selectedIds.has(id)) {
+      selectedIds.delete(id);
+    } else {
+      selectedIds.add(id);
+    }
+    updateSelectionClasses();
+  }
+
+  function clearSelection() {
+    selectedIds.clear();
+    updateSelectionClasses();
+  }
+
+  function updateSelectionClasses() {
+    svg.querySelectorAll(".quest-node").forEach(g => {
+      const id = g.dataset.id;
+      if (selectedIds.has(id)) g.classList.add("selected");
+      else g.classList.remove("selected");
+    });
+
+    // Resaltar prerequisitos y sucesoras cuando hay una única quest seleccionada
+    if (selectedIds.size === 1) {
+      const onlyId = Array.from(selectedIds)[0];
+      highlightRelations(onlyId);
+    } else {
+      clearRelationHighlight();
+    }
+  }
+  
+    // --- Selección por ventana (marquee) ---
+  let isBoxSelecting = false;
+  let selectionRect = null;
+  let boxStartX = 0;
+  let boxStartY = 0;
+  let boxSelectionAdditive = false; // true si se inició con Ctrl/Meta pulsado
+
+  function startBoxSelection(e) {
+    // Solo botón izquierdo
+    if (e.button !== 0) return;
+
+    // Si se mantiene Ctrl (o Cmd), la selección será aditiva
+    boxSelectionAdditive = !!(e.ctrlKey || e.metaKey);
+
+    const svgRect = svg.getBoundingClientRect();
+    const scale = (typeof zoom === "number" && zoom > 0) ? zoom : 1;
+
+    // Pasamos el ratón a coordenadas de "mundo" (antes de aplicar zoom)
+    boxStartX = (e.clientX - svgRect.left) / scale;
+    boxStartY = (e.clientY - svgRect.top) / scale;
+
+    isBoxSelecting = true;
+
+    selectionRect = document.createElementNS(ns, "rect");
+    selectionRect.setAttribute("class", "selection-rect");
+    selectionRect.setAttribute("x", boxStartX);
+    selectionRect.setAttribute("y", boxStartY);
+    selectionRect.setAttribute("width", 0);
+    selectionRect.setAttribute("height", 0);
+    selectionRect.setAttribute("rx", 4);
+    selectionRect.setAttribute("ry", 4);
+    // Estilo explícito para garantizar visibilidad independientemente del CSS
+    selectionRect.setAttribute("fill", "rgba(229,192,123,0.25)");
+    selectionRect.setAttribute("stroke", "#ffd77d");
+    selectionRect.setAttribute("stroke-width", "1.8");
+    selectionRect.setAttribute("stroke-dasharray", "4 2");
+    selectionRect.style.pointerEvents = "none";
+
+    svg.appendChild(selectionRect);
+  }
+
+
+function updateBoxSelection(e) {
+    if (!isBoxSelecting || !selectionRect) return;
+
+    const svgRect = svg.getBoundingClientRect();
+    const scale = (typeof zoom === "number" && zoom > 0) ? zoom : 1;
+    const currentX = (e.clientX - svgRect.left) / scale;
+    const currentY = (e.clientY - svgRect.top) / scale;
+
+    const x = Math.min(currentX, boxStartX);
+    const y = Math.min(currentY, boxStartY);
+    const w = Math.abs(currentX - boxStartX);
+    const h = Math.abs(currentY - boxStartY);
+
+    selectionRect.setAttribute("x", x);
+    selectionRect.setAttribute("y", y);
+    selectionRect.setAttribute("width", w);
+    selectionRect.setAttribute("height", h);
+  }
+
+
+function finishBoxSelection() {
+    if (!isBoxSelecting) return;
+    isBoxSelecting = false;
+
+    if (!selectionRect) return;
+
+    const rectX = parseFloat(selectionRect.getAttribute("x"));
+    const rectY = parseFloat(selectionRect.getAttribute("y"));
+    const rectW = parseFloat(selectionRect.getAttribute("width"));
+    const rectH = parseFloat(selectionRect.getAttribute("height"));
+
+    selectionRect.remove();
+    selectionRect = null;
+
+    // Si prácticamente no se ha arrastrado, no hacemos nada especial
+    if (rectW < 3 && rectH < 3) {
+      return;
+    }
+
+    // Las coordenadas del rectángulo ya están en sistema "de mundo"
+    const minX = rectX;
+    const minY = rectY;
+    const maxX = rectX + rectW;
+    const maxY = rectY + rectH;
+
+    const newlySelected = [];
+
+    quests.forEach(q => {
+      if (!q.position) return;
+
+      const x1 = q.position.x;
+      const y1 = q.position.y;
+      const x2 = x1 + nodeWidth;
+      const y2 = y1 + nodeHeight;
+
+      // Si cualquier parte del nodo intersecta la ventana
+      const intersects =
+        x2 >= minX && x1 <= maxX &&
+        y2 >= minY && y1 <= maxY;
+
+      if (intersects) {
+        newlySelected.push(q.id);
+      }
+    });
+
+    if (boxSelectionAdditive) {
+      const combined = new Set(selectedIds);
+      newlySelected.forEach(id => combined.add(id));
+      setSelection(Array.from(combined));
+    } else {
+      setSelection(newlySelected);
+    }
+
+    boxSelectionAdditive = false;
+  }
+
+  
+  function getConnectedQuestIds(rootId) {
+    const result = new Set();
+    const queue = [rootId];
+    result.add(rootId);
+
+    while (queue.length > 0) {
+      const currentId = queue.shift();
+      const currentQuest = questsById[currentId];
+      if (!currentQuest) continue;
+
+      // 1) Prerequisitos del nodo actual
+      (currentQuest.prereqIds || []).forEach(pid => {
+        if (!result.has(pid)) {
+          result.add(pid);
+          queue.push(pid);
+        }
+      });
+
+      // 2) Sucesoras: quests que tienen a currentId como prerequisito
+      quests.forEach(q => {
+        if (!q.prereqIds) return;
+        if (q.prereqIds.includes(currentId) && !result.has(q.id)) {
+          result.add(q.id);
+          queue.push(q.id);
+        }
+      });
+    }
+
+    return Array.from(result);
+  }
+
+
+
+
+  // --- Historial de deshacer movimientos de quests y curvas ---
+  const undoStack = [];
+  const UNDO_LIMIT = 50;
+
+  function pushUndoMove(items) {
+    undoStack.push({ type: "move", items });
+    if (undoStack.length > UNDO_LIMIT) {
+      undoStack.shift();
+    }
+  }
+
+  function pushUndoEdge(key, fromCX, fromCY, toCX, toCY) {
+    undoStack.push({
+      type: "edge",
+      key,
+      from: { cx: fromCX, cy: fromCY },
+      to: { cx: toCX, cy: toCY }
+    });
+    if (undoStack.length > UNDO_LIMIT) {
+      undoStack.shift();
+    }
+  }
+
+  // Se mantiene el nombre undoLastMove porque ya lo usa Ctrl+Z,
+  // pero ahora deshace movimientos de nodos y también curvas.
+  function undoLastMove() {
+    const last = undoStack.pop();
+    if (!last) return;
+
+    if (last.type === "move") {
+      last.items.forEach(entry => {
+        const q = questsById[entry.id];
+        const node = svg.querySelector(`.quest-node[data-id="${entry.id}"]`);
+        if (!q || !node) return;
+        q.position.x = entry.from.x;
+        q.position.y = entry.from.y;
+        node.setAttribute("transform", `translate(${entry.from.x}, ${entry.from.y})`);
+      });
+
+      drawAllEdges();
+    } else if (last.type === "edge") {
+      const key = last.key;
+      const from = last.from;
+
+      if (from && typeof from.cx === "number" && typeof from.cy === "number") {
+        edgeLayout[key] = { cx: from.cx, cy: from.cy };
+      } else {
+        delete edgeLayout[key];
+      }
+
+      const handle = svg.querySelector(`.edge-handle[data-edge-key="${key}"]`);
+      const parts = key.split("->");
+      const fromQ = questsById[parts[0]];
+      const toQ = questsById[parts[1]];
+
+      if (fromQ && toQ) {
+        const localX = from.cx;
+        const localY = from.cy;
+
+        if (handle) {
+          handle.setAttribute("cx", localX);
+          handle.setAttribute("cy", localY);
+        }
+
+        const startX = fromQ.position.x + nodeWidth;
+        const startY = fromQ.position.y + nodeHeight / 2;
+        const endX = toQ.position.x;
+        const endY = toQ.position.y + nodeHeight / 2;
+
+        const pathEl = svg.querySelector(`path.quest-edge[data-edge-key="${key}"]`);
+        if (pathEl) {
+          pathEl.setAttribute("d", `M ${startX} ${startY} Q ${localX} ${localY} ${endX} ${endY}`);
+        }
+
+        const arrowEl = svg.querySelector(`polygon.quest-edge[data-edge-key="${key}"]`);
+        if (arrowEl) {
+          const arrowSize = 6;
+          const angle = Math.atan2(endY - localY, endX - localX);
+          const ax = endX;
+          const ay = endY;
+          const p2x = ax - arrowSize * Math.cos(angle - Math.PI / 6);
+          const p2y = ay - arrowSize * Math.sin(angle - Math.PI / 6);
+          const p3x = ax - arrowSize * Math.cos(angle + Math.PI / 6);
+          const p3y = ay - arrowSize * Math.sin(angle + Math.PI / 6);
+          arrowEl.setAttribute("points", `${ax},${ay} ${p2x},${p2y} ${p3x},${p3y}`);
+        }
+      }
+
+      saveEdgeLayout();
+    }
+  }
+
+
+  // Restablecer una flecha a línea recta (control en posición por defecto)
+  function resetEdgeToDefault(key, recordUndo = true) {
+    const ctrl = edgeLayout[key];
+    // Si no hay control personalizado, ya es recta por defecto
+    if (!ctrl || typeof ctrl.cx !== "number" || typeof ctrl.cy !== "number") {
+      return;
+    }
+
+    const parts = key.split("->");
+    const fromQ = questsById[parts[0]];
+    const toQ = questsById[parts[1]];
+    if (!fromQ || !toQ) return;
+
+    const startX = fromQ.position.x + nodeWidth;
+    const startY = fromQ.position.y + nodeHeight / 2;
+    const endX = toQ.position.x;
+    const endY = toQ.position.y + nodeHeight / 2;
+
+    const prevCX = ctrl.cx;
+    const prevCY = ctrl.cy;
+
+    // Posición "recta": punto medio del segmento
+    const ctrlX = (startX + endX) / 2;
+    const ctrlY = (startY + endY) / 2;
+
+    // Eliminamos el layout personalizado para este edge
+    delete edgeLayout[key];
+
+    const handle = svg.querySelector(`.edge-handle[data-edge-key="${key}"]`);
+    if (handle) {
+      handle.setAttribute("cx", ctrlX);
+      handle.setAttribute("cy", ctrlY);
+    }
+
+    const pathEl = svg.querySelector(`path.quest-edge[data-edge-key="${key}"]`);
+    if (pathEl) {
+      pathEl.setAttribute("d", `M ${startX} ${startY} Q ${ctrlX} ${ctrlY} ${endX} ${endY}`);
+    }
+
+    const arrowEl = svg.querySelector(`polygon.quest-edge[data-edge-key="${key}"]`);
+    if (arrowEl) {
+      const arrowSize = 6;
+      const angle = Math.atan2(endY - ctrlY, endX - ctrlX);
+      const ax = endX;
+      const ay = endY;
+      const p2x = ax - arrowSize * Math.cos(angle - Math.PI / 6);
+      const p2y = ay - arrowSize * Math.sin(angle - Math.PI / 6);
+      const p3x = ax - arrowSize * Math.cos(angle + Math.PI / 6);
+      const p3y = ay - arrowSize * Math.sin(angle + Math.PI / 6);
+      arrowEl.setAttribute("points", `${ax},${ay} ${p2x},${p2y} ${p3x},${p3y}`);
+    }
+
+    if (recordUndo) {
+      pushUndoEdge(key, prevCX, prevCY, ctrlX, ctrlY);
+    }
+
+    saveEdgeLayout();
+  }
+
+function enableDrag() {
+    let dragging = false;
+    let anchorNode = null;
+    let anchorQuest = null;
+    let dragGroup = [];
+    let startMouseX = 0;
+    let startMouseY = 0;
+    let offsetX = 0;
+    let offsetY = 0;
+    let clickHandled = false;
+    let lastDownUsedModifier = false;
+    let movedDuringDrag = false;
+
+    let edgeDrag = null;
+
+    const SNAP_DIST = 12;
+
+    function getTranslate(g) {
+      const tr = g.getAttribute("transform") || "";
+      const m = /translate\(([-\d.]+),\s*([\-\d.]+)\)/.exec(tr);
+      if (!m) return { x: 0, y: 0 };
+      return { x: parseFloat(m[1]), y: parseFloat(m[2]) };
+    }
+
+    svg.addEventListener("mousedown", (e) => {
+      const isEditMode = document.body.classList.contains("edge-edit-mode");
+
+      const handle = e.target.closest(".edge-handle");
+      if (handle) {
+        // Sólo permitimos arrastrar manejadores de flechas en modo edición
+        if (!isEditMode) {
+          return;
+        }
+        const key = handle.dataset.edgeKey;
+        const cx = parseFloat(handle.getAttribute("cx"));
+        const cy = parseFloat(handle.getAttribute("cy"));
+        edgeDrag = {
+          key,
+          handle,
+          startCX: cx,
+          startCY: cy,
+          startMouseX: e.clientX,
+          startMouseY: e.clientY
+        };
+        return;
+      }
+
+      // En modo edición, si es clic derecho sobre una quest no iniciamos drag
+      if (document.body.classList.contains("edge-edit-mode") && e.button === 2) {
+        const questNode = e.target.closest(".quest-node");
+        if (questNode) {
+          // El manejador de contextmenu del nodo se encarga de la edición
+          return;
+        }
+      }
+
+      // En modo edición de flechas, Shift+click sobre una flecha
+      // restablece la curva a línea recta (control por defecto)
+      if (document.body.classList.contains("edge-edit-mode") && e.shiftKey) {
+        const edgeEl = e.target.closest("path.quest-edge, polygon.quest-edge");
+        if (edgeEl && edgeEl.dataset.edgeKey) {
+          resetEdgeToDefault(edgeEl.dataset.edgeKey, true);
+          e.preventDefault();
+          return;
+        }
+      }
+
+      // En modo edición de flechas, click normal sobre una flecha
+      // la selecciona y muestra únicamente su punto de control
+      if (document.body.classList.contains("edge-edit-mode") && !e.shiftKey) {
+        const edgeEl = e.target.closest("path.quest-edge, polygon.quest-edge");
+        if (edgeEl && edgeEl.dataset.edgeKey) {
+          selectEdgeForEditing(edgeEl.dataset.edgeKey);
+          e.preventDefault();
+          return;
+        }
+      }
+
+      const g = e.target.closest(".quest-node");
+      if (!g) {
+        // Fondo: sólo iniciamos selección por ventana en modo edición.
+        if (!isEditMode) {
+          // Fuera de modo edición, el drag del fondo se usa para encuadre (pan),
+          // así que no arrancamos selección aquí.
+          return;
+        }
+        if (!(e.ctrlKey || e.metaKey)) {
+          clearSelection();
+        }
+        startBoxSelection(e);
+        return;
+      }
+
+      const id = g.dataset.id;
+      const quest = questsById[id];
+      if (!quest) return;
+
+      // --- Selección según modificadores ---
+      if (e.ctrlKey && e.shiftKey) {
+        // Ctrl+Shift+click → seleccionar TODA la cadena conectada por flechas
+        const ids = getConnectedQuestIds(id);
+        setSelection(ids);
+        lastDownUsedModifier = true;
+      } else if (e.ctrlKey || e.shiftKey) {
+        // Ctrl O Shift solo → selección múltiple normal (como antes)
+        toggleSelection(id);
+        lastDownUsedModifier = true;
+      } else {
+        // Click normal → solo esta quest
+        if (!selectedIds.has(id) || selectedIds.size === 0) {
+          setSelection([id]);
+        }
+        lastDownUsedModifier = false;
+      }
+
+      // A PARTIR DE AQUÍ CALCULAMOS EL GRUPO A ARRASTRAR
+      const groupIds = selectedIds.size > 0 ? Array.from(selectedIds) : [id];
+
+      dragGroup = groupIds.map(gid => {
+        const q = questsById[gid];
+        const node = svg.querySelector(`.quest-node[data-id="${gid}"]`);
+        const tr = getTranslate(node);
+        return { quest: q, node, startX: tr.x, startY: tr.y };
+      });
+
+      anchorNode = g;
+      anchorQuest = quest;
+      const anchorPos = getTranslate(anchorNode);
+
+      const svgRect = svg.getBoundingClientRect();
+      offsetX = e.clientX - (svgRect.left + anchorPos.x);
+      offsetY = e.clientY - (svgRect.top + anchorPos.y);
+      startMouseX = e.clientX;
+      startMouseY = e.clientY;
+
+      dragging = true;
+      clickHandled = false;
+      movedDuringDrag = false;
+      e.preventDefault();
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (edgeDrag) {
+        const svgRect = svg.getBoundingClientRect();
+        const localX = e.clientX - svgRect.left;
+        const localY = e.clientY - svgRect.top;
+
+        const key = edgeDrag.key;
+        edgeLayout[key] = { cx: localX, cy: localY };
+
+        edgeDrag.handle.setAttribute("cx", localX);
+        edgeDrag.handle.setAttribute("cy", localY);
+
+        const parts = key.split("->");
+        const fromQ = questsById[parts[0]];
+        const toQ = questsById[parts[1]];
+        if (fromQ && toQ) {
+          const startX = fromQ.position.x + nodeWidth;
+          const startY = fromQ.position.y + nodeHeight / 2;
+          const endX = toQ.position.x;
+          const endY = toQ.position.y + nodeHeight / 2;
+          const pathEl = svg.querySelector(`path.quest-edge[data-edge-key="${key}"]`);
+          if (pathEl) {
+            pathEl.setAttribute("d", `M ${startX} ${startY} Q ${localX} ${localY} ${endX} ${endY}`);
+          }
+          const arrowEl = svg.querySelector(`polygon.quest-edge[data-edge-key="${key}"]`);
+          if (arrowEl) {
+            const arrowSize = 6;
+            const angle = Math.atan2(endY - localY, endX - localX);
+            const ax = endX;
+            const ay = endY;
+            const p2x = ax - arrowSize * Math.cos(angle - Math.PI / 6);
+            const p2y = ay - arrowSize * Math.sin(angle - Math.PI / 6);
+            const p3x = ax - arrowSize * Math.cos(angle + Math.PI / 6);
+            const p3y = ay - arrowSize * Math.sin(angle + Math.PI / 6);
+            arrowEl.setAttribute("points", `${ax},${ay} ${p2x},${p2y} ${p3x},${p3y}`);
+          }
+        }
+        return;
+      }
+
+      // Si estamos dibujando la ventana de selección, actualizamos y salimos
+      if (isBoxSelecting) {
+        updateBoxSelection(e);
+        return;
+      }
+
+      if (!dragging || !anchorNode || dragGroup.length === 0) return;
+
+      // Sólo movemos nodos en modo edición. Fuera de modo edición,
+      // el arrastre del ratón se utiliza para encuadre (pan) y para
+      // distinguir click/drag, pero no se actualizan posiciones.
+      if (!document.body.classList.contains("edge-edit-mode")) {
+        return;
+      }
+
+      const dxMouse = e.clientX - startMouseX;
+      const dyMouse = e.clientY - startMouseY;
+
+      if (!clickHandled && Math.abs(dxMouse) < 3 && Math.abs(dyMouse) < 3) {
+        return;
+      }
+      clickHandled = true;
+
+      const svgRect = svg.getBoundingClientRect();
+
+      let anchorNewX = e.clientX - svgRect.left - offsetX;
+      let anchorNewY = e.clientY - svgRect.top - offsetY;
+
+      let snapX = anchorNewX;
+      let snapY = anchorNewY;
+
+      quests.forEach(q => {
+        if (!q.position) return;
+        if (dragGroup.some(d => d.quest.id === q.id)) return;
+
+        if (Math.abs(snapX - q.position.x) < SNAP_DIST) {
+          snapX = q.position.x;
+        }
+        if (Math.abs(snapY - q.position.y) < SNAP_DIST) {
+          snapY = q.position.y;
+        }
+      });
+
+      anchorNewX = snapX;
+      anchorNewY = snapY;
+
+      const anchorStart = dragGroup.find(d => d.quest.id === anchorQuest.id);
+      const deltaX = anchorNewX - anchorStart.startX;
+      const deltaY = anchorNewY - anchorStart.startY;
+
+      dragGroup.forEach(d => {
+        const newX = d.startX + deltaX;
+        const newY = d.startY + deltaY;
+        d.quest.position.x = newX;
+        d.quest.position.y = newY;
+        d.node.setAttribute("transform", `translate(${newX}, ${newY})`);
+      });
+
+      movedDuringDrag = true;
+      drawAllEdges();
+    });
+
+
+        window.addEventListener("mouseup", () => {
+      if (edgeDrag) {
+        const key = edgeDrag.key;
+        const startCX = edgeDrag.startCX;
+        const startCY = edgeDrag.startCY;
+        const handle = edgeDrag.handle;
+        const endCX = parseFloat(handle.getAttribute("cx"));
+        const endCY = parseFloat(handle.getAttribute("cy"));
+        if (startCX !== endCX || startCY !== endCY) {
+          pushUndoEdge(key, startCX, startCY, endCX, endCY);
+        }
+        saveEdgeLayout();
+        edgeDrag = null;
+        return;
+      }
+
+      // Si estábamos en selección por ventana, terminarla y salir
+      if (isBoxSelecting) {
+        finishBoxSelection();
+        return;
+      }
+
+      if (!dragging || !anchorQuest) return;
+
+      if (!clickHandled) {
+        if (!lastDownUsedModifier) {
+          openModal(anchorQuest.id);
+        }
+      } else {
+        if (movedDuringDrag && dragGroup.length > 0) {
+          const items = dragGroup.map(d => ({
+            id: d.quest.id,
+            from: { x: d.startX, y: d.startY },
+            to: { x: d.quest.position.x, y: d.quest.position.y }
+          }));
+          pushUndoMove(items);
+        }
+      }
+
+      dragging = false;
+      anchorNode = null;
+      anchorQuest = null;
+      dragGroup = [];
+      clickHandled = false;
+      lastDownUsedModifier = false;
+      movedDuringDrag = false;
+    });
+  }
+
+
+
+
+
+  // Modal
+  const modal = document.getElementById("quest-modal");
+  const backdrop = document.getElementById("modal-backdrop");
+  const modalTitle = document.getElementById("modal-title");
+  const modalTrader = document.getElementById("modal-trader");
+  const modalChip = document.getElementById("modal-chip");
+  const modalChipDot = modalChip.querySelector(".dot");
+  const modalChipText = document.getElementById("modal-chip-text");
+  const modalDesc = document.getElementById("modal-desc");
+  const edgeModeIndicator = document.getElementById("edge-edit-indicator");
+  const modalObjectives = document.getElementById("modal-objectives");
+  const modalRewards = document.getElementById("modal-rewards");
+  const modalCompleted = document.getElementById("modal-completed");
+  const modalInProgress = document.getElementById("modal-inprogress");
+  const modalYoutube = document.getElementById("modal-youtube");
+  const modalClose = document.getElementById("modal-close");
+  const helpToggle = document.getElementById("help-toggle");
+  const helpPanel = document.getElementById("help-panel");
+  const inlineEditor = document.getElementById("quest-inline-editor");
+  const inlineEditorText = document.getElementById("quest-inline-editor-text");
+  const inlineEditorSave = document.getElementById("quest-inline-editor-save");
+  const inlineEditorCancel = document.getElementById("quest-inline-editor-cancel");
+  let currentQuestId = null;
+  let currentEnglishTitle = null;
+  let currentInlineQuestId = null;
+
+  // Extrae el nombre en inglés de "15. Documentos (Documents)"
+  function getEnglishTitle(fullName) {
+    if (!fullName) return null;
+    const open = fullName.lastIndexOf("(");
+    const close = fullName.lastIndexOf(")");
+    if (open === -1 || close === -1 || close <= open) return null;
+    const en = fullName.slice(open + 1, close).trim();
+    return en || null;
+}
+
+function closeInlineEditor() {
+    if (!inlineEditor) return;
+    inlineEditor.classList.remove("visible");
+    currentInlineQuestId = null;
+}
+
+function applyInlineEditor() {
+    if (!inlineEditor || !inlineEditorText || !currentInlineQuestId) return;
+    const q = questsById[currentInlineQuestId];
+    if (!q) return;
+    const newText = inlineEditorText.value
+        ? inlineEditorText.value.replace(/\r/g, "")
+        : "";
+    q.nombre = newText;
+
+    const existing = svg.querySelector(`.quest-node[data-id="${currentInlineQuestId}"]`);
+    if (existing) {
+        svg.removeChild(existing);
+        createNode(q);
+    }
+    closeInlineEditor();
+}
+function openModal(id) {
+    const q = questsById[id];
+    if (!q) return;
+    currentQuestId = id;
+
+    modalTitle.textContent = q.nombre;
+    modalTrader.textContent = q.trader;
+    modalDesc.textContent = q.descripcion || "";
+
+    // guardar el título inglés de la quest actual
+    currentEnglishTitle = getEnglishTitle(q.nombre);
+
+    modalObjectives.innerHTML = "";
+    (q.objetivos || []).forEach(obj => {
+      const li = document.createElement("li");
+      li.textContent = obj;
+      modalObjectives.appendChild(li);
+    });
+
+    modalRewards.innerHTML = "";
+    (q.recompensas || []).forEach(r => {
+      const li = document.createElement("li");
+      li.textContent = r;
+      modalRewards.appendChild(li);
+    });
+
+    modalYoutube.href = q.youtube || "#";
+
+    const completed = isCompleted(id);
+    const inProg = isInProgress(id);
+
+    modalCompleted.checked = completed;
+    modalInProgress.checked = inProg && !completed;
+
+    updateModalChip();
+
+    modal.classList.add("open");
+    backdrop.classList.add("open");
+  }
+
+  function closeModal() {
+    currentQuestId = null;
+    currentEnglishTitle = null;
+    modal.classList.remove("open");
+    backdrop.classList.remove("open");
+  }
+
+  function updateModalChip() {
+    if (!currentQuestId) return;
+    const q = questsById[currentQuestId];
+    const completed = isCompleted(currentQuestId);
+    const inProg = isInProgress(currentQuestId);
+
+    if (completed) {
+      modalChipDot.className = "dot completed";
+      modalChipText.textContent = "Completada";
+    } else if (inProg) {
+      modalChipDot.className = "dot in-progress";
+      modalChipText.textContent = "En curso";
+    } else {
+      modalChipDot.className = "dot " + (q.traderColor || "");
+      modalChipText.textContent = "Pendiente";
+    }
+  }
+
+  // Marcar completada / no completada desde el modal
+  modalCompleted.addEventListener("change", () => {
+    if (!currentQuestId) return;
+    const val = modalCompleted.checked;
+    setCompleted(currentQuestId, val);
+    if (val) {
+      modalInProgress.checked = false;
+    }
+    updateModalChip();
+  });
+
+  modalInProgress.addEventListener("change", () => {
+    if (!currentQuestId) return;
+    const val = modalInProgress.checked;
+    setInProgress(currentQuestId, val);
+    if (val) {
+      modalCompleted.checked = false;
+    }
+    updateModalChip();
+  });
+
+  // Botones de cierre del modal
+  modalClose.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", closeModal);
+
+  if (inlineEditorSave) {
+    inlineEditorSave.addEventListener("click", applyInlineEditor);
+  }
+  if (inlineEditorCancel) {
+    inlineEditorCancel.addEventListener("click", closeInlineEditor);
+  }
+  if (inlineEditorText) {
+    inlineEditorText.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeInlineEditor();
+      } else if ((e.key === "Enter") && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        applyInlineEditor();
+      }
+    });
+  }
+
+  if (helpToggle && helpPanel) {
+    helpToggle.addEventListener("click", () => {
+      helpPanel.classList.toggle("active");
+    });
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      closeModal();
+      return;
+    }
+
+    // Tecla E: alternar modo edición de flechas
+    if (e.key === "e" || e.key === "E") {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+      if (tag === "input" || tag === "textarea") return;
+      const enabled = document.body.classList.toggle("edge-edit-mode");
+      if (edgeModeIndicator) {
+        edgeModeIndicator.classList.toggle("active", enabled);
+      }
+      if (!enabled) {
+        currentEditedEdgeKey = null;
+        svg.querySelectorAll(".quest-edge-selected").forEach(el => {
+          el.classList.remove("quest-edge-selected");
+        });
+        svg.querySelectorAll(".edge-handle.active").forEach(h => {
+          h.classList.remove("active");
+        });
+      } else {
+        // al entrar en modo edición, limpiamos selección previa
+        currentEditedEdgeKey = null;
+        svg.querySelectorAll(".quest-edge-selected").forEach(el => {
+          el.classList.remove("quest-edge-selected");
+        });
+        svg.querySelectorAll(".edge-handle.active").forEach(h => {
+          h.classList.remove("active");
+        });
+      }
+    }
+  });
+
+  // CLICK EN EL TÍTULO → ABRIR WIKI DE TARKOV
+  modalTitle.addEventListener("click", () => {
+    const enTitle = currentEnglishTitle || getEnglishTitle(modalTitle.textContent);
+    if (!enTitle) return;
+
+    const url =
+      "https://escapefromtarkov.fandom.com/wiki/Special:Search?query=" +
+      encodeURIComponent(enTitle);
+
+    window.open(url, "_blank", "noopener");
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === "z" || e.key === "Z")) {
+      e.preventDefault();
+      undoLastMove();
+    }
+  });
+
+  // Zoom
+  const graphInner = document.getElementById("graph-inner");
+  const graphContainer = document.getElementById("graph-container");
+  const MIN_ZOOM = 0.25;
+  const MAX_ZOOM = 1.5;
+  let zoom = 1;
+
+  // Usamos origen de transformación en la esquina superior izquierda
+  if (graphInner) {
+    graphInner.style.transformOrigin = "0 0";
+  }
+
+  function clampScrollToContent() {
+    if (!graphContainer) return;
+
+    // Bordes reales del contenido (sin márgenes extra)
+    let contentBottom = window.CANVAS_CONTENT_BOTTOM || window.CANVAS_WORLD_HEIGHT;
+    let contentRight  = window.CANVAS_CONTENT_RIGHT  || window.CANVAS_WORLD_WIDTH;
+    if (!contentBottom && !contentRight) return;
+
+    const viewportW = graphContainer.clientWidth  || 0;
+    const viewportH = graphContainer.clientHeight || 0;
+    const z = zoom || 1;
+
+    // Queremos poder bajar un poco más allá de la última fila de quests
+    // para que no queden pegadas al borde inferior de la ventana.
+    const EXTRA_VIEW_BOTTOM = 140; // margen visual adicional en coordenadas de mundo
+    const EXTRA_VIEW_RIGHT  = 0;   // por si en el futuro queremos algo similar en X
+
+    // No sobrepasar nunca el lienzo total: usamos CANVAS_WORLD_* como límite duro.
+    const worldHeight = window.CANVAS_WORLD_HEIGHT || contentBottom;
+    const worldWidth  = window.CANVAS_WORLD_WIDTH  || contentRight;
+
+    const effectiveBottom = Math.min(contentBottom + EXTRA_VIEW_BOTTOM, worldHeight);
+    const effectiveRight  = Math.min(contentRight  + EXTRA_VIEW_RIGHT,  worldWidth);
+
+    // Con transform: scale(z), el rango visible en coordenadas de mundo es:
+    //   Y: [scrollTop / z,  (scrollTop + viewportH) / z]
+    //   X: [scrollLeft / z, (scrollLeft + viewportW) / z]
+    // Para no pasar de la última quest (dejando algo de margen extra):
+    //   (scrollTop  + viewportH) / z <= effectiveBottom  => scrollTop  <= effectiveBottom  * z - viewportH
+    //   (scrollLeft + viewportW)  / z <= effectiveRight  => scrollLeft <= effectiveRight  * z - viewportW
+    const maxScrollTop  = Math.max(0, effectiveBottom * z - viewportH);
+    const maxScrollLeft = Math.max(0, effectiveRight  * z - viewportW);
+
+    if (graphContainer.scrollTop > maxScrollTop) {
+      graphContainer.scrollTop = maxScrollTop;
+    } else if (graphContainer.scrollTop < 0) {
+      graphContainer.scrollTop = 0;
+    }
+
+    if (graphContainer.scrollLeft > maxScrollLeft) {
+      graphContainer.scrollLeft = maxScrollLeft;
+    } else if (graphContainer.scrollLeft < 0) {
+      graphContainer.scrollLeft = 0;
+    }
+  }
+
+  function applyZoom() {
+    if (!graphInner) return;
+    graphInner.style.transform = `scale(${zoom})`;
+    clampScrollToContent();
+  }
+
+  if (graphContainer) {
+    graphContainer.addEventListener("scroll", () => {
+      clampScrollToContent();
+    });
+  }
+
+  document.getElementById("zoom-in").addEventListener("click", () => {
+    zoom = Math.min(MAX_ZOOM, zoom + 0.1);
+    applyZoom();
+  });
+
+  document.getElementById("zoom-out").addEventListener("click", () => {
+    zoom = Math.max(MIN_ZOOM, zoom - 0.1);
+    applyZoom();
+  });
+
+    // Rueda del ratón = zoom tipo AutoCAD centrado en la posición del cursor.
+  // Si ya estamos en el zoom mínimo y seguimos alejando, dejamos que haga scroll.
+  if (graphContainer) {
+    graphContainer.addEventListener(
+      "wheel",
+      (e) => {
+        // Con Ctrl dejamos el zoom normal del navegador (incluye menú superior)
+        if (e.ctrlKey) return;
+
+        const header = document.querySelector("header");
+        if (header) {
+          const headerRect = header.getBoundingClientRect();
+          // Si el cursor está sobre el header, no hacemos zoom: dejamos scroll normal
+          if (e.clientY <= headerRect.bottom) {
+            return;
+          }
+        }
+
+        const rect = graphContainer.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Si el ratón está sobre las barras de scroll (zona cercana al borde),
+        // no interceptamos: que funcione como rueda normal.
+        const SCROLLBAR_MARGIN = 22;
+        const overVerticalBar = mouseX >= rect.width - SCROLLBAR_MARGIN;
+        const overHorizontalBar = mouseY >= rect.height - SCROLLBAR_MARGIN;
+        if (overVerticalBar || overHorizontalBar) {
+          return;
+        }
+
+        const prevZoom = zoom;
+        const step = 0.08;
+        let newZoom = prevZoom;
+
+        if (e.deltaY < 0) {
+          // rueda hacia arriba -> acercar
+          newZoom = Math.min(MAX_ZOOM, prevZoom + step);
+        } else if (e.deltaY > 0) {
+          // rueda hacia abajo -> alejar
+          newZoom = Math.max(MIN_ZOOM, prevZoom - step);
+        }
+
+        // Si no hay cambio de zoom (estamos en el límite),
+        // dejamos que el evento siga su curso normal para que haga scroll.
+        if (newZoom === prevZoom) {
+          return;
+        }
+
+        // Aquí sí vamos a cambiar el zoom, bloqueamos el scroll por defecto
+        e.preventDefault();
+
+        // Coordenadas "mundo" del punto bajo el cursor antes del zoom
+        const worldX = (graphContainer.scrollLeft + mouseX) / prevZoom;
+        const worldY = (graphContainer.scrollTop + mouseY) / prevZoom;
+
+        // Aplicamos el nuevo zoom
+        zoom = newZoom;
+        applyZoom();
+
+        // Ajustamos el scroll para que ese mismo punto siga bajo el cursor
+        graphContainer.scrollLeft = worldX * newZoom - mouseX;
+        graphContainer.scrollTop  = worldY * newZoom - mouseY;
+      },
+      { passive: false }
+    );
+  }
+
+  applyZoom();
+
+  // =========================
+  //  ENCUADRE (PAN) CON DRAG
+  //  cuando NO hay modo edición
+  // =========================
+  let isPanning = false;
+  let panStartX = 0, panStartY = 0;
+  let panScrollLeftStart = 0, panScrollTopStart = 0;
+  let panMoved = false;
+
+  if (graphContainer) {
+    graphContainer.addEventListener("mousedown", (e) => {
+      // Solo botón izquierdo para pan en modo normal
+      if (e.button !== 0) return;
+
+      // Si estamos en modo edición, aquí NO hacemos pan (se usa para mover/editar casillas)
+      if (document.body.classList.contains("edge-edit-mode")) return;
+
+      const inner = document.getElementById("graph-inner");
+      if (!inner || !inner.contains(e.target)) return;
+
+      // Evitamos confundir click en las barras de scroll con pan
+      const rect = graphContainer.getBoundingClientRect();
+      const SCROLLBAR_MARGIN = 22;
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const overVerticalBar = mouseX >= rect.width - SCROLLBAR_MARGIN;
+      const overHorizontalBar = mouseY >= rect.height - SCROLLBAR_MARGIN;
+      if (overVerticalBar || overHorizontalBar) {
+        return;
+      }
+
+      isPanning = true;
+      panMoved = false;
+      panStartX = e.clientX;
+      panStartY = e.clientY;
+      panScrollLeftStart = graphContainer.scrollLeft;
+      panScrollTopStart = graphContainer.scrollTop;
+      graphContainer.classList.add("panning");
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isPanning) return;
+
+      const dx = e.clientX - panStartX;
+      const dy = e.clientY - panStartY;
+
+      if (!panMoved && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
+        panMoved = true;
+      }
+
+      graphContainer.scrollLeft = panScrollLeftStart - dx;
+      graphContainer.scrollTop  = panScrollTopStart - dy;
+
+      if (panMoved) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener("mouseup", () => {
+      if (!isPanning) return;
+      isPanning = false;
+      graphContainer.classList.remove("panning");
+    });
+  }
+
+
+  // Botones de layout
+  
+  function saveQuestsDataJs() {
+    try {
+      // Opcional: forzar que las posiciones en memoria estén alineadas a la rejilla si existe snapToGrid
+      if (typeof snapToGridX === "function" && typeof snapToGridY === "function") {
+        quests.forEach(q => {
+          if (!q.position) return;
+          q.position.x = snapToGridX(q.position.x);
+          q.position.y = snapToGridY(q.position.y);
+        });
+      }
+
+      const data = "const quests = " + JSON.stringify(quests, null, 2) + ";\n";
+
+      const blob = new Blob([data], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "quests_data.txt"; // se descarga como .txt para que Windows no lo bloquee
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Error al generar quests_data.txt:", err);
+      alert("Error al generar quests_data.txt. Revisa la consola.");
+    }
+  }
+
+
+  document.getElementById("save-html").addEventListener("click", () => {
+    if (confirm("Se descargará un nuevo archivo HTML con las posiciones actuales. ¿Continuar?")) {
+      saveHtmlToFile();
+    }
+  });
+
+  document.getElementById("save-quests-js").addEventListener("click", () => {
+    if (confirm("Se descargará un nuevo quests_data.txt con las posiciones actuales. ¿Continuar?")) {
+      saveQuestsDataJs();
+    }
+  });
+
+  // =========================
+  //  Guardar TODO en disco
+  //  (HTML + quests_data.js)
+  // =========================
+  let htmlFileHandle = null;
+  let questsFileHandle = null;
+
+  async function ensureFileHandles() {
+    if (!window.showOpenFilePicker || !window.FileSystemHandle) {
+      alert("Tu navegador no soporta guardado directo en disco (File System Access API). Usa los botones de descarga.");
+      return false;
+    }
+    try {
+      if (!htmlFileHandle) {
+        const [handle] = await window.showOpenFilePicker({
+          multiple: false,
+          types: [{
+            description: "HTML del árbol de quests",
+            accept: { "text/html": [".html", ".htm"] }
+          }]
+        });
+        htmlFileHandle = handle;
+      }
+      if (!questsFileHandle) {
+        const [handle] = await window.showOpenFilePicker({
+          multiple: false,
+          types: [{
+            description: "Archivo quests_data.js",
+            accept: { "application/javascript": [".js"] }
+          }]
+        });
+        questsFileHandle = handle;
+      }
+      return true;
+    } catch (err) {
+      console.error("Selección de archivos cancelada o error:", err);
+      return false;
+    }
+  }
+
+  async function saveAllToDisk() {
+    const ok = await ensureFileHandles();
+    if (!ok) return;
+
+    try {
+      // 1) HTML actualizado (mismo contenido que usaría saveHtmlToFile)
+      const htmlText = buildCurrentHtmlForSaving();
+
+      // 2) quests_data.js actualizado
+      if (typeof snapToGridX === "function" && typeof snapToGridY === "function") {
+        quests.forEach(q => {
+          if (!q.position) return;
+          q.position.x = snapToGridX(q.position.x);
+          q.position.y = snapToGridY(q.position.y);
+        });
+      }
+      const questsDataText = "const quests = " + JSON.stringify(quests, null, 2) + "\n";
+
+      // Escribir HTML
+      const htmlWritable = await htmlFileHandle.createWritable();
+      await htmlWritable.write(htmlText);
+      await htmlWritable.close();
+
+      // Escribir quests_data.js
+      const questsWritable = await questsFileHandle.createWritable();
+      await questsWritable.write(questsDataText);
+      await questsWritable.close();
+
+      alert("Guardado TODO: HTML y quests_data.js actualizados en disco.");
+    } catch (err) {
+      console.error("Error al guardar TODO:", err);
+      alert("Error al guardar TODO. Revisa la consola.");
+    }
+  }
+
+  const saveAllBtn = document.getElementById("save-all");
+  if (saveAllBtn) {
+    saveAllBtn.addEventListener("click", () => {
+      saveAllToDisk();
+    });
+  }
+
+  // Escuchar cambios de autenticación y cargar progreso remoto
+  if (auth) {
+    auth.onAuthStateChanged(user => {
+      currentUser = user || null;
+      window.currentUser = currentUser;
+      updateAuthUI(user);
+
+      if (user) {
+        // Cargar desde Firestore el progreso específico de este usuario
+        loadUserProgressFromFirestore(user.uid);
+      }
+    });
+  }
+
+
+
+
+
+
+</script>
+
+<div id="cloud-save-toast" class="cloud-save-toast">Progreso guardado en la nube ✅</div>
+
+
+</body></html>

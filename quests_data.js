@@ -327,7 +327,7 @@ const quests = [
   },
   {
     "id": "bad-rep-evidence",
-    "nombre": "12. Mala reputación bien ganada (Bad Rep Evidence)",
+    "nombre": "12. Evidencias incómodas (Bad Rep Evidence)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 6,
