@@ -1,6 +1,31 @@
 <html lang="es"><head>
   <meta charset="UTF-8">
   <title>Árbol de quests - Escape from Tarkov 1.0</title>
+  <!-- Firebase SDKs: rellena firebaseConfig con los datos de tu proyecto -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+
+  <script>
+  
+    const firebaseConfig = {
+	  apiKey: "AIzaSyBZGcGqXFAIDJ4JJcebzA95BuX44X8H94",
+	  authDomain: "tarkovtree-f5279.firebaseapp.com",
+	  projectId: "tarkovtree-f5279",
+	  storageBucket: "tarkovtree-f5279.firebasestorage.app",
+	  messagingSenderId: "20352322016",
+	  appId: "1:20352322016:web:4ab40df6e5b3475656c385"
+	};
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Exponer atajos globales
+    window.auth = firebase.auth();
+    window.db   = firebase.firestore();
+    window.currentUser = null;
+  </script>
+
   <style>
 	  .toolbar-btn {
 	  border: 1px solid #3b4252;
@@ -779,6 +804,29 @@ body.edge-edit-mode .quest-edge-special {
     .quest-inline-editor button:hover {
       background: #2a3140;
     }
+
+    /* Caja de autenticación Firebase */
+    .auth-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 8px;
+    }
+
+    .user-info {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .user-info span {
+      white-space: nowrap;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 </style>
 </head>
 <body class="">
@@ -792,6 +840,14 @@ body.edge-edit-mode .quest-edge-special {
 <button class="toolbar-btn" id="save-html">Guardar HTML</button>
 	  <button class="toolbar-btn" id="save-quests-js">Guardar quests_data.txt</button>
 	  <button class="toolbar-btn" id="save-all">Guardar TODO</button>
+
+    <div id="auth-box" class="auth-box">
+      <button class="toolbar-btn" id="login-btn">Entrar con Google</button>
+      <div id="user-info" class="user-info">
+        <span id="user-email"></span>
+        <button class="toolbar-btn" id="logout-btn">Salir</button>
+      </div>
+    </div>
 
     <div class="level-filter">
       <span class="level-label">Nv.</span>
@@ -834,8 +890,8 @@ body.edge-edit-mode .quest-edge-special {
 
 <main>
   <div class="graph-container" id="graph-container">
-    <div class="graph-inner" id="graph-inner" style="transform: scale(0.57); transform-origin: 0px 0px;">
-      <svg id="quest-svg"></svg></svg>
+    <div class="graph-inner" id="graph-inner" style="transform: scale(1.26); transform-origin: 0px 0px; width: 7776px; height: 8399.78px;">
+      <svg id="quest-svg" width="7776" height="8399.778076171875" style="width: 7776px; height: 8399.78px;"></svg></svg>
     </div>
   </div>
 </main>
@@ -885,7 +941,7 @@ body.edge-edit-mode .quest-edge-special {
   <div class="modal-card">
     <div class="modal-header">
       <div class="modal-title-block">
-        <h2 class="modal-title" id="modal-title">25. Corredor seguro (Safe Corridor)</h2>
+        <h2 class="modal-title" id="modal-title">9. Química – Parte 3 (Chemical – Part 3)</h2>
         <div class="modal-trader" id="modal-trader">Skier</div>
         <div class="modal-chip" id="modal-chip">
           <span class="dot skier"></span><span id="modal-chip-text">Pendiente</span>
@@ -894,11 +950,11 @@ body.edge-edit-mode .quest-edge-special {
       <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
     </div>
     <div class="modal-body">
-      <p id="modal-desc">Misión posterior a la cadena química: Skier quiere que investigues y asegures un corredor seguro usado por TerraGroup y sus contactos.</p>
+      <p id="modal-desc">Recupera la jeringa sospechosa en Factory para continuar la investigación química.</p>
       <h3>Objetivos</h3>
-      <ul id="modal-objectives"><li>Investigar las ubicaciones señaladas en Customs/Labs relacionadas con el corredor seguro.</li><li>Localizar y asegurar los documentos/contratos del corredor.</li><li>Ocultar los documentos en el punto muerto indicado.</li><li>Sobrevivir y extraer de la incursión.</li></ul>
+      <ul id="modal-objectives"><li>Encontrar la jeringa química en Factory.</li><li>Entregar la jeringa a Skier.</li></ul>
       <h3>Recompensas</h3>
-      <ul id="modal-rewards"><li>EXP (misión de historia de nivel medio-alto).</li><li>+0.05 reputación con Skier.</li><li>Buen pago en rublos.</li><li>Recompensa extra de equipo táctico.</li><li>Progreso hacia misiones de Skier de rango alto.</li></ul>
+      <ul id="modal-rewards"><li>EXP.</li><li>Reputación con Skier.</li><li>Rublos y posibles objetos médicos.</li></ul>
       <div class="modal-footer">
         <div class="modal-checkboxes">
           <label class="checkbox-row completed">
@@ -912,7 +968,7 @@ body.edge-edit-mode .quest-edge-special {
         </div>
         <div class="yt-link">
           Vídeo guía:
-          <a id="modal-youtube" href="https://www.youtube.com/watch?v=PAKuKX7jdrY" target="_blank" rel="noopener">Abrir en YouTube</a>
+          <a id="modal-youtube" href="https://www.youtube.com/watch?v=V9QMlL6dPkg" target="_blank" rel="noopener">Abrir en YouTube</a>
           <div class="hint">Se abre en una pestaña nueva.</div>
         </div>
       </div>
@@ -921,7 +977,7 @@ body.edge-edit-mode .quest-edge-special {
 </div>
 
 
-<div class="quest-inline-editor" id="quest-inline-editor" style="left: 1253px; top: 626px;">
+<div class="quest-inline-editor" id="quest-inline-editor" style="left: 1281px; top: 325px;">
   <div class="quest-inline-editor-header">Editar texto de la quest</div>
   <textarea id="quest-inline-editor-text"></textarea>
   <div class="editor-actions">
@@ -941,10 +997,116 @@ body.edge-edit-mode .quest-edge-special {
   const INPROG_KEY  = "tarkov_quest_inprogress_v1_demo";
   const LAYOUT_KEY  = "tarkov_quest_layout_v1_demo";
   const EDGE_LAYOUT_KEY = "tarkov_quest_edge_layout_v1_demo";
+  
+  // =========================
+  //   Firebase Auth + Firestore (login por usuario)
+  // =========================
+  const auth = window.auth || null;
+  const db   = window.db   || null;
+  let currentUser = window.currentUser || null;
+
+  function updateAuthUI(user) {
+    const loginBtn  = document.getElementById("login-btn");
+    const userInfo  = document.getElementById("user-info");
+    const userEmail = document.getElementById("user-email");
+
+    if (!loginBtn || !userInfo || !userEmail) return;
+
+    if (user) {
+      loginBtn.style.display = "none";
+      userInfo.style.display = "inline-flex";
+      userEmail.textContent  = user.email || user.displayName || "Usuario";
+    } else {
+      loginBtn.style.display = "inline-block";
+      userInfo.style.display = "none";
+      userEmail.textContent  = "";
+    }
+  }
+
+  function syncProgressToFirestore() {
+    if (!auth || !db || !currentUser) return;
+
+    const uid = currentUser.uid;
+    db.collection("users").doc(uid).set({
+      completion: completionState,
+      inProgress: inProgressState,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true }).catch(err => {
+      console.error("Error guardando progreso remoto:", err);
+    });
+  }
+
+  function loadUserProgressFromFirestore(uid) {
+    if (!db) return;
+
+    db.collection("users").doc(uid).get().then(doc => {
+      if (!doc.exists) {
+        console.log("Usuario sin progreso remoto; se mantiene el local/HTML.");
+        return;
+      }
+      const data = doc.data() || {};
+
+      // Vaciar objetos actuales
+      Object.keys(completionState).forEach(k => delete completionState[k]);
+      Object.keys(inProgressState).forEach(k => delete inProgressState[k]);
+
+      if (data.completion && typeof data.completion === "object") {
+        Object.assign(completionState, data.completion);
+      }
+      if (data.inProgress && typeof data.inProgress === "object") {
+        Object.assign(inProgressState, data.inProgress);
+      }
+
+      // Sincronizar también las variables globales usadas al guardar HTML
+      window.INITIAL_COMPLETION = completionState;
+      window.INITIAL_INPROGRESS = inProgressState;
+
+      // Repintar los nodos con el nuevo estado
+      if (Array.isArray(quests)) {
+        quests.forEach(q => {
+          if (q && q.id) {
+            updateNodeVisual(q.id);
+          }
+        });
+      }
+    }).catch(err => {
+      console.error("Error cargando progreso remoto:", err);
+    });
+  }
+
+  // Gestionar botones de login/logout una vez cargado el DOM
+  window.addEventListener("DOMContentLoaded", () => {
+    const loginBtn  = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    if (loginBtn && auth) {
+      loginBtn.addEventListener("click", () => {
+        try {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          auth.signInWithPopup(provider).catch(err => {
+            console.error("Error en login:", err);
+            alert("No se pudo iniciar sesión:\n" + err.message);
+          });
+        } catch (e) {
+          console.error("Firebase Auth no disponible:", e);
+        }
+      });
+    }
+
+    if (logoutBtn && auth) {
+      logoutBtn.addEventListener("click", () => {
+        auth.signOut().catch(err => {
+          console.error("Error al cerrar sesión:", err);
+          alert("No se pudo cerrar sesión:\n" + err.message);
+        });
+      });
+    }
+  });
+
   // Datos iniciales de progreso y curvas (se guardan dentro del propio HTML)
-  window.INITIAL_COMPLETION = {"sanitary-standards-2":true,"sanitary-standards-1":true,"shortage":true,"operation-aquarius-1":true,"painkiller":true,"operation-aquarius-2":true,"first-in-line":true,"easy-money-part-2":true,"balancing-part-1":true,"burning-rubber":true,"easy-money-part-1":true,"supplier":true,"acquaintance":true,"saving-the-mole":true,"gunsmith-part-1":true,"the-extortionist":true,"whats-on-the-flash-drive":true,"shooting-cans":true,"debut":true,"luxurious-life":true,"pharmacist":true};
-  window.INITIAL_INPROGRESS = {"balancing-part-2":true,"provide-viewership":true,"friend-from-the-west-1":true,"gunsmith-part-3":true,"gunsmith-part-2":true,"farming-part-1":true,"agitation":true,"tarkov-shooter-part-1":true,"work-smarter":true,"survivalist-unprotected-but-dangerous":true,"rough-tarkov":true,"search-mission":true,"grenadier":true,"supply-plans":true,"general-wares":true,"population-census":true,"car-repair":true,"kind-of-sabotage":true};
-  window.INITIAL_EDGE_LAYOUT = {"chemical-part-4->out-of-curiosity":{"cx":3474,"cy":1666},"getting-acquainted->information-source":{"cx":3950.015625,"cy":8277.0390625},"knock-knock->keepers-word":{"cx":3674.015625,"cy":8295.0390625},"scout->huntsman-factory-chief":{"cx":2458.111328125,"cy":6232.11474609375},"hunting-trip->northern-connections":{"cx":2763.33349609375,"cy":4519.33349609375},"revision-streets-of-tarkov->worst-job-in-the-world":{"cx":3677.015625,"cy":3767.0625},"tarkov-shooter-part-3->huntsman-secured-perimeter":{"cx":1559.015625,"cy":5017.5390625},"huntsman-secured-perimeter->huntsman-forest-cleaning":{"cx":231.015625,"cy":5434.5390625},"sales-night->huntsman-sellout":{"cx":1996.515625,"cy":6088.5390625},"inevitable-response->order-from-outside":{"cx":3635.015625,"cy":9539.0625},"anesthesia->samples":{"cx":4181.015625,"cy":4280.0625},"chemical-part-1->polikhim-hobo":{"cx":2499,"cy":1882},"chemical-part-4->big-customer":{"cx":3382,"cy":1688},"chemical-part-4->secure-corridor":{"cx":3908,"cy":1397}};
+  window.INITIAL_COMPLETION = {"sanitary-standards-2":true,"sanitary-standards-1":true,"shortage":true,"operation-aquarius-1":true,"painkiller":true,"operation-aquarius-2":true,"first-in-line":true,"easy-money-part-2":true,"balancing-part-1":true,"burning-rubber":true,"easy-money-part-1":true,"supplier":true,"acquaintance":true,"saving-the-mole":true,"gunsmith-part-1":true,"the-extortionist":true,"whats-on-the-flash-drive":true,"shooting-cans":true,"debut":true,"luxurious-life":true,"pharmacist":true,"bling-bling":true,"chemical-part-1":true,"background-check":true,"provide-viewership":true,"polikhim-hobo":true,"delivery-from-the-past":true,"farming-part-1":true};
+  window.INITIAL_INPROGRESS = {"balancing-part-2":true,"friend-from-the-west-1":true,"gunsmith-part-3":true,"gunsmith-part-2":true,"agitation":true,"tarkov-shooter-part-1":true,"work-smarter":true,"survivalist-unprotected-but-dangerous":true,"rough-tarkov":true,"search-mission":true,"grenadier":true,"supply-plans":true,"general-wares":true,"population-census":true,"car-repair":true,"kind-of-sabotage":true,"chemical-part-2":true,"shootout-picnic":true,"disease-history":true,"to-great-heights-part-1":true,"bp-depot":true,"farming-part-2":true};
+  window.INITIAL_EDGE_LAYOUT = {"chemical-part-4->out-of-curiosity":{"cx":3474,"cy":1666},"scout->huntsman-factory-chief":{"cx":2458.111328125,"cy":6232.11474609375},"hunting-trip->northern-connections":{"cx":2763.33349609375,"cy":4519.33349609375},"tarkov-shooter-part-3->huntsman-secured-perimeter":{"cx":1559.015625,"cy":5017.5390625},"huntsman-secured-perimeter->huntsman-forest-cleaning":{"cx":231.015625,"cy":5434.5390625},"sales-night->huntsman-sellout":{"cx":1996.515625,"cy":6088.5390625},"anesthesia->samples":{"cx":4181.015625,"cy":4280.0625},"chemical-part-1->polikhim-hobo":{"cx":2499,"cy":1882},"chemical-part-4->big-customer":{"cx":3382,"cy":1688},"chemical-part-4->secure-corridor":{"cx":3908,"cy":1397}};
 
   const nodeWidth = 200;
   const nodeHeight = 65;
@@ -1242,7 +1404,11 @@ body.edge-edit-mode .quest-edge-special {
     } catch (e) {
       console.warn("No se pudo guardar progreso en memoria HTML:", e);
     }
+
+    // Además, si hay usuario autenticado, sincronizamos con Firestore
+    syncProgressToFirestore();
   }
+
 
 
   function loadEdgeLayout() {
@@ -1279,6 +1445,9 @@ body.edge-edit-mode .quest-edge-special {
     } catch (e) {
       console.warn("No se pudo guardar estado 'en curso' en memoria HTML:", e);
     }
+
+    // Además, si hay usuario autenticado, sincronizamos con Firestore
+    syncProgressToFirestore();
   }
 
 		
@@ -2630,22 +2799,35 @@ function openModal(id) {
   function clampScrollToContent() {
     if (!graphContainer) return;
 
-    const contentBottom = window.CANVAS_CONTENT_BOTTOM || window.CANVAS_WORLD_HEIGHT;
-    const contentRight  = window.CANVAS_CONTENT_RIGHT  || window.CANVAS_WORLD_WIDTH;
+    // Bordes reales del contenido (sin márgenes extra)
+    let contentBottom = window.CANVAS_CONTENT_BOTTOM || window.CANVAS_WORLD_HEIGHT;
+    let contentRight  = window.CANVAS_CONTENT_RIGHT  || window.CANVAS_WORLD_WIDTH;
     if (!contentBottom && !contentRight) return;
 
     const viewportW = graphContainer.clientWidth  || 0;
     const viewportH = graphContainer.clientHeight || 0;
     const z = zoom || 1;
 
+    // Queremos poder bajar un poco más allá de la última fila de quests
+    // para que no queden pegadas al borde inferior de la ventana.
+    const EXTRA_VIEW_BOTTOM = 140; // margen visual adicional en coordenadas de mundo
+    const EXTRA_VIEW_RIGHT  = 0;   // por si en el futuro queremos algo similar en X
+
+    // No sobrepasar nunca el lienzo total: usamos CANVAS_WORLD_* como límite duro.
+    const worldHeight = window.CANVAS_WORLD_HEIGHT || contentBottom;
+    const worldWidth  = window.CANVAS_WORLD_WIDTH  || contentRight;
+
+    const effectiveBottom = Math.min(contentBottom + EXTRA_VIEW_BOTTOM, worldHeight);
+    const effectiveRight  = Math.min(contentRight  + EXTRA_VIEW_RIGHT,  worldWidth);
+
     // Con transform: scale(z), el rango visible en coordenadas de mundo es:
     //   Y: [scrollTop / z,  (scrollTop + viewportH) / z]
     //   X: [scrollLeft / z, (scrollLeft + viewportW) / z]
-    // Para no pasar de la última quest:
-    //   (scrollTop  + viewportH) / z <= contentBottom  => scrollTop  <= contentBottom  * z - viewportH
-    //   (scrollLeft + viewportW)  / z <= contentRight  => scrollLeft <= contentRight  * z - viewportW
-    const maxScrollTop  = Math.max(0, contentBottom * z - viewportH);
-    const maxScrollLeft = Math.max(0, contentRight  * z - viewportW);
+    // Para no pasar de la última quest (dejando algo de margen extra):
+    //   (scrollTop  + viewportH) / z <= effectiveBottom  => scrollTop  <= effectiveBottom  * z - viewportH
+    //   (scrollLeft + viewportW)  / z <= effectiveRight  => scrollLeft <= effectiveRight  * z - viewportW
+    const maxScrollTop  = Math.max(0, effectiveBottom * z - viewportH);
+    const maxScrollLeft = Math.max(0, effectiveRight  * z - viewportW);
 
     if (graphContainer.scrollTop > maxScrollTop) {
       graphContainer.scrollTop = maxScrollTop;
@@ -2945,10 +3127,24 @@ function openModal(id) {
     });
   }
 
+  // Escuchar cambios de autenticación y cargar progreso remoto
+  if (auth) {
+    auth.onAuthStateChanged(user => {
+      currentUser = user || null;
+      window.currentUser = currentUser;
+      updateAuthUI(user);
+
+      if (user) {
+        // Cargar desde Firestore el progreso específico de este usuario
+        loadUserProgressFromFirestore(user.uid);
+      }
+    });
+  }
 
 
-  
-  
+
+
+
 
 </script>
 
