@@ -1054,7 +1054,7 @@ body.edge-edit-mode .quest-edge-special {
       completion: completionState,
       inProgress: inProgressState,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true })
+    })
       .then(() => {
         showCloudSaveToast();
       })
