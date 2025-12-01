@@ -172,7 +172,7 @@ const quests = [
   },
   {
     "id": "shootout-picnic",
-    "nombre": "7. Picnic a tiro limpio (Shootout Picnic)",
+    "nombre": "7. Picnic sangriento (Shootout Picnic)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 3,
