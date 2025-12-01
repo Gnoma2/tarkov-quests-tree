@@ -1162,8 +1162,8 @@ body.edge-edit-mode .quest-edge-special {
   });
 
   // Datos iniciales de progreso y curvas (se guardan dentro del propio HTML)
-  window.INITIAL_COMPLETION = {"sanitary-standards-2":true,"sanitary-standards-1":true,"shortage":true,"operation-aquarius-1":true,"painkiller":true,"operation-aquarius-2":true,"first-in-line":true,"easy-money-part-2":true,"balancing-part-1":true,"burning-rubber":true,"easy-money-part-1":true,"supplier":true,"acquaintance":true,"saving-the-mole":true,"gunsmith-part-1":true,"the-extortionist":true,"whats-on-the-flash-drive":true,"shooting-cans":true,"debut":true,"luxurious-life":true,"pharmacist":true,"bling-bling":true,"chemical-part-1":true,"background-check":true,"provide-viewership":true,"polikhim-hobo":true,"delivery-from-the-past":true,"farming-part-1":true};
-  window.INITIAL_INPROGRESS = {"balancing-part-2":true,"friend-from-the-west-1":true,"gunsmith-part-3":true,"gunsmith-part-2":true,"agitation":true,"tarkov-shooter-part-1":true,"work-smarter":true,"survivalist-unprotected-but-dangerous":true,"rough-tarkov":true,"search-mission":true,"grenadier":true,"supply-plans":true,"general-wares":true,"population-census":true,"car-repair":true,"kind-of-sabotage":true,"chemical-part-2":true,"shootout-picnic":true,"disease-history":true,"to-great-heights-part-1":true,"bp-depot":true,"farming-part-2":true};
+  window.INITIAL_COMPLETION = {};
+  window.INITIAL_INPROGRESS = {};
   window.INITIAL_EDGE_LAYOUT = {"chemical-part-4->out-of-curiosity":{"cx":3474,"cy":1666},"scout->huntsman-factory-chief":{"cx":2458.111328125,"cy":6232.11474609375},"hunting-trip->northern-connections":{"cx":2763.33349609375,"cy":4519.33349609375},"tarkov-shooter-part-3->huntsman-secured-perimeter":{"cx":1559.015625,"cy":5017.5390625},"huntsman-secured-perimeter->huntsman-forest-cleaning":{"cx":231.015625,"cy":5434.5390625},"sales-night->huntsman-sellout":{"cx":1996.515625,"cy":6088.5390625},"anesthesia->samples":{"cx":4181.015625,"cy":4280.0625},"chemical-part-1->polikhim-hobo":{"cx":2499,"cy":1882},"chemical-part-4->big-customer":{"cx":3382,"cy":1688},"chemical-part-4->secure-corridor":{"cx":3908,"cy":1397}};
 
   const nodeWidth = 200;
@@ -1622,7 +1622,11 @@ body.edge-edit-mode .quest-edge-special {
   function isCompleted(id) { return !!completionState[id]; }
 
   function setCompleted(id, value) {
-    completionState[id] = !!value;
+    if (value) {
+      completionState[id] = true;
+    } else {
+      delete completionState[id];
+    }
     saveCompletion();
 
     if (value && inProgressState[id]) {
