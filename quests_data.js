@@ -743,7 +743,7 @@ const quests = [
   },
   {
     "id": "test-drive-part-1",
-    "nombre": "26. Banco de pruebas – Parte 1 (Test Drive – Part 1)",
+    "nombre": "26. Prueba de conducción – Parte 1 (Test Drive – Part 1)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 30,
@@ -770,7 +770,7 @@ const quests = [
   },
   {
     "id": "test-drive-part-2",
-    "nombre": "27. Banco de pruebas – Parte 2 (Test Drive – Part 2)",
+    "nombre": "27. Prueba de conducción – Parte 2 (Test Drive – Part 2)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 30,
@@ -799,7 +799,7 @@ const quests = [
   },
   {
     "id": "test-drive-part-3",
-    "nombre": "28. Banco de pruebas – Parte 3 (Test Drive – Part 3)",
+    "nombre": "28. BPrueba de conducción – Parte 3 (Test Drive – Part 3)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 30,
@@ -826,7 +826,7 @@ const quests = [
   },
   {
     "id": "test-drive-part-4",
-    "nombre": "29. Banco de pruebas – Parte 4 (Test Drive – Part 4)",
+    "nombre": "29. BPrueba de conducción – Parte 4 (Test Drive – Part 4)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 30,
@@ -853,7 +853,7 @@ const quests = [
   },
   {
     "id": "test-drive-part-5",
-    "nombre": "30. Banco de pruebas – Parte 5 (Test Drive – Part 5)",
+    "nombre": "30. Prueba de conducción – Parte 5 (Test Drive – Part 5)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 30,
@@ -880,7 +880,7 @@ const quests = [
   },
   {
     "id": "test-drive-part-6",
-    "nombre": "31. Banco de pruebas – Parte 6 (Test Drive – Part 6)",
+    "nombre": "31. Prueba de conducción – Parte 6 (Test Drive – Part 6)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 40,
