@@ -1029,6 +1029,8 @@ body.edge-edit-mode .quest-edge-special {
   const auth = window.auth || null;
   const db   = window.db   || null;
   let currentUser = window.currentUser || null;
+  const OWNER_UID = "njMZeeeUtogJjQeDII05nnn0F9m2";
+
 
 
   function updateAuthUI(user) {
@@ -1039,7 +1041,7 @@ body.edge-edit-mode .quest-edge-special {
 
     if (!loginBtn || !userInfo || !userEmail) return;
 
-    const isOwner = !!(user && user.email && user.email.toLowerCase() === "alexissanchezmolina@gmail.com".toLowerCase());
+    const isOwner = !!(user && user.uid === OWNER_UID);
 
     // Mostrar / ocultar botones solo para el dueño
     devButtons.forEach(btn => {
@@ -1056,6 +1058,7 @@ body.edge-edit-mode .quest-edge-special {
       userEmail.textContent  = "";
     }
   }
+
 
 
   function syncProgressToFirestore() {
