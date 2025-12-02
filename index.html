@@ -38,6 +38,8 @@
 	  text-transform: uppercase;
 	  letter-spacing: .06em;
 	}
+    .dev-only { display: none !important; }
+
 	.toolbar-btn:hover {
 	  background: #222631;
 	}
@@ -860,9 +862,9 @@ body.edge-edit-mode .quest-edge-special {
   </div>
   <div class="toolbar">
     <div class="legend">
-<button class="toolbar-btn" id="save-html">Guardar HTML</button>
-	  <button class="toolbar-btn" id="save-quests-js">Guardar quests_data.txt</button>
-	  <button class="toolbar-btn" id="save-all">Guardar TODO</button>
+<button class="toolbar-btn dev-only" id="save-html">Guardar HTML</button>
+	  <button class="toolbar-btn dev-only" id="save-quests-js">Guardar quests_data.txt</button>
+	  <button class="toolbar-btn dev-only" id="save-all">Guardar TODO</button>
 
     <div id="auth-box" class="auth-box">
       <button class="toolbar-btn" id="login-btn">Entrar con Google</button>
@@ -1028,12 +1030,21 @@ body.edge-edit-mode .quest-edge-special {
   const db   = window.db   || null;
   let currentUser = window.currentUser || null;
 
+
   function updateAuthUI(user) {
     const loginBtn  = document.getElementById("login-btn");
     const userInfo  = document.getElementById("user-info");
     const userEmail = document.getElementById("user-email");
+    const devButtons = document.querySelectorAll(".dev-only");
 
     if (!loginBtn || !userInfo || !userEmail) return;
+
+    const isOwner = !!(user && user.email && user.email.toLowerCase() === "alexissanchezmolina@gmail.com".toLowerCase());
+
+    // Mostrar / ocultar botones solo para el dueño
+    devButtons.forEach(btn => {
+      btn.style.display = isOwner ? "inline-block" : "none";
+    });
 
     if (user) {
       loginBtn.style.display = "none";
@@ -1045,6 +1056,7 @@ body.edge-edit-mode .quest-edge-special {
       userEmail.textContent  = "";
     }
   }
+
 
   function syncProgressToFirestore() {
     if (!auth || !db || !currentUser) return;
