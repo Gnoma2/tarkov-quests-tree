@@ -38,8 +38,6 @@
 	  text-transform: uppercase;
 	  letter-spacing: .06em;
 	}
-    .dev-only { display: none !important; }
-
 	.toolbar-btn:hover {
 	  background: #222631;
 	}
@@ -852,6 +850,8 @@ body.edge-edit-mode .quest-edge-special {
       opacity: 1;
       transform: translateY(0);
     }
+
+    .dev-only { display: none; }
 </style>
 </head>
 <body class="">
@@ -1032,7 +1032,6 @@ body.edge-edit-mode .quest-edge-special {
   const OWNER_UID = "njMZeeeUtogJjQeDII05nnn0F9m2";
 
 
-
   function updateAuthUI(user) {
     const loginBtn  = document.getElementById("login-btn");
     const userInfo  = document.getElementById("user-info");
@@ -1058,7 +1057,6 @@ body.edge-edit-mode .quest-edge-special {
       userEmail.textContent  = "";
     }
   }
-
 
 
   function syncProgressToFirestore() {
