@@ -623,6 +623,15 @@ body.edge-edit-mode .quest-edge-special {
       opacity: 0.35;
     }
 
+    .quest-node.dim-completed rect {
+      opacity: 0.25;
+    }
+
+    .quest-node.dim-completed text,
+    .quest-node.dim-completed .trader-portrait {
+      opacity: 0.35;
+    }
+
     .edge-edit-indicator {
       position: fixed;
       right: 18px;
@@ -1979,10 +1988,12 @@ function drawEdge(fromQ, toQ) {
 
     g.classList.toggle("completed", completed);
     g.classList.toggle("in-progress", !completed && inProg);
+    g.classList.toggle("dim-completed", completed); // difuminar quests completadas
 
     const check = g.querySelector(".node-check");
     if (check) check.style.opacity = completed ? "1" : "0";
   }
+
 
   quests.forEach(createNode);
 	drawAllEdges();
@@ -2100,15 +2111,10 @@ function drawEdge(fromQ, toQ) {
       else g.classList.remove("selected");
     });
 
-    // Resaltar prerequisitos y sucesoras cuando hay una única quest seleccionada
-    if (selectedIds.size === 1) {
-      const onlyId = Array.from(selectedIds)[0];
-      highlightRelations(onlyId);
-    } else {
-      clearRelationHighlight();
-    }
+    // Sin resaltar prerequisitos/sucesoras: solo la quest seleccionada
+    clearRelationHighlight();
   }
-  
+
     // --- Selección por ventana (marquee) ---
   let isBoxSelecting = false;
   let selectionRect = null;
