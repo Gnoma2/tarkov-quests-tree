@@ -1633,37 +1633,87 @@ body.edge-edit-mode .quest-edge-special {
 
 
   function isCompleted(id) { return !!completionState[id]; }
-
-  function setCompleted(id, value) {
-    if (value) {
-      completionState[id] = true;
-    } else {
-      delete completionState[id];
-    }
-    saveCompletion();
-
-    if (value && inProgressState[id]) {
-      delete inProgressState[id];
-      saveInProgress();
-    }
-
-    updateNodeVisual(id);
-  }
-
   function isInProgress(id) { return !!inProgressState[id]; }
 
-  function setInProgress(id, value) {
+  // Marca una quest como completada / no completada
+  // con propagación hacia prerequisitos (ancestros) y sucesores (descendientes)
+  function setCompleted(id, value) {
+    const touched = new Set();
+
     if (value) {
-      inProgressState[id] = true;
-      if (completionState[id]) {
-        completionState[id] = false;
-        saveCompletion();
+      // Completar todos los prerequisitos
+      const ancestors = collectAncestors(id, new Set());
+      ancestors.forEach(aid => {
+        completionState[aid] = true;
+        if (inProgressState[aid]) {
+          delete inProgressState[aid];
+        }
+        touched.add(aid);
+      });
+
+      // Completar la quest actual
+      completionState[id] = true;
+      if (inProgressState[id]) {
+        delete inProgressState[id];
       }
+      touched.add(id);
+
+      saveCompletion();
+      saveInProgress();
     } else {
-      delete inProgressState[id];
+      // Quitar completada en esta quest y en todas las sucesoras que estén completadas
+      const descendants = collectDescendants(id, new Set());
+      descendants.forEach(did => {
+        if (completionState[did]) {
+          delete completionState[did];
+          touched.add(did);
+        }
+      });
+
+      if (completionState[id]) {
+        delete completionState[id];
+        touched.add(id);
+      }
+
+      saveCompletion();
     }
-    saveInProgress();
-    updateNodeVisual(id);
+
+    touched.forEach(qid => updateNodeVisual(qid));
+  }
+
+  // Marca una quest como "en curso" con propagación de completadas hacia atrás
+  function setInProgress(id, value) {
+    const touched = new Set();
+
+    if (value) {
+      // Marcar prerequisitos como completados
+      const ancestors = collectAncestors(id, new Set());
+      ancestors.forEach(aid => {
+        completionState[aid] = true;
+        if (inProgressState[aid]) {
+          delete inProgressState[aid];
+        }
+        touched.add(aid);
+      });
+
+      // La quest actual queda "en curso" (no completada)
+      if (completionState[id]) {
+        delete completionState[id];
+      }
+      inProgressState[id] = true;
+      touched.add(id);
+
+      saveCompletion();
+      saveInProgress();
+    } else {
+      if (inProgressState[id]) {
+        delete inProgressState[id];
+        touched.add(id);
+        saveInProgress();
+      }
+    }
+
+    touched.forEach(qid => updateNodeVisual(qid));
   }
 
   function createNode(q) {
