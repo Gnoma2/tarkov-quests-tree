@@ -1633,79 +1633,106 @@ body.edge-edit-mode .quest-edge-special {
 
 
   function isCompleted(id) { return !!completionState[id]; }
-  function isInProgress(id) { return !!inProgressState[id]; }
 
-  // Marca una quest como completada / no completada
-  // con propagación hacia prerequisitos (ancestros) y sucesores (descendientes)
+  
   function setCompleted(id, value) {
     const touched = new Set();
 
     if (value) {
-      // Completar todos los prerequisitos
+      // Marcar prerequisitos como completadas y quitarles "en curso"
       const ancestors = collectAncestors(id, new Set());
       ancestors.forEach(aid => {
-        completionState[aid] = true;
+        if (!completionState[aid]) {
+          completionState[aid] = true;
+          touched.add(aid);
+        }
         if (inProgressState[aid]) {
           delete inProgressState[aid];
+          touched.add(aid);
         }
-        touched.add(aid);
       });
 
-      // Completar la quest actual
-      completionState[id] = true;
+      // Marcar la quest actual como completada (y quitar "en curso" si lo tuviera)
+      if (!completionState[id]) {
+        completionState[id] = true;
+        touched.add(id);
+      }
       if (inProgressState[id]) {
         delete inProgressState[id];
-      }
-      touched.add(id);
-
-      saveCompletion();
-      saveInProgress();
-    } else {
-      // Quitar completada en esta quest y en todas las sucesoras que estén completadas
-      const descendants = collectDescendants(id, new Set());
-      descendants.forEach(did => {
-        if (completionState[did]) {
-          delete completionState[did];
-          touched.add(did);
-        }
-      });
-
-      if (completionState[id]) {
-        delete completionState[id];
         touched.add(id);
       }
 
       saveCompletion();
+      saveInProgress();
+    } else {
+      // Desmarcar esta quest y TODAS las posteriores (descendientes)
+      const descendants = collectDescendants(id, new Set());
+      descendants.add(id);
+
+      descendants.forEach(qid => {
+        if (completionState[qid]) {
+          delete completionState[qid];
+          touched.add(qid);
+        }
+        if (inProgressState[qid]) {
+          delete inProgressState[qid];
+          touched.add(qid);
+        }
+      });
+
+      saveCompletion();
+      saveInProgress();
     }
 
     touched.forEach(qid => updateNodeVisual(qid));
   }
 
-  // Marca una quest como "en curso" con propagación de completadas hacia atrás
+
+  function isInProgress(id) { return !!inProgressState[id]; }
+
+  
   function setInProgress(id, value) {
     const touched = new Set();
 
     if (value) {
-      // Marcar prerequisitos como completados
+      // Marcar prerequisitos como completadas y quitarles "en curso"
       const ancestors = collectAncestors(id, new Set());
       ancestors.forEach(aid => {
-        completionState[aid] = true;
+        if (!completionState[aid]) {
+          completionState[aid] = true;
+          touched.add(aid);
+        }
         if (inProgressState[aid]) {
           delete inProgressState[aid];
+          touched.add(aid);
         }
-        touched.add(aid);
       });
 
-      // La quest actual queda "en curso" (no completada)
+      // Esta quest pasa a "en curso" (no completada)
       if (completionState[id]) {
         delete completionState[id];
+        touched.add(id);
       }
       inProgressState[id] = true;
       touched.add(id);
 
+      // Todas las posteriores (descendientes) se desmarcan (ni completadas ni en curso)
+      const descendants = collectDescendants(id, new Set());
+      descendants.forEach(qid => {
+        if (completionState[qid]) {
+          delete completionState[qid];
+          touched.add(qid);
+        }
+        if (inProgressState[qid]) {
+          delete inProgressState[qid];
+          touched.add(qid);
+        }
+      });
+
       saveCompletion();
       saveInProgress();
     } else {
+      // Quitar sólo el estado "en curso" de esta quest
       if (inProgressState[id]) {
         delete inProgressState[id];
         touched.add(id);
@@ -1715,6 +1742,7 @@ body.edge-edit-mode .quest-edge-special {
 
     touched.forEach(qid => updateNodeVisual(qid));
   }
+
 
   function createNode(q) {
   const g = document.createElementNS(ns, "g");
