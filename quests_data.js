@@ -10280,7 +10280,7 @@ const quests = [
   },
   {
     "id": "nothing-fishy-about-this",
-    "nombre": "35. Nada raro en esto (Nothing Fishy About This)",
+    "nombre": "35. Nada hay nada sospechoso sobre esto (Nothing Fishy About This)",
     "trader": "Ragman",
     "traderColor": "ragman",
     "nivel": 0,
