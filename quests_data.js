@@ -10086,7 +10086,7 @@ const quests = [
   },
   {
     "id": "a-fuel-matter",
-    "nombre": "28. Asunto de combustible (A Fuel Matter)",
+    "nombre": "28. El combustible importa (A Fuel Matter)",
     "trader": "Ragman",
     "traderColor": "ragman",
     "nivel": 15,
