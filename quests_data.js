@@ -8236,7 +8236,7 @@ const quests = [
   },
   {
     "id": "rigged-game",
-    "nombre": "24. Partida amañada (Rigged Game)",
+    "nombre": "24. Juego amañado (Rigged Game)",
     "trader": "Skier",
     "traderColor": "skier",
     "nivel": 21,
