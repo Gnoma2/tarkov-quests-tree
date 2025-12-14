@@ -2558,7 +2558,7 @@ const quests = [
   },
   {
     "id": "signal-part-1",
-    "nombre": "32. Señales – Parte 1 (Signal - Part 1)",
+    "nombre": "32. La señal – Parte 1 (Signal - Part 1)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 12,
@@ -2585,7 +2585,7 @@ const quests = [
   },
   {
     "id": "signal-part-2",
-    "nombre": "33. Señales – Parte 2 (Signal - Part 2)",
+    "nombre": "33. La señal – Parte 2 (Signal - Part 2)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 12,
@@ -2610,13 +2610,13 @@ const quests = [
       "signal-part-1"
     ],
     "position": {
-      "x": 2975,
+      "x": 2965,
       "y": 6557.778076171875
     }
   },
   {
     "id": "signal-part-3",
-    "nombre": "34. Señales – Parte 3 (Signal - Part 3)",
+    "nombre": "34. La señal – Parte 3 (Signal - Part 3)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 15,
@@ -2646,7 +2646,7 @@ const quests = [
   },
   {
     "id": "signal-part-4",
-    "nombre": "35. Señales – Parte 4 (Signal - Part 4)",
+    "nombre": "35. La señal – Parte 4 (Signal - Part 4)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 15,
@@ -6835,7 +6835,7 @@ const quests = [
   },
   {
     "id": "health-care-privacy-1",
-    "nombre": "Privacidad sanitaria – Parte 1 (Health Care Privacy - Part 1)",
+    "nombre": "Atención Médica – Parte 1 (Health Care Privacy - Part 1)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6860,7 +6860,7 @@ const quests = [
   },
   {
     "id": "health-care-privacy-2",
-    "nombre": "Privacidad sanitaria – Parte 2 (Health Care Privacy - Part 2)",
+    "nombre": "Atención Médica  – Parte 2 (Health Care Privacy - Part 2)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6886,7 +6886,7 @@ const quests = [
   },
   {
     "id": "health-care-privacy-3",
-    "nombre": "Privacidad sanitaria – Parte 3 (Health Care Privacy - Part 3)",
+    "nombre": "Atención Médica – Parte 3 (Health Care Privacy - Part 3)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6912,7 +6912,7 @@ const quests = [
   },
   {
     "id": "health-care-privacy-4",
-    "nombre": "Privacidad sanitaria – Parte 4 (Health Care Privacy - Part 4)",
+    "nombre": "Atención Médica  – Parte 4 (Health Care Privacy - Part 4)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "descripcion": "Demuestra buena condición física alcanzando un nivel concreto de la habilidad de Salud.",
@@ -6935,7 +6935,7 @@ const quests = [
   },
   {
     "id": "health-care-privacy-5",
-    "nombre": "Privacidad sanitaria – Parte 5 (Health Care Privacy - Part 5)",
+    "nombre": "Atención Médica – Parte 5 (Health Care Privacy - Part 5)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
@@ -6961,7 +6961,7 @@ const quests = [
   },
   {
     "id": "health-care-privacy-6",
-    "nombre": "Privacidad sanitaria – Parte 6 (Health Care Privacy - Part 6)",
+    "nombre": "Atención Médica – Parte 6 (Health Care Privacy - Part 6)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 20,
