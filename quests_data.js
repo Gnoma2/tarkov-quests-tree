@@ -2948,7 +2948,7 @@ const quests = [
   },
   {
     "id": "broadcast-part-1",
-    "nombre": "51. Emisión – Parte 1 (Broadcast - Part 1)",
+    "nombre": "51. Transmisión – Parte 1 (Broadcast - Part 1)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 15,
@@ -2975,7 +2975,7 @@ const quests = [
   },
   {
     "id": "broadcast-part-2",
-    "nombre": "52. Emisión – Parte 2 (Broadcast - Part 2)",
+    "nombre": "52. Transmisión – Parte 2 (Broadcast - Part 2)",
     "trader": "Mechanic",
     "traderColor": "mechanic",
     "nivel": 15,
@@ -4149,7 +4149,7 @@ const quests = [
       "acquaintance"
     ],
     "position": {
-      "x": 701,
+      "x": 661,
       "y": 4459.7779541015625
     }
   },
@@ -5005,7 +5005,7 @@ const quests = [
   },
   {
     "id": "every-hunter-knows-this",
-    "nombre": "55. Todo cazador lo sabe (Every Hunter Knows This)",
+    "nombre": "55. Todo cazador sabe esto (Every Hunter Knows This)",
     "trader": "Jaeger",
     "traderColor": "jaeger",
     "nivel": 2,
