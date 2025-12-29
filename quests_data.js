@@ -5408,7 +5408,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-1",
-    "nombre": "8. Tour de spa – Parte 1 (Spa Tour - Part 1)",
+    "nombre": "8. Vacaciones en el balneario – Parte 1 (Spa Tour - Part 1)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -5436,7 +5436,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-2",
-    "nombre": "9. Tour de spa – Parte 2 (Spa Tour - Part 2)",
+    "nombre": "9. Vacaciones en el balneario – Parte 2 (Spa Tour - Part 2)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -5464,7 +5464,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-3",
-    "nombre": "10. Tour de spa – Parte 3 (Spa Tour - Part 3)",
+    "nombre": "10.Vacaciones en el balnearioa – Parte 3 (Spa Tour - Part 3)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -5499,7 +5499,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-4",
-    "nombre": "11. Tour de spa – Parte 4 (Spa Tour - Part 4)",
+    "nombre": "11. Vacaciones en el balneario – Parte 4 (Spa Tour - Part 4)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -5526,7 +5526,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-5",
-    "nombre": "12. Tour de spa – Parte 5 (Spa Tour - Part 5)",
+    "nombre": "12. Vacaciones en el balneario (Spa Tour - Part 5)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -5552,7 +5552,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-6",
-    "nombre": "13. Tour de spa – Parte 6 (Spa Tour - Part 6)",
+    "nombre": "13. Vacaciones en el balneario – Parte 6 (Spa Tour - Part 6)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -5575,7 +5575,7 @@ const quests = [
   },
   {
     "id": "spa-tour-part-7",
-    "nombre": "14. Tour de spa – Parte 7 (Spa Tour - Part 7)",
+    "nombre": "14. Vacaciones en el balneario – Parte 7 (Spa Tour - Part 7)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 12,
@@ -6062,7 +6062,7 @@ const quests = [
   },
   {
     "id": "revision-reserve",
-    "nombre": "30. Revisión – Reserve (Revision - Reserve)",
+    "nombre": "30. Revisión – Reserva (Revision - Reserve)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
@@ -6530,7 +6530,7 @@ const quests = [
   },
   {
     "id": "seizing-the-initiative",
-    "nombre": "46. Tomar la iniciativa (Seizing the Initiative)",
+    "nombre": "46. Tomando la iniciativa (Seizing the Initiative)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 11,
