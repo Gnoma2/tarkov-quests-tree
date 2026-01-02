@@ -7298,7 +7298,7 @@ const quests = [
   },
   {
     "id": "seaside-vacation",
-    "nombre": "Vacaciones en el mar (Seaside Vacation)",
+    "nombre": "Vacaciones junto al mar (Seaside Vacation)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "descripcion": "Un informador de Terapeuta desapareció en Lighthouse; encuentra su maletín.",
@@ -8373,7 +8373,7 @@ const quests = [
   },
   {
     "id": "missing-cargo",
-    "nombre": "29. Carga desaparecida (Missing Cargo)",
+    "nombre": "29. Cargamento desaparecido (Missing Cargo)",
     "trader": "Skier",
     "traderColor": "skier",
     "nivel": 30,
