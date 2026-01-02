@@ -1159,11 +1159,11 @@ const quests = [
   },
   {
     "id": "easy-job-part-1",
-    "nombre": "41. Trabajo silencioso – Parte 1 (Easy Job – Part 1)",
+    "nombre": "41. Trabajo fácil – Parte 1 (Easy Job – Part 1)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 18,
-    "descripcion": "Primera parte de la cadena Trabajo silencioso: Prapor quiere que localices un helicóptero militar MI-8 en la planta de tratamiento de agua de Lighthouse, lo marques con un MS2000 y salgas con vida para que sus hombres puedan saquear la zona más tarde.",
+    "descripcion": "Primera parte de la cadena Trabajo fácil: Prapor quiere que localices un helicóptero militar MI-8 en la planta de tratamiento de agua de Lighthouse, lo marques con un MS2000 y salgas con vida para que sus hombres puedan saquear la zona más tarde.",
     "objetivos": [
       "Localizar el helicóptero en la planta de tratamiento de agua en Lighthouse.",
       "Marcar el helicóptero con un marcador MS2000 en Lighthouse.",
@@ -1187,11 +1187,11 @@ const quests = [
   },
   {
     "id": "easy-job-part-2",
-    "nombre": "42. Trabajo silencioso – Parte 2 (Easy Job – Part 2)",
+    "nombre": "42. Trabajo fácil – Parte 2 (Easy Job – Part 2)",
     "trader": "Prapor",
     "traderColor": "prapor",
     "nivel": 18,
-    "descripcion": "Segunda parte de Trabajo silencioso: tras marcar el helicóptero, Prapor quiere que asegures el perímetro eliminando a todos los hostiles que se acerquen a la zona del aparato en la planta de tratamiento de Lighthouse.",
+    "descripcion": "Segunda parte de Trabajo fácil: tras marcar el helicóptero, Prapor quiere que asegures el perímetro eliminando a todos los hostiles que se acerquen a la zona del aparato en la planta de tratamiento de Lighthouse.",
     "objetivos": [
       "Eliminar 20 enemigos (Rogues, Scavs o PMC) en el área de la planta de tratamiento de agua en Lighthouse alrededor del helicóptero (solo cuentan las bajas dentro de la zona marcada)."
     ],
