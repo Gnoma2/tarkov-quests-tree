@@ -330,6 +330,31 @@
       font-weight: bold;
     }
 
+    /* ===== KAPPA BADGE (rojo pendiente / verde completada) ===== */
+    .kappa-badge {
+      fill: var(--accent-in-progress); /* rojo mientras NO esté completada */
+      opacity: 0.95;
+    }
+
+    .kappa-badge-text {
+      font-size: 9px;
+      font-weight: 800;
+      fill: #ffffff;
+      dominant-baseline: middle;
+    }
+
+    /* Verde cuando la quest está completada */
+    .quest-node.completed .kappa-badge {
+      fill: var(--accent-completed);
+    }
+
+/* Si el nodo está atenuado por filtros */
+    .quest-node.dim-level .kappa-badge,
+    .quest-node.dim-level .kappa-badge-text {
+      opacity: 0.35;
+    }
+
+
     .quest-node .trader-portrait {
       pointer-events: none;
     }
@@ -623,15 +648,6 @@ body.edge-edit-mode .quest-edge-special {
       opacity: 0.35;
     }
 
-    .quest-node.dim-completed rect {
-      opacity: 0.25;
-    }
-
-    .quest-node.dim-completed text,
-    .quest-node.dim-completed .trader-portrait {
-      opacity: 0.35;
-    }
-
     .edge-edit-indicator {
       position: fixed;
       right: 18px;
@@ -894,6 +910,7 @@ body.edge-edit-mode .quest-edge-special {
       <span class="level-label">Trader</span>
       <select id="trader-filter" class="trader-select">
         <option value="">Todos</option>
+        <option value="Kappa">Kappa</option>
         <option value="Prapor">Prapor</option>
         <option value="Terapeuta">Terapeuta</option>
         <option value="Skier">Skier</option>
@@ -1237,6 +1254,7 @@ body.edge-edit-mode .quest-edge-special {
       if (!q) return;
       const lvl = (q.nivel != null) ? q.nivel : null;
       const trader = q.trader || "";
+      const isKappa = !!q.kappa;
 
       let dim = false;
 
@@ -1247,8 +1265,12 @@ body.edge-edit-mode .quest-edge-special {
         if (lvl == null || lvl > currentMaxLevel) dim = true;
       }
 
-      if (currentTraderFilter && trader !== currentTraderFilter) {
-        dim = true;
+      if (currentTraderFilter) {
+        if (currentTraderFilter === "Kappa") {
+          if (!isKappa) dim = true;
+        } else if (trader !== currentTraderFilter) {
+          dim = true;
+        }
       }
 
       g.classList.toggle("dim-level", dim);
@@ -1643,115 +1665,100 @@ body.edge-edit-mode .quest-edge-special {
 
   function isCompleted(id) { return !!completionState[id]; }
 
-  
-  function setCompleted(id, value) {
-    const touched = new Set();
+    function _setCompletedInternal(id, value, changed) {
+    const hadCompleted = (id in completionState);
+    const hadInProg = !!inProgressState[id];
 
     if (value) {
-      // Marcar prerequisitos como completadas y quitarles "en curso"
-      const ancestors = collectAncestors(id, new Set());
-      ancestors.forEach(aid => {
-        if (!completionState[aid]) {
-          completionState[aid] = true;
-          touched.add(aid);
-        }
-        if (inProgressState[aid]) {
-          delete inProgressState[aid];
-          touched.add(aid);
-        }
-      });
-
-      // Marcar la quest actual como completada (y quitar "en curso" si lo tuviera)
-      if (!completionState[id]) {
-        completionState[id] = true;
-        touched.add(id);
-      }
-      if (inProgressState[id]) {
-        delete inProgressState[id];
-        touched.add(id);
-      }
-
-      saveCompletion();
-      saveInProgress();
+      completionState[id] = true;
+      if (hadInProg) delete inProgressState[id];
     } else {
-      // Desmarcar esta quest y TODAS las posteriores (descendientes)
-      const descendants = collectDescendants(id, new Set());
-      descendants.add(id);
-
-      descendants.forEach(qid => {
-        if (completionState[qid]) {
-          delete completionState[qid];
-          touched.add(qid);
-        }
-        if (inProgressState[qid]) {
-          delete inProgressState[qid];
-          touched.add(qid);
-        }
-      });
-
-      saveCompletion();
-      saveInProgress();
+      if (hadCompleted) delete completionState[id];
+      if (hadInProg) delete inProgressState[id];
     }
 
-    touched.forEach(qid => updateNodeVisual(qid));
+    if (hadCompleted !== !!completionState[id] || hadInProg !== !!inProgressState[id]) {
+      changed.add(id);
+    }
   }
 
+  function _setInProgressInternal(id, value, changed) {
+    const hadCompleted = (id in completionState);
+    const hadInProg = !!inProgressState[id];
+
+    if (value) {
+      inProgressState[id] = true;
+      if (hadCompleted) delete completionState[id];
+    } else {
+      if (hadInProg) delete inProgressState[id];
+    }
+
+    if (hadCompleted !== !!completionState[id] || hadInProg !== !!inProgressState[id]) {
+      changed.add(id);
+    }
+  }
+
+  function _clearDescendants(id, changed) {
+    const desc = collectDescendants(id, new Set());
+    desc.forEach(did => {
+      const hadCompleted = (did in completionState);
+      const hadInProg = !!inProgressState[did];
+      if (hadCompleted) delete completionState[did];
+      if (hadInProg) delete inProgressState[did];
+      if (hadCompleted || hadInProg) changed.add(did);
+    });
+  }
+
+  function setCompleted(id, value) {
+    const changed = new Set();
+
+    if (value) {
+      // Completar prerequisitos (cadena hacia atrás)
+      const ancestors = collectAncestors(id, new Set());
+      ancestors.forEach(pid => _setCompletedInternal(pid, true, changed));
+
+      // Completar la quest objetivo
+      _setCompletedInternal(id, true, changed);
+    } else {
+      // Si queda pendiente, limpiamos su rama hacia delante
+      _setCompletedInternal(id, false, changed);
+      _clearDescendants(id, changed);
+    }
+
+    // Persistimos una sola vez
+    saveCompletion();
+    saveInProgress();
+    changed.forEach(updateNodeVisual);
+  }
 
   function isInProgress(id) { return !!inProgressState[id]; }
 
-  
   function setInProgress(id, value) {
-    const touched = new Set();
+    const changed = new Set();
 
     if (value) {
-      // Marcar prerequisitos como completadas y quitarles "en curso"
+      // Para poder estar "en curso", los prerequisitos deben estar completados
       const ancestors = collectAncestors(id, new Set());
-      ancestors.forEach(aid => {
-        if (!completionState[aid]) {
-          completionState[aid] = true;
-          touched.add(aid);
-        }
-        if (inProgressState[aid]) {
-          delete inProgressState[aid];
-          touched.add(aid);
-        }
-      });
+      ancestors.forEach(pid => _setCompletedInternal(pid, true, changed));
 
-      // Esta quest pasa a "en curso" (no completada)
-      if (completionState[id]) {
-        delete completionState[id];
-        touched.add(id);
-      }
-      inProgressState[id] = true;
-      touched.add(id);
+      // Esta quest queda en curso (y no completada)
+      _setInProgressInternal(id, true, changed);
 
-      // Todas las posteriores (descendientes) se desmarcan (ni completadas ni en curso)
-      const descendants = collectDescendants(id, new Set());
-      descendants.forEach(qid => {
-        if (completionState[qid]) {
-          delete completionState[qid];
-          touched.add(qid);
-        }
-        if (inProgressState[qid]) {
-          delete inProgressState[qid];
-          touched.add(qid);
-        }
-      });
-
-      saveCompletion();
-      saveInProgress();
+      // Mientras está "en curso", no puedes tener sucesoras marcadas
+      _clearDescendants(id, changed);
     } else {
-      // Quitar sólo el estado "en curso" de esta quest
-      if (inProgressState[id]) {
-        delete inProgressState[id];
-        touched.add(id);
-        saveInProgress();
+      _setInProgressInternal(id, false, changed);
+
+      // Si queda pendiente (no completada), también limpia sucesoras
+      if (!isCompleted(id)) {
+        _clearDescendants(id, changed);
       }
     }
 
-    touched.forEach(qid => updateNodeVisual(qid));
+    saveCompletion();
+    saveInProgress();
+    changed.forEach(updateNodeVisual);
   }
-
 
   function createNode(q) {
   const g = document.createElementNS(ns, "g");
@@ -1901,6 +1908,26 @@ body.edge-edit-mode .quest-edge-special {
   if (!completed) checkText.style.opacity = "0";
   g.appendChild(checkText);
 
+  // ===== KAPPA BADGE =====
+  if (q.kappa === true) {
+    const badge = document.createElementNS(ns, "circle");
+    badge.setAttribute("cx", nodeWidth - 16);
+    badge.setAttribute("cy", nodeHeight - 14);
+    badge.setAttribute("r", 7);
+    badge.setAttribute("class", "kappa-badge");
+    badge.style.pointerEvents = "none";
+    g.appendChild(badge);
+
+    const badgeText = document.createElementNS(ns, "text");
+    badgeText.setAttribute("x", nodeWidth - 16);
+    badgeText.setAttribute("y", nodeHeight - 14);
+    badgeText.setAttribute("text-anchor", "middle");
+    badgeText.setAttribute("class", "kappa-badge-text");
+    badgeText.style.pointerEvents = "none";
+    badgeText.textContent = "K";
+    g.appendChild(badgeText);
+  }
+
   // Edición rápida del texto de la quest con botón derecho en modo edición
   g.addEventListener("contextmenu", ev => {
     if (!document.body.classList.contains("edge-edit-mode")) return;
@@ -1988,12 +2015,10 @@ function drawEdge(fromQ, toQ) {
 
     g.classList.toggle("completed", completed);
     g.classList.toggle("in-progress", !completed && inProg);
-    g.classList.toggle("dim-completed", completed); // difuminar quests completadas
 
     const check = g.querySelector(".node-check");
     if (check) check.style.opacity = completed ? "1" : "0";
   }
-
 
   quests.forEach(createNode);
 	drawAllEdges();
@@ -2111,10 +2136,15 @@ function drawEdge(fromQ, toQ) {
       else g.classList.remove("selected");
     });
 
-    // Sin resaltar prerequisitos/sucesoras: solo la quest seleccionada
-    clearRelationHighlight();
+    // Resaltar prerequisitos y sucesoras cuando hay una única quest seleccionada
+    if (selectedIds.size === 1) {
+      const onlyId = Array.from(selectedIds)[0];
+      highlightRelations(onlyId);
+    } else {
+      clearRelationHighlight();
+    }
   }
-
+  
     // --- Selección por ventana (marquee) ---
   let isBoxSelecting = false;
   let selectionRect = null;

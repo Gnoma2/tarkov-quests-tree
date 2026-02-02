@@ -23,7 +23,8 @@ const quests = [
     "position": {
       "x": 2860,
       "y": 4338.222389221191
-    }
+    },
+    "kappa": true
   },
   {
     "id": "debut",
@@ -53,7 +54,8 @@ const quests = [
     "position": {
       "x": 3101,
       "y": 4338.222389221191
-    }
+    },
+    "kappa": true
   },
   {
     "id": "luxurious-life",
@@ -82,7 +84,8 @@ const quests = [
     "position": {
       "x": 3347,
       "y": 4338.222389221191
-    }
+    },
+    "kappa": true
   },
   {
     "id": "properties-all-around",
@@ -111,7 +114,8 @@ const quests = [
     "position": {
       "x": 5742,
       "y": 4161.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "search-mission",
@@ -140,7 +144,8 @@ const quests = [
     "position": {
       "x": 3347,
       "y": 4243.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "background-check",
@@ -168,7 +173,8 @@ const quests = [
     "position": {
       "x": 3595,
       "y": 4338.222389221191
-    }
+    },
+    "kappa": true
   },
   {
     "id": "shootout-picnic",
@@ -199,7 +205,8 @@ const quests = [
     "position": {
       "x": 3823,
       "y": 4338.222389221191
-    }
+    },
+    "kappa": true
   },
   {
     "id": "delivery-from-the-past",
@@ -229,7 +236,8 @@ const quests = [
     "position": {
       "x": 3823,
       "y": 4243.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "bp-depot",
@@ -260,7 +268,8 @@ const quests = [
     "position": {
       "x": 4068,
       "y": 4243.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-bunker-part-1",
@@ -290,7 +299,8 @@ const quests = [
     "position": {
       "x": 4315,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-bunker-part-2",
@@ -323,7 +333,8 @@ const quests = [
     "position": {
       "x": 4552,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "bad-rep-evidence",
@@ -356,7 +367,8 @@ const quests = [
     "position": {
       "x": 4315,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "ice-cream-cones",
@@ -386,7 +398,8 @@ const quests = [
     "position": {
       "x": 4552,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "no-place-for-renegades",
@@ -415,7 +428,8 @@ const quests = [
     "position": {
       "x": 4796,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "documents",
@@ -447,7 +461,8 @@ const quests = [
     "position": {
       "x": 5017,
       "y": 4161.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "postman-pat-part-1",
@@ -477,7 +492,8 @@ const quests = [
     "position": {
       "x": 4796,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "shaking-up-the-teller",
@@ -506,7 +522,8 @@ const quests = [
     "position": {
       "x": 4796,
       "y": 4404.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-punisher-part-1",
@@ -533,7 +550,8 @@ const quests = [
     "position": {
       "x": 5017,
       "y": 4410.555847167969
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-punisher-part-2",
@@ -561,7 +579,8 @@ const quests = [
     "position": {
       "x": 5278,
       "y": 4410.555847167969
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-punisher-part-3",
@@ -588,7 +607,8 @@ const quests = [
     "position": {
       "x": 5499,
       "y": 4410.555847167969
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-punisher-part-4",
@@ -616,7 +636,8 @@ const quests = [
     "position": {
       "x": 5742,
       "y": 4410.555847167969
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-punisher-part-5",
@@ -649,7 +670,8 @@ const quests = [
     "position": {
       "x": 5958,
       "y": 4410.555847167969
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-punisher-part-6",
@@ -681,7 +703,8 @@ const quests = [
     "position": {
       "x": 6181,
       "y": 4410.555847167969
-    }
+    },
+    "kappa": true
   },
   {
     "id": "anesthesia",
@@ -711,7 +734,8 @@ const quests = [
     "position": {
       "x": 5017,
       "y": 4501.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "grenadier",
@@ -739,7 +763,8 @@ const quests = [
     "position": {
       "x": 3198,
       "y": 4532
-    }
+    },
+    "kappa": false
   },
   {
     "id": "test-drive-part-1",
@@ -766,7 +791,8 @@ const quests = [
     "position": {
       "x": 3454,
       "y": 4532
-    }
+    },
+    "kappa": true
   },
   {
     "id": "test-drive-part-2",
@@ -795,7 +821,8 @@ const quests = [
     "position": {
       "x": 3670,
       "y": 4532
-    }
+    },
+    "kappa": true
   },
   {
     "id": "test-drive-part-3",
@@ -822,7 +849,8 @@ const quests = [
     "position": {
       "x": 3891,
       "y": 4532
-    }
+    },
+    "kappa": true
   },
   {
     "id": "test-drive-part-4",
@@ -849,7 +877,8 @@ const quests = [
     "position": {
       "x": 4107,
       "y": 4532
-    }
+    },
+    "kappa": true
   },
   {
     "id": "test-drive-part-5",
@@ -876,7 +905,8 @@ const quests = [
     "position": {
       "x": 4322,
       "y": 4532
-    }
+    },
+    "kappa": true
   },
   {
     "id": "test-drive-part-6",
@@ -901,7 +931,8 @@ const quests = [
     "position": {
       "x": 4545,
       "y": 4532
-    }
+    },
+    "kappa": true
   },
   {
     "id": "perfect-mediator",
@@ -933,7 +964,8 @@ const quests = [
     "position": {
       "x": 5017,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "belka-and-strelka",
@@ -958,7 +990,8 @@ const quests = [
     "position": {
       "x": 4315,
       "y": 4161.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "polikhim-hobo",
@@ -986,7 +1019,8 @@ const quests = [
     "position": {
       "x": 2538,
       "y": 1836
-    }
+    },
+    "kappa": true
   },
   {
     "id": "regulated-materials",
@@ -1015,7 +1049,8 @@ const quests = [
     "position": {
       "x": 2767,
       "y": 1836
-    }
+    },
+    "kappa": true
   },
   {
     "id": "big-customer",
@@ -1043,7 +1078,8 @@ const quests = [
     "position": {
       "x": 3667,
       "y": 1566.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "no-offence",
@@ -1066,7 +1102,8 @@ const quests = [
     "position": {
       "x": 3933,
       "y": 1525.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "capturing-outposts",
@@ -1093,7 +1130,8 @@ const quests = [
     "position": {
       "x": 6404,
       "y": 4375.555847167969
-    }
+    },
+    "kappa": false
   },
   {
     "id": "intimidator",
@@ -1118,7 +1156,8 @@ const quests = [
     "position": {
       "x": 6404,
       "y": 4451.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "escort",
@@ -1155,7 +1194,8 @@ const quests = [
     "position": {
       "x": 6404,
       "y": 4298.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "easy-job-part-1",
@@ -1183,7 +1223,8 @@ const quests = [
     "position": {
       "x": 5494,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "easy-job-part-2",
@@ -1208,7 +1249,8 @@ const quests = [
     "position": {
       "x": 5742,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "our-own-land",
@@ -1235,7 +1277,8 @@ const quests = [
     "position": {
       "x": 6181,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "reconnaissance",
@@ -1265,7 +1308,8 @@ const quests = [
     "position": {
       "x": 5742,
       "y": 4322.444580078125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "you-have-mail",
@@ -1293,7 +1337,8 @@ const quests = [
     "position": {
       "x": 5017,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "glory-to-cpsu-part-1",
@@ -1319,7 +1364,8 @@ const quests = [
     "position": {
       "x": 5279,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "glory-to-cpsu-part-2",
@@ -1350,7 +1396,8 @@ const quests = [
     "position": {
       "x": 5494,
       "y": 4241.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "best-job-in-the-world",
@@ -1376,7 +1423,8 @@ const quests = [
     "position": {
       "x": 6404,
       "y": 4531.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "kings-of-the-rooftops",
@@ -1401,7 +1449,8 @@ const quests = [
     "position": {
       "x": 5958,
       "y": 4501.7779541015625
-    }
+    },
+    "kappa": false
   },
   {
     "id": "green-corridor",
@@ -1430,7 +1479,8 @@ const quests = [
     "position": {
       "x": 5010,
       "y": 2749
-    }
+    },
+    "kappa": false
   },
   {
     "id": "gendarmerie-security-guard",
@@ -1458,7 +1508,8 @@ const quests = [
     "position": {
       "x": 6404,
       "y": 4219.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "gendarmerie-tickets-please",
@@ -1486,7 +1537,8 @@ const quests = [
     "position": {
       "x": 6624,
       "y": 4219.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "gendarmerie-district-patrol",
@@ -1514,7 +1566,8 @@ const quests = [
     "position": {
       "x": 6852,
       "y": 4219.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-good-old-days-part-1",
@@ -1541,7 +1594,8 @@ const quests = [
     "position": {
       "x": 3092,
       "y": 4243.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-good-old-days-part-2",
@@ -1566,7 +1620,8 @@ const quests = [
     "position": {
       "x": 3654,
       "y": 2048.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "spectator",
@@ -1592,7 +1647,8 @@ const quests = [
     "position": {
       "x": 3853,
       "y": 4687
-    }
+    },
+    "kappa": false
   },
   {
     "id": "hell-on-earth-part-1",
@@ -1618,7 +1674,8 @@ const quests = [
     "position": {
       "x": 3347,
       "y": 4163.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "hell-on-earth-part-2",
@@ -1645,7 +1702,8 @@ const quests = [
     "position": {
       "x": 3599,
       "y": 4163.444580078125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "owner",
@@ -1666,7 +1724,8 @@ const quests = [
     "position": {
       "x": 3615,
       "y": 4687
-    }
+    },
+    "kappa": true
   },
   {
     "id": "special-communications",
@@ -1686,7 +1745,8 @@ const quests = [
     "position": {
       "x": 3378,
       "y": 4687
-    }
+    },
+    "kappa": false
   },
   {
     "id": "saving-the-mole",
@@ -1714,7 +1774,8 @@ const quests = [
     "position": {
       "x": 2077,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-1",
@@ -1743,7 +1804,8 @@ const quests = [
     "position": {
       "x": 2280,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-2",
@@ -1772,7 +1834,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-3",
@@ -1800,7 +1863,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-4",
@@ -1830,7 +1894,8 @@ const quests = [
     "position": {
       "x": 2748,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-5",
@@ -1857,7 +1922,8 @@ const quests = [
     "position": {
       "x": 2975,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-6",
@@ -1886,7 +1952,8 @@ const quests = [
     "position": {
       "x": 3192,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-7",
@@ -1914,7 +1981,8 @@ const quests = [
     "position": {
       "x": 3406,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-8",
@@ -1942,7 +2010,8 @@ const quests = [
     "position": {
       "x": 3619,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-9",
@@ -1970,7 +2039,8 @@ const quests = [
     "position": {
       "x": 3826,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-10",
@@ -1996,7 +2066,8 @@ const quests = [
     "position": {
       "x": 4023,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-11",
@@ -2022,7 +2093,8 @@ const quests = [
     "position": {
       "x": 4229,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-12",
@@ -2048,7 +2120,8 @@ const quests = [
     "position": {
       "x": 4448,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-13",
@@ -2074,7 +2147,8 @@ const quests = [
     "position": {
       "x": 4664,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-14",
@@ -2100,7 +2174,8 @@ const quests = [
     "position": {
       "x": 4874,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-15",
@@ -2127,7 +2202,8 @@ const quests = [
     "position": {
       "x": 5072,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-16",
@@ -2156,7 +2232,8 @@ const quests = [
     "position": {
       "x": 5278,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-17",
@@ -2187,7 +2264,8 @@ const quests = [
     "position": {
       "x": 5490,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-18",
@@ -2217,7 +2295,8 @@ const quests = [
     "position": {
       "x": 5698,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-19",
@@ -2245,7 +2324,8 @@ const quests = [
     "position": {
       "x": 5903,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-20",
@@ -2272,7 +2352,8 @@ const quests = [
     "position": {
       "x": 6111,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-21",
@@ -2299,7 +2380,8 @@ const quests = [
     "position": {
       "x": 6323,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-22",
@@ -2325,7 +2407,8 @@ const quests = [
     "position": {
       "x": 6534,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-23",
@@ -2352,7 +2435,8 @@ const quests = [
     "position": {
       "x": 6748,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-24",
@@ -2380,7 +2464,8 @@ const quests = [
     "position": {
       "x": 6960,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-part-25",
@@ -2409,7 +2494,8 @@ const quests = [
     "position": {
       "x": 7176,
       "y": 6474.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gunsmith-old-friends-request",
@@ -2437,7 +2523,8 @@ const quests = [
     "position": {
       "x": 3619,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "farming-part-1",
@@ -2464,7 +2551,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "farming-part-2",
@@ -2495,7 +2583,8 @@ const quests = [
     "position": {
       "x": 2736,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "farming-part-3",
@@ -2523,7 +2612,8 @@ const quests = [
     "position": {
       "x": 2977,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "farming-part-4",
@@ -2554,7 +2644,8 @@ const quests = [
     "position": {
       "x": 3192,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "signal-part-1",
@@ -2581,7 +2672,8 @@ const quests = [
     "position": {
       "x": 2748,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "signal-part-2",
@@ -2612,7 +2704,8 @@ const quests = [
     "position": {
       "x": 2965,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "signal-part-3",
@@ -2642,7 +2735,8 @@ const quests = [
     "position": {
       "x": 3194,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "signal-part-4",
@@ -2667,7 +2761,8 @@ const quests = [
     "position": {
       "x": 3406,
       "y": 6557.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "bad-habit",
@@ -2699,7 +2794,8 @@ const quests = [
     "position": {
       "x": 2977,
       "y": 6857.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "scout",
@@ -2728,7 +2824,8 @@ const quests = [
     "position": {
       "x": 3194,
       "y": 6368.55615234375
-    }
+    },
+    "kappa": true
   },
   {
     "id": "insider",
@@ -2754,7 +2851,8 @@ const quests = [
     "position": {
       "x": 2975,
       "y": 6373.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "import",
@@ -2786,7 +2884,8 @@ const quests = [
     "position": {
       "x": 3406,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "fertilizers",
@@ -2815,7 +2914,8 @@ const quests = [
     "position": {
       "x": 3406,
       "y": 6653.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "back-door",
@@ -2838,7 +2938,8 @@ const quests = [
     "position": {
       "x": 3823,
       "y": 6246
-    }
+    },
+    "kappa": true
   },
   {
     "id": "calibration",
@@ -2865,7 +2966,8 @@ const quests = [
     "position": {
       "x": 4268,
       "y": 6930.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-courier",
@@ -2891,7 +2993,8 @@ const quests = [
     "position": {
       "x": 4479,
       "y": 6930.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "corporate-secrets",
@@ -2914,7 +3017,8 @@ const quests = [
     "position": {
       "x": 918,
       "y": 6515
-    }
+    },
+    "kappa": true
   },
   {
     "id": "energy-crisis",
@@ -2944,7 +3048,8 @@ const quests = [
     "position": {
       "x": 3406,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "broadcast-part-1",
@@ -2971,7 +3076,8 @@ const quests = [
     "position": {
       "x": 443,
       "y": 6329
-    }
+    },
+    "kappa": true
   },
   {
     "id": "broadcast-part-2",
@@ -3000,7 +3106,8 @@ const quests = [
     "position": {
       "x": 676,
       "y": 6329
-    }
+    },
+    "kappa": false
   },
   {
     "id": "surveillance",
@@ -3029,7 +3136,8 @@ const quests = [
     "position": {
       "x": 918,
       "y": 6329
-    }
+    },
+    "kappa": false
   },
   {
     "id": "watching-you",
@@ -3057,7 +3165,8 @@ const quests = [
     "position": {
       "x": 1151,
       "y": 6417
-    }
+    },
+    "kappa": false
   },
   {
     "id": "network-provider-part-1",
@@ -3085,7 +3194,8 @@ const quests = [
     "position": {
       "x": 3619,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "network-provider-part-2",
@@ -3114,7 +3224,8 @@ const quests = [
     "position": {
       "x": 3842,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "assessment-part-1",
@@ -3141,7 +3252,8 @@ const quests = [
     "position": {
       "x": 2441,
       "y": 6942.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "assessment-part-2",
@@ -3168,7 +3280,8 @@ const quests = [
     "position": {
       "x": 2682,
       "y": 6942.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "assessment-part-3",
@@ -3196,7 +3309,8 @@ const quests = [
     "position": {
       "x": 2977,
       "y": 6942.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "key-to-the-tower",
@@ -3224,7 +3338,8 @@ const quests = [
     "position": {
       "x": 4057,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "knock-knock",
@@ -3249,7 +3364,8 @@ const quests = [
     "position": {
       "x": 4268,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "getting-acquainted",
@@ -3275,7 +3391,8 @@ const quests = [
     "position": {
       "x": 4489,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-door",
@@ -3305,7 +3422,8 @@ const quests = [
     "position": {
       "x": 4268,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "developers-secrets-part-1",
@@ -3335,7 +3453,8 @@ const quests = [
     "position": {
       "x": 1151,
       "y": 6329
-    }
+    },
+    "kappa": false
   },
   {
     "id": "developers-secrets-part-2",
@@ -3362,7 +3481,8 @@ const quests = [
     "position": {
       "x": 1380,
       "y": 6329
-    }
+    },
+    "kappa": false
   },
   {
     "id": "steady-signal",
@@ -3389,7 +3509,8 @@ const quests = [
     "position": {
       "x": 4057,
       "y": 6740.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "make-amends-buyout",
@@ -3414,7 +3535,8 @@ const quests = [
     "position": {
       "x": 4714,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "make-amends-equipment",
@@ -3439,7 +3561,8 @@ const quests = [
     "position": {
       "x": 4940,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "make-amends-security",
@@ -3464,7 +3587,8 @@ const quests = [
     "position": {
       "x": 5160,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "make-amends-sweep-up",
@@ -3489,7 +3613,8 @@ const quests = [
     "position": {
       "x": 5384,
       "y": 6824.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "acquaintance",
@@ -3517,7 +3642,8 @@ const quests = [
     "position": {
       "x": 406,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-unprotected-but-dangerous",
@@ -3543,7 +3669,8 @@ const quests = [
     "position": {
       "x": 653,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-thrifty",
@@ -3573,7 +3700,8 @@ const quests = [
     "position": {
       "x": 878,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-zhivchik",
@@ -3600,7 +3728,8 @@ const quests = [
     "position": {
       "x": 1103,
       "y": 4627
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-wounded-beast",
@@ -3627,7 +3756,8 @@ const quests = [
     "position": {
       "x": 1328,
       "y": 4627
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-tough-guy",
@@ -3654,7 +3784,8 @@ const quests = [
     "position": {
       "x": 1563,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-cold-blooded",
@@ -3679,7 +3810,8 @@ const quests = [
     "position": {
       "x": 1563,
       "y": 4627
-    }
+    },
+    "kappa": false
   },
   {
     "id": "survivalist-junkie",
@@ -3707,7 +3839,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 4791
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-eagle-owl",
@@ -3733,7 +3866,8 @@ const quests = [
     "position": {
       "x": 1800,
       "y": 4791
-    }
+    },
+    "kappa": true
   },
   {
     "id": "survivalist-combat-medic",
@@ -3758,7 +3892,8 @@ const quests = [
     "position": {
       "x": 2044,
       "y": 4791
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-secured-perimeter",
@@ -3787,7 +3922,8 @@ const quests = [
     "position": {
       "x": 1800,
       "y": 4988.111328125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-trophy",
@@ -3817,7 +3953,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 5090.111328125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-forest-cleaning",
@@ -3843,7 +3980,8 @@ const quests = [
     "position": {
       "x": 428,
       "y": 5523.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-controller",
@@ -3868,7 +4006,8 @@ const quests = [
     "position": {
       "x": 1308,
       "y": 5859.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-sellout",
@@ -3900,7 +4039,8 @@ const quests = [
     "position": {
       "x": 2183,
       "y": 5571.3333740234375
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-crooked-cop",
@@ -3929,7 +4069,8 @@ const quests = [
     "position": {
       "x": 1545,
       "y": 5859.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "huntsman-woods-keeper",
@@ -3958,7 +4099,8 @@ const quests = [
     "position": {
       "x": 2044,
       "y": 4888
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-justice",
@@ -3985,7 +4127,8 @@ const quests = [
     "position": {
       "x": 2044,
       "y": 4988.111328125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-evil-watchman",
@@ -4011,7 +4154,8 @@ const quests = [
     "position": {
       "x": 1308,
       "y": 5754.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-eraser-part-1",
@@ -4037,7 +4181,8 @@ const quests = [
     "position": {
       "x": 1984,
       "y": 5302.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-eraser-part-2",
@@ -4064,7 +4209,8 @@ const quests = [
     "position": {
       "x": 2280,
       "y": 5252.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-sadist",
@@ -4093,7 +4239,8 @@ const quests = [
     "position": {
       "x": 5494,
       "y": 4501.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "ambulance",
@@ -4124,7 +4271,8 @@ const quests = [
     "position": {
       "x": 879,
       "y": 4459.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "shady-business",
@@ -4151,7 +4299,8 @@ const quests = [
     "position": {
       "x": 661,
       "y": 4459.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "nostalgia",
@@ -4179,7 +4328,8 @@ const quests = [
     "position": {
       "x": 2044,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "fishing-place",
@@ -4206,7 +4356,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 4627
-    }
+    },
+    "kappa": true
   },
   {
     "id": "courtesy-visit",
@@ -4235,7 +4386,8 @@ const quests = [
     "position": {
       "x": 1800,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "hunting-trip",
@@ -4263,7 +4415,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 4888
-    }
+    },
+    "kappa": true
   },
   {
     "id": "reserve-quest",
@@ -4292,7 +4445,8 @@ const quests = [
     "position": {
       "x": 1503,
       "y": 5302.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-1",
@@ -4319,7 +4473,8 @@ const quests = [
     "position": {
       "x": 661,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-2",
@@ -4347,7 +4502,8 @@ const quests = [
     "position": {
       "x": 878,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-3",
@@ -4378,7 +4534,8 @@ const quests = [
     "position": {
       "x": 1103,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-4",
@@ -4406,7 +4563,8 @@ const quests = [
     "position": {
       "x": 1321,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-5",
@@ -4433,7 +4591,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-6",
@@ -4460,7 +4619,8 @@ const quests = [
     "position": {
       "x": 1800,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-7",
@@ -4488,7 +4648,8 @@ const quests = [
     "position": {
       "x": 2044,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tarkov-shooter-part-8",
@@ -4516,7 +4677,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 4538
-    }
+    },
+    "kappa": true
   },
   {
     "id": "pest-control",
@@ -4544,7 +4706,8 @@ const quests = [
     "position": {
       "x": 1738,
       "y": 5302.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "swift-one",
@@ -4572,7 +4735,8 @@ const quests = [
     "position": {
       "x": 5742,
       "y": 4501.7779541015625
-    }
+    },
+    "kappa": false
   },
   {
     "id": "huntsman-relentless",
@@ -4611,7 +4775,8 @@ const quests = [
     "position": {
       "x": 3320,
       "y": 5356.111328125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "huntsman-factory-chief",
@@ -4639,7 +4804,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 5697.666748046875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "hunter",
@@ -4664,7 +4830,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 4988.111328125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-hermit",
@@ -4690,7 +4857,8 @@ const quests = [
     "position": {
       "x": 1800,
       "y": 4888
-    }
+    },
+    "kappa": true
   },
   {
     "id": "huntsman-outcasts",
@@ -4715,7 +4883,8 @@ const quests = [
     "position": {
       "x": 1324,
       "y": 5496
-    }
+    },
+    "kappa": true
   },
   {
     "id": "stray-dogs",
@@ -4747,7 +4916,8 @@ const quests = [
     "position": {
       "x": 3320,
       "y": 5498.111328125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-delicious-sausage",
@@ -4778,7 +4948,8 @@ const quests = [
     "position": {
       "x": 1103,
       "y": 4709
-    }
+    },
+    "kappa": true
   },
   {
     "id": "cease-fire",
@@ -4804,7 +4975,8 @@ const quests = [
     "position": {
       "x": 1328,
       "y": 4791
-    }
+    },
+    "kappa": false
   },
   {
     "id": "broadcast-part-3",
@@ -4830,7 +5002,8 @@ const quests = [
     "position": {
       "x": 1059,
       "y": 6057
-    }
+    },
+    "kappa": false
   },
   {
     "id": "broadcast-part-4",
@@ -4857,7 +5030,8 @@ const quests = [
     "position": {
       "x": 1308,
       "y": 6057
-    }
+    },
+    "kappa": false
   },
   {
     "id": "huntsman-administrator",
@@ -4883,7 +5057,8 @@ const quests = [
     "position": {
       "x": 1308,
       "y": 5955
-    }
+    },
+    "kappa": false
   },
   {
     "id": "slaughterhouse",
@@ -4917,7 +5092,8 @@ const quests = [
     "position": {
       "x": 1545,
       "y": 5955
-    }
+    },
+    "kappa": false
   },
   {
     "id": "huntsman-big-game",
@@ -4947,7 +5123,8 @@ const quests = [
     "position": {
       "x": 1308,
       "y": 5661.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "broadcast-part-5",
@@ -4977,7 +5154,8 @@ const quests = [
     "position": {
       "x": 1545,
       "y": 6049
-    }
+    },
+    "kappa": false
   },
   {
     "id": "thirsty-hounds",
@@ -5001,7 +5179,8 @@ const quests = [
     "position": {
       "x": 1328,
       "y": 4709
-    }
+    },
+    "kappa": false
   },
   {
     "id": "every-hunter-knows-this",
@@ -5027,7 +5206,8 @@ const quests = [
     "position": {
       "x": 878,
       "y": 4791
-    }
+    },
+    "kappa": true
   },
   {
     "id": "rough-tarkov",
@@ -5055,7 +5235,8 @@ const quests = [
     "position": {
       "x": 653,
       "y": 4791
-    }
+    },
+    "kappa": true
   },
   {
     "id": "dragnet",
@@ -5085,7 +5266,8 @@ const quests = [
     "position": {
       "x": 4035,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "claustrophobia",
@@ -5112,7 +5294,8 @@ const quests = [
     "position": {
       "x": 406,
       "y": 5069.111328125
-    }
+    },
+    "kappa": true
   },
   {
     "id": "foresters-duty",
@@ -5139,7 +5322,8 @@ const quests = [
     "position": {
       "x": 2303,
       "y": 4709
-    }
+    },
+    "kappa": false
   },
   {
     "id": "work-smarter",
@@ -5166,7 +5350,8 @@ const quests = [
     "position": {
       "x": 653,
       "y": 4627
-    }
+    },
+    "kappa": true
   },
   {
     "id": "rite-of-passage",
@@ -5192,7 +5377,8 @@ const quests = [
     "position": {
       "x": 878,
       "y": 4627
-    }
+    },
+    "kappa": true
   },
   {
     "id": "fishing-gear",
@@ -5223,7 +5409,8 @@ const quests = [
     "position": {
       "x": 2180,
       "y": 2797
-    }
+    },
+    "kappa": true
   },
   {
     "id": "tigr-safari",
@@ -5253,7 +5440,8 @@ const quests = [
     "position": {
       "x": 2405,
       "y": 2797
-    }
+    },
+    "kappa": true
   },
   {
     "id": "scrap-metal",
@@ -5284,7 +5472,8 @@ const quests = [
     "position": {
       "x": 2613,
       "y": 2797
-    }
+    },
+    "kappa": true
   },
   {
     "id": "eagle-eye",
@@ -5316,7 +5505,8 @@ const quests = [
     "position": {
       "x": 2831,
       "y": 2797
-    }
+    },
+    "kappa": true
   },
   {
     "id": "humanitarian-supplies",
@@ -5350,7 +5540,8 @@ const quests = [
     "position": {
       "x": 3055,
       "y": 2797
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-cult-part-1",
@@ -5376,7 +5567,8 @@ const quests = [
     "position": {
       "x": 3284,
       "y": 2749
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-cult-part-2",
@@ -5404,7 +5596,8 @@ const quests = [
     "position": {
       "x": 3565,
       "y": 2749
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-1",
@@ -5432,7 +5625,8 @@ const quests = [
     "position": {
       "x": 3284,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-2",
@@ -5460,7 +5654,8 @@ const quests = [
     "position": {
       "x": 3565,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-3",
@@ -5495,7 +5690,8 @@ const quests = [
     "position": {
       "x": 3804,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-4",
@@ -5522,7 +5718,8 @@ const quests = [
     "position": {
       "x": 4035,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-5",
@@ -5548,7 +5745,8 @@ const quests = [
     "position": {
       "x": 4268,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-6",
@@ -5571,7 +5769,8 @@ const quests = [
     "position": {
       "x": 4502,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "spa-tour-part-7",
@@ -5604,7 +5803,8 @@ const quests = [
     "position": {
       "x": 4741,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "cargo-x-part-1",
@@ -5632,7 +5832,8 @@ const quests = [
     "position": {
       "x": 5010,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "cargo-x-part-2",
@@ -5661,7 +5862,8 @@ const quests = [
     "position": {
       "x": 5267,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "cargo-x-part-3",
@@ -5687,7 +5889,8 @@ const quests = [
     "position": {
       "x": 5512,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "wet-job-part-1",
@@ -5713,7 +5916,8 @@ const quests = [
     "position": {
       "x": 5010,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "wet-job-part-2",
@@ -5742,7 +5946,8 @@ const quests = [
     "position": {
       "x": 5267,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "wet-job-part-3",
@@ -5769,7 +5974,8 @@ const quests = [
     "position": {
       "x": 5504,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "wet-job-part-4",
@@ -5796,7 +6002,8 @@ const quests = [
     "position": {
       "x": 5736,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "wet-job-part-5",
@@ -5824,7 +6031,8 @@ const quests = [
     "position": {
       "x": 5971,
       "y": 3035
-    }
+    },
+    "kappa": true
   },
   {
     "id": "wet-job-part-6",
@@ -5852,7 +6060,8 @@ const quests = [
     "position": {
       "x": 6230,
       "y": 3035
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-guide",
@@ -5892,7 +6101,8 @@ const quests = [
     "position": {
       "x": 6466,
       "y": 3035
-    }
+    },
+    "kappa": true
   },
   {
     "id": "peacekeeping-mission",
@@ -5924,7 +6134,8 @@ const quests = [
     "position": {
       "x": 4432,
       "y": 3212
-    }
+    },
+    "kappa": true
   },
   {
     "id": "lend-lease-part-2",
@@ -5957,7 +6168,8 @@ const quests = [
     "position": {
       "x": 4190,
       "y": 3212
-    }
+    },
+    "kappa": true
   },
   {
     "id": "mentor",
@@ -5982,7 +6194,8 @@ const quests = [
     "position": {
       "x": 6230,
       "y": 2934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "samples",
@@ -6026,7 +6239,8 @@ const quests = [
     "position": {
       "x": 3589,
       "y": 3315.3333740234375
-    }
+    },
+    "kappa": true
   },
   {
     "id": "terragroup-employee",
@@ -6058,7 +6272,8 @@ const quests = [
     "position": {
       "x": 3823,
       "y": 3315.3333740234375
-    }
+    },
+    "kappa": true
   },
   {
     "id": "revision-reserve",
@@ -6096,7 +6311,8 @@ const quests = [
     "position": {
       "x": 3284,
       "y": 3020
-    }
+    },
+    "kappa": true
   },
   {
     "id": "revision-lighthouse",
@@ -6125,7 +6341,8 @@ const quests = [
     "position": {
       "x": 3565,
       "y": 3121
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-cleaner",
@@ -6152,7 +6369,8 @@ const quests = [
     "position": {
       "x": 6690,
       "y": 3035
-    }
+    },
+    "kappa": false
   },
   {
     "id": "classified-technologies",
@@ -6179,7 +6397,8 @@ const quests = [
     "position": {
       "x": 3565,
       "y": 3212
-    }
+    },
+    "kappa": true
   },
   {
     "id": "special-equipment",
@@ -6214,7 +6433,8 @@ const quests = [
     "position": {
       "x": 4432,
       "y": 3121
-    }
+    },
+    "kappa": false
   },
   {
     "id": "cargo-x-part-4",
@@ -6241,7 +6461,8 @@ const quests = [
     "position": {
       "x": 5736,
       "y": 2838
-    }
+    },
+    "kappa": true
   },
   {
     "id": "insomnia",
@@ -6271,7 +6492,8 @@ const quests = [
     "position": {
       "x": 5971,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "counteraction",
@@ -6302,7 +6524,8 @@ const quests = [
     "position": {
       "x": 4035,
       "y": 2749
-    }
+    },
+    "kappa": false
   },
   {
     "id": "overpopulation",
@@ -6329,7 +6552,8 @@ const quests = [
     "position": {
       "x": 3565,
       "y": 2934
-    }
+    },
+    "kappa": true
   },
   {
     "id": "trophies",
@@ -6358,7 +6582,8 @@ const quests = [
     "position": {
       "x": 4190,
       "y": 3121
-    }
+    },
+    "kappa": false
   },
   {
     "id": "revision-streets-of-tarkov",
@@ -6387,7 +6612,8 @@ const quests = [
     "position": {
       "x": 3565,
       "y": 3020
-    }
+    },
+    "kappa": false
   },
   {
     "id": "road-closed",
@@ -6416,7 +6642,8 @@ const quests = [
     "position": {
       "x": 5010,
       "y": 3020
-    }
+    },
+    "kappa": false
   },
   {
     "id": "worst-job-in-the-world",
@@ -6442,7 +6669,8 @@ const quests = [
     "position": {
       "x": 6230,
       "y": 3134
-    }
+    },
+    "kappa": false
   },
   {
     "id": "your-car-needs-a-service",
@@ -6468,7 +6696,8 @@ const quests = [
     "position": {
       "x": 5971,
       "y": 2838
-    }
+    },
+    "kappa": false
   },
   {
     "id": "one-less-loose-end",
@@ -6497,7 +6726,8 @@ const quests = [
     "position": {
       "x": 3804,
       "y": 2934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "new-day-new-paths",
@@ -6526,7 +6756,8 @@ const quests = [
     "position": {
       "x": 3897,
       "y": 3121
-    }
+    },
+    "kappa": false
   },
   {
     "id": "seizing-the-initiative",
@@ -6552,7 +6783,8 @@ const quests = [
     "position": {
       "x": 3284,
       "y": 2934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "confidential-info",
@@ -6582,7 +6814,8 @@ const quests = [
     "position": {
       "x": 3786,
       "y": 3212
-    }
+    },
+    "kappa": false
   },
   {
     "id": "shortage",
@@ -6605,7 +6838,8 @@ const quests = [
     "position": {
       "x": 326,
       "y": 301
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sanitary-standards-1",
@@ -6630,7 +6864,8 @@ const quests = [
     "position": {
       "x": 584,
       "y": 301
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sanitary-standards-2",
@@ -6655,7 +6890,8 @@ const quests = [
     "position": {
       "x": 829,
       "y": 301
-    }
+    },
+    "kappa": true
   },
   {
     "id": "painkiller",
@@ -6680,7 +6916,8 @@ const quests = [
     "position": {
       "x": 1059,
       "y": 301
-    }
+    },
+    "kappa": true
   },
   {
     "id": "pharmacist",
@@ -6705,7 +6942,8 @@ const quests = [
     "position": {
       "x": 1328,
       "y": 301
-    }
+    },
+    "kappa": true
   },
   {
     "id": "operation-aquarius-1",
@@ -6730,7 +6968,8 @@ const quests = [
     "position": {
       "x": 584,
       "y": 215
-    }
+    },
+    "kappa": false
   },
   {
     "id": "operation-aquarius-2",
@@ -6754,7 +6993,8 @@ const quests = [
     "position": {
       "x": 829,
       "y": 215
-    }
+    },
+    "kappa": false
   },
   {
     "id": "supply-plans",
@@ -6780,7 +7020,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 122
-    }
+    },
+    "kappa": false
   },
   {
     "id": "general-wares",
@@ -6805,7 +7046,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 208
-    }
+    },
+    "kappa": true
   },
   {
     "id": "car-repair",
@@ -6831,7 +7073,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 394
-    }
+    },
+    "kappa": true
   },
   {
     "id": "health-care-privacy-1",
@@ -6856,7 +7099,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 483
-    }
+    },
+    "kappa": true
   },
   {
     "id": "health-care-privacy-2",
@@ -6882,7 +7126,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 483
-    }
+    },
+    "kappa": true
   },
   {
     "id": "health-care-privacy-3",
@@ -6908,7 +7153,8 @@ const quests = [
     "position": {
       "x": 2021,
       "y": 483
-    }
+    },
+    "kappa": false
   },
   {
     "id": "health-care-privacy-4",
@@ -6931,7 +7177,8 @@ const quests = [
     "position": {
       "x": 2242,
       "y": 483
-    }
+    },
+    "kappa": true
   },
   {
     "id": "health-care-privacy-5",
@@ -6957,7 +7204,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 483
-    }
+    },
+    "kappa": true
   },
   {
     "id": "health-care-privacy-6",
@@ -6983,7 +7231,8 @@ const quests = [
     "position": {
       "x": 2801,
       "y": 483
-    }
+    },
+    "kappa": true
   },
   {
     "id": "postman-pat-2",
@@ -7008,7 +7257,8 @@ const quests = [
     "position": {
       "x": 801,
       "y": 523
-    }
+    },
+    "kappa": true
   },
   {
     "id": "out-of-curiosity",
@@ -7035,7 +7285,8 @@ const quests = [
     "position": {
       "x": 3662,
       "y": 1649.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "trust-regain",
@@ -7060,7 +7311,8 @@ const quests = [
     "position": {
       "x": 3933,
       "y": 1649.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "athlete",
@@ -7084,7 +7336,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 372
-    }
+    },
+    "kappa": true
   },
   {
     "id": "decontamination-service",
@@ -7109,7 +7362,8 @@ const quests = [
     "position": {
       "x": 2801,
       "y": 372
-    }
+    },
+    "kappa": true
   },
   {
     "id": "private-clinic",
@@ -7137,7 +7391,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 694
-    }
+    },
+    "kappa": true
   },
   {
     "id": "an-apple-a-day",
@@ -7161,7 +7416,8 @@ const quests = [
     "position": {
       "x": 2517,
       "y": 604
-    }
+    },
+    "kappa": false
   },
   {
     "id": "colleagues-1",
@@ -7187,7 +7443,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 208
-    }
+    },
+    "kappa": true
   },
   {
     "id": "colleagues-2",
@@ -7212,7 +7469,8 @@ const quests = [
     "position": {
       "x": 2023,
       "y": 208
-    }
+    },
+    "kappa": true
   },
   {
     "id": "colleagues-3",
@@ -7239,7 +7497,8 @@ const quests = [
     "position": {
       "x": 2247,
       "y": 208
-    }
+    },
+    "kappa": false
   },
   {
     "id": "disease-history",
@@ -7265,7 +7524,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 588
-    }
+    },
+    "kappa": true
   },
   {
     "id": "crisis",
@@ -7294,7 +7554,8 @@ const quests = [
     "position": {
       "x": 2801,
       "y": 694
-    }
+    },
+    "kappa": true
   },
   {
     "id": "seaside-vacation",
@@ -7319,7 +7580,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 588
-    }
+    },
+    "kappa": true
   },
   {
     "id": "lost-contact",
@@ -7344,7 +7606,8 @@ const quests = [
     "position": {
       "x": 2021,
       "y": 588
-    }
+    },
+    "kappa": true
   },
   {
     "id": "drug-trafficking",
@@ -7373,7 +7636,8 @@ const quests = [
     "position": {
       "x": 2242,
       "y": 588
-    }
+    },
+    "kappa": true
   },
   {
     "id": "population-census",
@@ -7400,7 +7664,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 301
-    }
+    },
+    "kappa": false
   },
   {
     "id": "dangerous-road",
@@ -7427,7 +7692,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 122
-    }
+    },
+    "kappa": false
   },
   {
     "id": "urban-medicine",
@@ -7455,7 +7721,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 394
-    }
+    },
+    "kappa": false
   },
   {
     "id": "pets-wont-need-it-1",
@@ -7484,7 +7751,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 301
-    }
+    },
+    "kappa": false
   },
   {
     "id": "pets-wont-need-it-2",
@@ -7515,7 +7783,8 @@ const quests = [
     "position": {
       "x": 2021,
       "y": 301
-    }
+    },
+    "kappa": false
   },
   {
     "id": "ambulances-again",
@@ -7544,7 +7813,8 @@ const quests = [
     "position": {
       "x": 2021,
       "y": 394
-    }
+    },
+    "kappa": false
   },
   {
     "id": "first-in-line",
@@ -7567,7 +7837,8 @@ const quests = [
     "position": {
       "x": 326,
       "y": 394
-    }
+    },
+    "kappa": true
   },
   {
     "id": "quality-standard",
@@ -7594,7 +7865,8 @@ const quests = [
     "position": {
       "x": 1250,
       "y": 523
-    }
+    },
+    "kappa": false
   },
   {
     "id": "thirsty-echo",
@@ -7622,7 +7894,8 @@ const quests = [
     "position": {
       "x": 3043,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "burning-rubber",
@@ -7644,7 +7917,8 @@ const quests = [
     "position": {
       "x": 364,
       "y": 1647
-    }
+    },
+    "kappa": true
   },
   {
     "id": "supplier",
@@ -7670,7 +7944,8 @@ const quests = [
     "position": {
       "x": 580,
       "y": 1647
-    }
+    },
+    "kappa": true
   },
   {
     "id": "the-extortionist",
@@ -7697,7 +7972,8 @@ const quests = [
     "position": {
       "x": 795,
       "y": 1647
-    }
+    },
+    "kappa": true
   },
   {
     "id": "agitation",
@@ -7723,7 +7999,8 @@ const quests = [
     "position": {
       "x": 1011,
       "y": 1647
-    }
+    },
+    "kappa": true
   },
   {
     "id": "whats-on-the-flash-drive",
@@ -7749,7 +8026,8 @@ const quests = [
     "position": {
       "x": 1011,
       "y": 1734.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "bling-bling",
@@ -7775,7 +8053,8 @@ const quests = [
     "position": {
       "x": 1283,
       "y": 1734.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "chemical-part-1",
@@ -7802,7 +8081,8 @@ const quests = [
     "position": {
       "x": 2242,
       "y": 1734.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "chemical-part-2",
@@ -7827,7 +8107,8 @@ const quests = [
     "position": {
       "x": 2547,
       "y": 1734.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "chemical-part-3",
@@ -7852,7 +8133,8 @@ const quests = [
     "position": {
       "x": 2767,
       "y": 1734.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "chemical-part-4",
@@ -7876,7 +8158,8 @@ const quests = [
     "position": {
       "x": 2977,
       "y": 1734.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "loyalty-buyout",
@@ -7898,7 +8181,8 @@ const quests = [
     "position": {
       "x": 3933,
       "y": 1771.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "vitamins-part-1",
@@ -7927,7 +8211,8 @@ const quests = [
     "position": {
       "x": 3198,
       "y": 1859.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "vitamins-part-2",
@@ -7954,7 +8239,8 @@ const quests = [
     "position": {
       "x": 3432,
       "y": 1859.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "friend-from-the-west-1",
@@ -7980,7 +8266,8 @@ const quests = [
     "position": {
       "x": 774,
       "y": 2223
-    }
+    },
+    "kappa": true
   },
   {
     "id": "friend-from-the-west-2",
@@ -8004,7 +8291,8 @@ const quests = [
     "position": {
       "x": 1020,
       "y": 2223
-    }
+    },
+    "kappa": true
   },
   {
     "id": "knowledge-is-power",
@@ -8033,7 +8321,8 @@ const quests = [
     "position": {
       "x": 1249,
       "y": 2223
-    }
+    },
+    "kappa": true
   },
   {
     "id": "baiting",
@@ -8062,7 +8351,8 @@ const quests = [
     "position": {
       "x": 1490,
       "y": 2223
-    }
+    },
+    "kappa": true
   },
   {
     "id": "silent-caliber",
@@ -8089,7 +8379,8 @@ const quests = [
     "position": {
       "x": 1756,
       "y": 2223
-    }
+    },
+    "kappa": false
   },
   {
     "id": "bullshit",
@@ -8121,7 +8412,8 @@ const quests = [
     "position": {
       "x": 2021,
       "y": 2223
-    }
+    },
+    "kappa": false
   },
   {
     "id": "setup",
@@ -8148,7 +8440,8 @@ const quests = [
     "position": {
       "x": 2268,
       "y": 2223
-    }
+    },
+    "kappa": true
   },
   {
     "id": "hardening",
@@ -8175,7 +8468,8 @@ const quests = [
     "position": {
       "x": 1756,
       "y": 1993
-    }
+    },
+    "kappa": false
   },
   {
     "id": "lend-lease-1",
@@ -8204,7 +8498,8 @@ const quests = [
     "position": {
       "x": 1256,
       "y": 2128
-    }
+    },
+    "kappa": true
   },
   {
     "id": "kind-of-sabotage",
@@ -8232,7 +8527,8 @@ const quests = [
     "position": {
       "x": 1568,
       "y": 17
-    }
+    },
+    "kappa": false
   },
   {
     "id": "rigged-game",
@@ -8260,7 +8556,8 @@ const quests = [
     "position": {
       "x": 5279,
       "y": 4501.7779541015625
-    }
+    },
+    "kappa": true
   },
   {
     "id": "secure-corridor",
@@ -8291,7 +8588,8 @@ const quests = [
     "position": {
       "x": 3933,
       "y": 1417.7778091430664
-    }
+    },
+    "kappa": true
   },
   {
     "id": "night-sweep",
@@ -8317,7 +8615,8 @@ const quests = [
     "position": {
       "x": 5494,
       "y": 4591.555908203125
-    }
+    },
+    "kappa": false
   },
   {
     "id": "private-club",
@@ -8344,7 +8643,8 @@ const quests = [
     "position": {
       "x": 1756,
       "y": 2144
-    }
+    },
+    "kappa": true
   },
   {
     "id": "long-road",
@@ -8369,7 +8669,8 @@ const quests = [
     "position": {
       "x": 1243,
       "y": 2315
-    }
+    },
+    "kappa": true
   },
   {
     "id": "missing-cargo",
@@ -8398,7 +8699,8 @@ const quests = [
     "position": {
       "x": 1484,
       "y": 2315
-    }
+    },
+    "kappa": true
   },
   {
     "id": "top-secret",
@@ -8427,7 +8729,8 @@ const quests = [
     "position": {
       "x": 1750,
       "y": 2315
-    }
+    },
+    "kappa": false
   },
   {
     "id": "house-arrest-part-1",
@@ -8453,7 +8756,8 @@ const quests = [
     "position": {
       "x": 1865,
       "y": 1859.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "house-arrest-part-2",
@@ -8480,7 +8784,8 @@ const quests = [
     "position": {
       "x": 2117,
       "y": 1859.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "debtor",
@@ -8505,7 +8810,8 @@ const quests = [
     "position": {
       "x": 1619,
       "y": 1859.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "walls-have-eyes",
@@ -8534,7 +8840,8 @@ const quests = [
     "position": {
       "x": 4044,
       "y": 6373.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "exit-here",
@@ -8559,7 +8866,8 @@ const quests = [
     "position": {
       "x": 3823,
       "y": 6373.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "beyond-red-meat-part-1",
@@ -8589,7 +8897,8 @@ const quests = [
     "position": {
       "x": 3662,
       "y": 1949.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "beyond-red-meat-part-2",
@@ -8619,7 +8928,8 @@ const quests = [
     "position": {
       "x": 3897,
       "y": 1949.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "pyramid-scheme",
@@ -8644,7 +8954,8 @@ const quests = [
     "position": {
       "x": 3667,
       "y": 1859.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "stop-chipping",
@@ -8674,7 +8985,8 @@ const quests = [
     "position": {
       "x": 1756,
       "y": 2069
-    }
+    },
+    "kappa": false
   },
   {
     "id": "irresistible",
@@ -8701,7 +9013,8 @@ const quests = [
     "position": {
       "x": 2021,
       "y": 1993
-    }
+    },
+    "kappa": false
   },
   {
     "id": "dangerous-accessories",
@@ -8726,7 +9039,8 @@ const quests = [
     "position": {
       "x": 2268,
       "y": 1993
-    }
+    },
+    "kappa": false
   },
   {
     "id": "northern-connections",
@@ -8754,7 +9068,8 @@ const quests = [
     "position": {
       "x": 2831,
       "y": 3982
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-bigger-they-are",
@@ -8780,7 +9095,8 @@ const quests = [
     "position": {
       "x": 885,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "easy-money-part-1",
@@ -8804,7 +9120,8 @@ const quests = [
     "position": {
       "x": 586,
       "y": 1555
-    }
+    },
+    "kappa": false
   },
   {
     "id": "a-moment-of-glory",
@@ -8832,7 +9149,8 @@ const quests = [
     "position": {
       "x": 3884,
       "y": 2048.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "serious-allegations",
@@ -8858,7 +9176,8 @@ const quests = [
     "position": {
       "x": 1011,
       "y": 1836
-    }
+    },
+    "kappa": false
   },
   {
     "id": "proper-comeback",
@@ -8884,7 +9203,8 @@ const quests = [
     "position": {
       "x": 2308,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "thirsty-breadwinner",
@@ -8910,7 +9230,8 @@ const quests = [
     "position": {
       "x": 2562,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "thirsty-delivery",
@@ -8938,7 +9259,8 @@ const quests = [
     "position": {
       "x": 2801,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "bypass",
@@ -8970,7 +9292,8 @@ const quests = [
     "position": {
       "x": 1120,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "20-20-retrospective",
@@ -8998,7 +9321,8 @@ const quests = [
     "position": {
       "x": 1356,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "key-partner",
@@ -9023,7 +9347,8 @@ const quests = [
     "position": {
       "x": 1596,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "shock-argument",
@@ -9051,7 +9376,8 @@ const quests = [
     "position": {
       "x": 1837,
       "y": 1492.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "choosing-the-right-friends",
@@ -9081,7 +9407,8 @@ const quests = [
     "position": {
       "x": 2771,
       "y": 8034.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "unquestionable-authority",
@@ -9109,7 +9436,8 @@ const quests = [
     "position": {
       "x": 889,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "profitable-venture",
@@ -9135,7 +9463,8 @@ const quests = [
     "position": {
       "x": 1124,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "safety-guarantee",
@@ -9162,7 +9491,8 @@ const quests = [
     "position": {
       "x": 1359,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "never-too-late-to-learn",
@@ -9189,7 +9519,8 @@ const quests = [
     "position": {
       "x": 1599,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "get-a-foothold",
@@ -9221,7 +9552,8 @@ const quests = [
     "position": {
       "x": 1840,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "profit-retention",
@@ -9248,7 +9580,8 @@ const quests = [
     "position": {
       "x": 2087,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "a-life-lesson",
@@ -9276,7 +9609,8 @@ const quests = [
     "position": {
       "x": 2318,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "consolation-prize",
@@ -9316,7 +9650,8 @@ const quests = [
     "position": {
       "x": 2562,
       "y": 1374.7778091430664
-    }
+    },
+    "kappa": false
   },
   {
     "id": "only-business",
@@ -9339,7 +9674,8 @@ const quests = [
     "position": {
       "x": 299,
       "y": 7316
-    }
+    },
+    "kappa": true
   },
   {
     "id": "make-ultra-great-again",
@@ -9365,7 +9701,8 @@ const quests = [
     "position": {
       "x": 557,
       "y": 7277
-    }
+    },
+    "kappa": true
   },
   {
     "id": "big-sale",
@@ -9395,7 +9732,8 @@ const quests = [
     "position": {
       "x": 557,
       "y": 7384
-    }
+    },
+    "kappa": true
   },
   {
     "id": "blood-of-war-1",
@@ -9423,7 +9761,8 @@ const quests = [
     "position": {
       "x": 789,
       "y": 6756.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "blood-of-war-2",
@@ -9451,7 +9790,8 @@ const quests = [
     "position": {
       "x": 1048,
       "y": 6857.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "blood-of-war-3",
@@ -9480,7 +9820,8 @@ const quests = [
     "position": {
       "x": 1288,
       "y": 6857.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "dressed-to-kill",
@@ -9509,7 +9850,8 @@ const quests = [
     "position": {
       "x": 1048,
       "y": 6974.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "gratitude",
@@ -9541,7 +9883,8 @@ const quests = [
     "position": {
       "x": 1288,
       "y": 6974.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sales-night",
@@ -9568,7 +9911,8 @@ const quests = [
     "position": {
       "x": 1534,
       "y": 6974.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "hot-delivery",
@@ -9596,7 +9940,8 @@ const quests = [
     "position": {
       "x": 1534,
       "y": 7066.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "database-part-1",
@@ -9630,7 +9975,8 @@ const quests = [
     "position": {
       "x": 789,
       "y": 7182
-    }
+    },
+    "kappa": true
   },
   {
     "id": "database-part-2",
@@ -9657,7 +10003,8 @@ const quests = [
     "position": {
       "x": 1061,
       "y": 7182
-    }
+    },
+    "kappa": true
   },
   {
     "id": "minibus",
@@ -9686,7 +10033,8 @@ const quests = [
     "position": {
       "x": 1301,
       "y": 7332
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sew-it-good-part-1",
@@ -9716,7 +10064,8 @@ const quests = [
     "position": {
       "x": 1301,
       "y": 7245
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sew-it-good-part-2",
@@ -9745,7 +10094,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7245
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sew-it-good-part-3",
@@ -9772,7 +10122,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 7245
-    }
+    },
+    "kappa": true
   },
   {
     "id": "sew-it-good-part-4",
@@ -9800,7 +10151,8 @@ const quests = [
     "position": {
       "x": 2048,
       "y": 7245
-    }
+    },
+    "kappa": true
   },
   {
     "id": "textile-part-1",
@@ -9829,7 +10181,8 @@ const quests = [
     "position": {
       "x": 2365,
       "y": 7208
-    }
+    },
+    "kappa": false
   },
   {
     "id": "textile-part-2",
@@ -9859,7 +10212,8 @@ const quests = [
     "position": {
       "x": 2618,
       "y": 7208
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-key-to-success",
@@ -9888,7 +10242,8 @@ const quests = [
     "position": {
       "x": 2365,
       "y": 7295
-    }
+    },
+    "kappa": true
   },
   {
     "id": "living-high-is-not-a-crime-part-1",
@@ -9917,7 +10272,8 @@ const quests = [
     "position": {
       "x": 2618,
       "y": 7295
-    }
+    },
+    "kappa": true
   },
   {
     "id": "living-high-is-not-a-crime-part-2",
@@ -9945,7 +10301,8 @@ const quests = [
     "position": {
       "x": 2840,
       "y": 7295
-    }
+    },
+    "kappa": true
   },
   {
     "id": "charisma-brings-success",
@@ -9970,7 +10327,8 @@ const quests = [
     "position": {
       "x": 3080,
       "y": 7295
-    }
+    },
+    "kappa": true
   },
   {
     "id": "no-fuss-needed",
@@ -9998,7 +10356,8 @@ const quests = [
     "position": {
       "x": 2618,
       "y": 7410
-    }
+    },
+    "kappa": true
   },
   {
     "id": "supervisor",
@@ -10026,7 +10385,8 @@ const quests = [
     "position": {
       "x": 1301,
       "y": 7166.777809143066
-    }
+    },
+    "kappa": true
   },
   {
     "id": "scavenger",
@@ -10051,7 +10411,8 @@ const quests = [
     "position": {
       "x": 1795,
       "y": 7066.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "inventory-check",
@@ -10082,7 +10443,8 @@ const quests = [
     "position": {
       "x": 1288,
       "y": 6756.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "a-fuel-matter",
@@ -10109,7 +10471,8 @@ const quests = [
     "position": {
       "x": 1048,
       "y": 6756.778076171875
-    }
+    },
+    "kappa": true
   },
   {
     "id": "long-line",
@@ -10133,7 +10496,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7166.777809143066
-    }
+    },
+    "kappa": false
   },
   {
     "id": "booze",
@@ -10165,7 +10529,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 7166.777809143066
-    }
+    },
+    "kappa": false
   },
   {
     "id": "audit",
@@ -10191,7 +10556,8 @@ const quests = [
     "position": {
       "x": 557,
       "y": 7478.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "audiophile",
@@ -10221,7 +10587,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7422
-    }
+    },
+    "kappa": false
   },
   {
     "id": "ballet-lover",
@@ -10248,7 +10615,8 @@ const quests = [
     "position": {
       "x": 814,
       "y": 7478.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "dandies",
@@ -10276,7 +10644,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7498.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "nothing-fishy-about-this",
@@ -10302,7 +10671,8 @@ const quests = [
     "position": {
       "x": 802,
       "y": 7384
-    }
+    },
+    "kappa": false
   },
   {
     "id": "drip-out-part-1",
@@ -10327,7 +10697,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7332
-    }
+    },
+    "kappa": false
   },
   {
     "id": "drip-out-part-2",
@@ -10352,7 +10723,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 7498.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "the-invisible-hand",
@@ -10377,7 +10749,8 @@ const quests = [
     "position": {
       "x": 557,
       "y": 7592.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "circulate",
@@ -10402,7 +10775,8 @@ const quests = [
     "position": {
       "x": 802,
       "y": 7592.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "special-offer",
@@ -10437,7 +10811,8 @@ const quests = [
     "position": {
       "x": 1061,
       "y": 7592.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "combat-proven",
@@ -10464,7 +10839,8 @@ const quests = [
     "position": {
       "x": 1301,
       "y": 7592.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "old-patterns",
@@ -10487,7 +10863,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7592.666748046875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "key-to-the-city",
@@ -10513,7 +10890,8 @@ const quests = [
     "position": {
       "x": 2562,
       "y": 1582.5556182861328
-    }
+    },
+    "kappa": false
   },
   {
     "id": "know-your-place",
@@ -10540,7 +10918,8 @@ const quests = [
     "position": {
       "x": 1528,
       "y": 6857.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "break-the-deal",
@@ -10568,7 +10947,8 @@ const quests = [
     "position": {
       "x": 789,
       "y": 7277
-    }
+    },
+    "kappa": true
   },
   {
     "id": "another-shipping-delay",
@@ -10597,7 +10977,8 @@ const quests = [
     "position": {
       "x": 1301,
       "y": 7679
-    }
+    },
+    "kappa": false
   },
   {
     "id": "stabilize-business",
@@ -10624,7 +11005,8 @@ const quests = [
     "position": {
       "x": 1541,
       "y": 7679
-    }
+    },
+    "kappa": false
   },
   {
     "id": "new-beginning-prestige-1",
@@ -10651,7 +11033,8 @@ const quests = [
     "position": {
       "x": 1797,
       "y": 7679
-    }
+    },
+    "kappa": false
   },
   {
     "id": "new-beginning-prestige-2",
@@ -10678,7 +11061,8 @@ const quests = [
     "position": {
       "x": 2048,
       "y": 7679
-    }
+    },
+    "kappa": false
   },
   {
     "id": "new-beginning-prestige-3",
@@ -10706,7 +11090,8 @@ const quests = [
     "position": {
       "x": 2296,
       "y": 7679
-    }
+    },
+    "kappa": false
   },
   {
     "id": "new-beginning-prestige-4",
@@ -10745,7 +11130,8 @@ const quests = [
     "position": {
       "x": 2529,
       "y": 7679
-    }
+    },
+    "kappa": false
   },
   {
     "id": "sensory-analysis-part-1",
@@ -10773,7 +11159,8 @@ const quests = [
     "position": {
       "x": 2771,
       "y": 7905
-    }
+    },
+    "kappa": false
   },
   {
     "id": "hot-zone",
@@ -10802,7 +11189,8 @@ const quests = [
     "position": {
       "x": 3258,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": false
   },
   {
     "id": "vacate-the-premises",
@@ -10828,7 +11216,8 @@ const quests = [
     "position": {
       "x": 774,
       "y": 7770
-    }
+    },
+    "kappa": false
   },
   {
     "id": "easy-money-part-2",
@@ -10853,7 +11242,8 @@ const quests = [
     "position": {
       "x": 811,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "provide-viewership",
@@ -10886,7 +11276,8 @@ const quests = [
     "position": {
       "x": 1026,
       "y": 987
-    }
+    },
+    "kappa": false
   },
   {
     "id": "balancing-part-1",
@@ -10915,7 +11306,8 @@ const quests = [
     "position": {
       "x": 1026,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "balancing-part-2",
@@ -10940,7 +11332,8 @@ const quests = [
     "position": {
       "x": 1261,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "surprise",
@@ -10965,7 +11358,8 @@ const quests = [
     "position": {
       "x": 1490,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "create-a-distraction-part-1",
@@ -10992,7 +11386,8 @@ const quests = [
     "position": {
       "x": 1721,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "create-a-distraction-part-2",
@@ -11019,7 +11414,8 @@ const quests = [
     "position": {
       "x": 1972,
       "y": 825
-    }
+    },
+    "kappa": false
   },
   {
     "id": "to-great-heights-part-1",
@@ -11047,7 +11443,8 @@ const quests = [
     "position": {
       "x": 1256,
       "y": 987
-    }
+    },
+    "kappa": false
   },
   {
     "id": "to-great-heights-part-2",
@@ -11074,7 +11471,8 @@ const quests = [
     "position": {
       "x": 1490,
       "y": 987
-    }
+    },
+    "kappa": false
   },
   {
     "id": "to-great-heights-part-3",
@@ -11101,7 +11499,8 @@ const quests = [
     "position": {
       "x": 1721,
       "y": 987
-    }
+    },
+    "kappa": false
   },
   {
     "id": "to-great-heights-part-4",
@@ -11132,7 +11531,8 @@ const quests = [
     "position": {
       "x": 1953,
       "y": 987
-    }
+    },
+    "kappa": false
   },
   {
     "id": "to-great-heights-part-5",
@@ -11157,7 +11557,8 @@ const quests = [
     "position": {
       "x": 2186,
       "y": 987
-    }
+    },
+    "kappa": false
   },
   {
     "id": "against-the-conscience-part-1",
@@ -11188,7 +11589,8 @@ const quests = [
     "position": {
       "x": 2448,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "against-the-conscience-part-2",
@@ -11215,7 +11617,8 @@ const quests = [
     "position": {
       "x": 2708,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "decisions-decisions",
@@ -11242,7 +11645,8 @@ const quests = [
     "position": {
       "x": 1256,
       "y": 785
-    }
+    },
+    "kappa": false
   },
   {
     "id": "postponed-reward",
@@ -11265,7 +11669,8 @@ const quests = [
     "position": {
       "x": 3214,
       "y": 904
-    }
+    },
+    "kappa": false
   },
   {
     "id": "shipping-delay-part-2",
@@ -11292,7 +11697,8 @@ const quests = [
     "position": {
       "x": 428,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "hot-wheels",
@@ -11316,7 +11722,8 @@ const quests = [
     "position": {
       "x": 661,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "hot-wheels-lets-try-again",
@@ -11339,7 +11746,8 @@ const quests = [
     "position": {
       "x": 900,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "swift-retribution",
@@ -11362,7 +11770,8 @@ const quests = [
     "position": {
       "x": 900,
       "y": 8049
-    }
+    },
+    "kappa": null
   },
   {
     "id": "inevitable-response",
@@ -11387,7 +11796,8 @@ const quests = [
     "position": {
       "x": 1139,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "building-foundations",
@@ -11414,7 +11824,8 @@ const quests = [
     "position": {
       "x": 1373,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "natural-exchange",
@@ -11440,7 +11851,8 @@ const quests = [
     "position": {
       "x": 1619,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "ask-for-directions",
@@ -11469,7 +11881,8 @@ const quests = [
     "position": {
       "x": 1850,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "battery-change",
@@ -11497,7 +11910,8 @@ const quests = [
     "position": {
       "x": 2087,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "protect-the-sky",
@@ -11525,7 +11939,8 @@ const quests = [
     "position": {
       "x": 2311,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "discombobulate",
@@ -11548,7 +11963,8 @@ const quests = [
     "position": {
       "x": 2535,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "the-price-of-independence",
@@ -11571,7 +11987,8 @@ const quests = [
     "position": {
       "x": 2771,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "sensory-analysis-part-2",
@@ -11595,7 +12012,8 @@ const quests = [
     "position": {
       "x": 3024,
       "y": 8134.778076171875
-    }
+    },
+    "kappa": null
   },
   {
     "id": "information-source",
@@ -11625,7 +12043,8 @@ const quests = [
     "position": {
       "x": 3748,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "missing-informant",
@@ -11651,7 +12070,8 @@ const quests = [
     "position": {
       "x": 3979,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "snatch",
@@ -11680,7 +12100,8 @@ const quests = [
     "position": {
       "x": 4213,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "return-the-favor",
@@ -11705,7 +12126,8 @@ const quests = [
     "position": {
       "x": 4449,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "payback",
@@ -11733,7 +12155,8 @@ const quests = [
     "position": {
       "x": 4669,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "provocation",
@@ -11762,7 +12185,8 @@ const quests = [
     "position": {
       "x": 4909,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "following-the-bread-crumbs",
@@ -11790,7 +12214,8 @@ const quests = [
     "position": {
       "x": 5153,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "spotter",
@@ -11818,7 +12243,8 @@ const quests = [
     "position": {
       "x": 5393,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "make-an-impression",
@@ -11844,7 +12270,8 @@ const quests = [
     "position": {
       "x": 5629,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "trouble-in-the-big-city",
@@ -11875,7 +12302,8 @@ const quests = [
     "position": {
       "x": 5850,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "simple-side-job",
@@ -11901,7 +12329,8 @@ const quests = [
     "position": {
       "x": 6083,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "order-from-outside",
@@ -11927,7 +12356,8 @@ const quests = [
     "position": {
       "x": 1373,
       "y": 8049
-    }
+    },
+    "kappa": false
   },
   {
     "id": "keepers-word",
@@ -11955,7 +12385,8 @@ const quests = [
     "position": {
       "x": 3494,
       "y": 7613.222190856934
-    }
+    },
+    "kappa": false
   },
   {
     "id": "surprise-gift",
@@ -11981,6 +12412,7 @@ const quests = [
     "position": {
       "x": 2965,
       "y": 904
-    }
+    },
+    "kappa": false
   }
 ];
