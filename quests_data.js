@@ -6869,7 +6869,7 @@ const quests = [
   },
   {
     "id": "sanitary-standards-2",
-    "nombre": "Normas sanitarias – Parte 2",
+    "nombre": "Normas sanitarias – Parte 2\n(Sanitary Standards - Part 2)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 8,
