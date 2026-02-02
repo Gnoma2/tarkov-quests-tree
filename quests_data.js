@@ -6973,7 +6973,7 @@ const quests = [
   },
   {
     "id": "operation-aquarius-2",
-    "nombre": "Operación Acuario – Parte 2",
+    "nombre": "Operación Acuario – Parte 2\n(Operation Aquarius - Part 2)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "nivel": 6,
