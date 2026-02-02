@@ -348,6 +348,32 @@
       fill: var(--accent-completed);
     }
 
+
+    /* ===== KAPPA ICON (ayuda rápida) ===== */
+    .kappa-help {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .kappa-help-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .kappa-help-icon.kappa-red { background: var(--accent-in-progress); }
+    .kappa-help-icon.kappa-green { background: var(--accent-completed); }
+
 /* Si el nodo está atenuado por filtros */
     .quest-node.dim-level .kappa-badge,
     .quest-node.dim-level .kappa-badge-text {
@@ -925,6 +951,14 @@ body.edge-edit-mode .quest-edge-special {
       </select>
     </div>
 
+	    <div class="trader-filter">
+	      <span class="level-label">Título</span>
+	      <select id="title-lang" class="trader-select">
+	        <option value="es">ES (EN)</option>
+	        <option value="en">EN</option>
+	      </select>
+	    </div>
+
     <div class="search-box">
       <input type="text" id="quest-search" class="search-input" placeholder="Buscar quest...">
     </div>
@@ -953,18 +987,11 @@ body.edge-edit-mode .quest-edge-special {
 <div class="help-panel" id="help-panel">
   <h3>Ayuda rápida</h3>
   <ul>
-    <li><b>Click</b> en una quest: seleccionarla.</li>
-    <li><b>Ctrl</b> + click: añadir/quitar de la selección.</li>
-    <li><b>Ctrl + arrastre</b> en el fondo: seleccionar por ventana.</li>
-    <li><b>Ctrl + Shift + click</b> en una quest: seleccionar toda la cadena conectada.</li>
     <li><b>Doble click</b> en una quest: abrir detalles.</li>
-    <li><b>Ctrl + Z</b>: deshacer último movimiento/curva.</li>
-    <li><b>E</b>: entrar/salir de modo edición de curvas.</li>
-    <li>En modo edición: click en una flecha → editar su curva.</li>
-    <li>En modo edición: Shift + click en una flecha → devolverla a línea recta.</li>
     <li>Filtro de nivel: muestra destacadas solo las quests dentro del rango.</li>
-    <li>Filtro de trader: muestra destacadas solo las quests del vendedor elegido.</li>
+    <li>Filtro de trader/Kappa: muestra destacadas solo las quests del vendedor elegido o las quest para el Kappa.</li>
     <li>Buscar: centra y resalta la quest cuyo nombre contenga el texto.</li>
+    <li><span class="kappa-help"><span class="kappa-help-icon kappa-red">K</span><span class="kappa-help-icon kappa-green">K</span></span> Necesario para contenedor seguro Kappa (Collector).</li>
   </ul>
   <h4>Colores de los traders</h4>
   <div class="legend legend-help">
@@ -1214,6 +1241,92 @@ body.edge-edit-mode .quest-edge-special {
   const edgeLayout = loadEdgeLayout();
   const questsById = {};
   quests.forEach(q => { questsById[q.id] = q; });
+
+  // --- Idioma de los títulos dentro de las casillas ---
+  const TITLE_LANG_STORAGE_KEY = "tarkov_tree_title_lang_v1";
+  let showEnglishOnly = false;
+  try {
+    const params = new URLSearchParams(window.location.search || "");
+    const param = (params.get("titleLang") || "").toLowerCase();
+    if (param === "en") {
+      showEnglishOnly = true;
+      localStorage.setItem(TITLE_LANG_STORAGE_KEY, "en");
+    } else if (param === "es") {
+      showEnglishOnly = false;
+      localStorage.setItem(TITLE_LANG_STORAGE_KEY, "es");
+    } else {
+      showEnglishOnly = (localStorage.getItem(TITLE_LANG_STORAGE_KEY) === "en");
+    }
+  } catch (e) {
+    // puede fallar en algunos modos de navegador (por ejemplo, privacidad estricta)
+    showEnglishOnly = false;
+  }
+
+  function getQuestDisplayTitle(q) {
+    const rawName = ((q && q.nombre) ? q.nombre : "").replace(/\r/g, "");
+    if (!showEnglishOnly) return rawName;
+
+    // Base para extraer el prefijo numérico (si existe)
+    let mainPart = rawName.trim();
+    const newlineIdx = rawName.indexOf("\n");
+    const parenIdx = rawName.indexOf(" (");
+    if (newlineIdx !== -1 && (parenIdx === -1 || newlineIdx < parenIdx)) {
+      mainPart = rawName.slice(0, newlineIdx).trim();
+    } else if (parenIdx !== -1) {
+      mainPart = rawName.slice(0, parenIdx).trim();
+    }
+
+    const en = getEnglishTitle(rawName);
+    if (!en) return mainPart;
+    const numMatch = /^(\d+\.)\s*/.exec(mainPart);
+    const prefix = numMatch ? (numMatch[1] + " ") : "";
+    return (prefix + en).trim();
+  }
+
+  function refreshQuestNodesForTitleLang() {
+    // Guardar selección actual
+    const selected = Array.from(selectedIds || []);
+    const keepSearchId = currentSearchId;
+
+    // Quitar nodos y recrearlos
+    svg.querySelectorAll(".quest-node").forEach(el => el.remove());
+    quests.forEach(createNode);
+
+    // Restaurar selección / filtros / búsqueda
+    if (selected.length) {
+      setSelection(selected);
+    } else {
+      clearSelection();
+    }
+    applyLevelFilter();
+    clearSearchHighlight();
+    if (keepSearchId) {
+      const node = svg.querySelector(`.quest-node[data-id="${keepSearchId}"]`);
+      if (node) node.classList.add("search-hit");
+    }
+
+    // Si el modal está abierto, actualizamos el título visible
+    if (currentQuestId) {
+      const q = questsById[currentQuestId];
+      if (q) modalTitle.textContent = getQuestDisplayTitle(q);
+    }
+
+    adjustCanvasSize();
+  }
+
+  function setupTitleLangUI() {
+    const sel = document.getElementById("title-lang");
+    if (!sel) return;
+
+    sel.value = showEnglishOnly ? "en" : "es";
+    sel.addEventListener("change", () => {
+      showEnglishOnly = (sel.value === "en");
+      try {
+        localStorage.setItem(TITLE_LANG_STORAGE_KEY, showEnglishOnly ? "en" : "es");
+      } catch (e) {}
+      refreshQuestNodesForTitleLang();
+    });
+  }
 
   // --- Edición de curvas ---
   let currentEditedEdgeKey = null;
@@ -1808,7 +1921,7 @@ body.edge-edit-mode .quest-edge-special {
   title.setAttribute("x", 10);
   title.setAttribute("y", 16);
 
-  const rawName = (q.nombre || "").replace(/\r/g, "");
+	  const rawName = getQuestDisplayTitle(q);
   let main = rawName.trim();
   let extra = null;
 
@@ -2024,6 +2137,7 @@ function drawEdge(fromQ, toQ) {
 	drawAllEdges();
 	enableDrag();   // 👈 lo añadiremos ahora
   setupLevelFilterUI();
+	  setupTitleLangUI();
   applyLevelFilter();
   setupSearchUI();
 
@@ -2810,7 +2924,7 @@ function openModal(id) {
     if (!q) return;
     currentQuestId = id;
 
-    modalTitle.textContent = q.nombre;
+	    modalTitle.textContent = getQuestDisplayTitle(q);
     modalTrader.textContent = q.trader;
     modalDesc.textContent = q.descripcion || "";
 

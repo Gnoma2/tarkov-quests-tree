@@ -7421,7 +7421,7 @@ const quests = [
   },
   {
     "id": "colleagues-1",
-    "nombre": "Colegas – Parte 1",
+    "nombre": "Colegas – Parte 1 (Colleagues - Part 1)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "descripcion": "Un grupo de médicos de Terapeuta desapareció en Shoreline.",
@@ -7448,7 +7448,7 @@ const quests = [
   },
   {
     "id": "colleagues-2",
-    "nombre": "Colegas – Parte 2",
+    "nombre": "Colegas – Parte 2 (Colleagues - Part 2)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "descripcion": "Recupera el kit de cirugía y el oftalmoscopio de Sanitar.",
@@ -7474,7 +7474,7 @@ const quests = [
   },
   {
     "id": "colleagues-3",
-    "nombre": "Colegas – Parte 3",
+    "nombre": "Colegas – Parte 3 (Colleagues - Part 3)",
     "trader": "Terapeuta",
     "traderColor": "therapist",
     "descripcion": "Misión de elección: mantener vivo a Sanitar a cambio de tarjetas de Labs e inyectores.",
