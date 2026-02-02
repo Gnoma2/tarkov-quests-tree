@@ -5894,7 +5894,7 @@ const quests = [
   },
   {
     "id": "wet-job-part-1",
-    "nombre": "18. Trabajo mojado – Parte 1 (Wet Job - Part 1)",
+    "nombre": "18. Trabajo sucio – Parte 1 (Wet Job - Part 1)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
@@ -5921,7 +5921,7 @@ const quests = [
   },
   {
     "id": "wet-job-part-2",
-    "nombre": "19. Trabajo mojado – Parte 2 (Wet Job - Part 2)",
+    "nombre": "19. Trabajo sucio – Parte 2 (Wet Job - Part 2)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
@@ -5951,7 +5951,7 @@ const quests = [
   },
   {
     "id": "wet-job-part-3",
-    "nombre": "20. Trabajo mojado – Parte 3 (Wet Job - Part 3)",
+    "nombre": "20. Trabajo sucio – Parte 3 (Wet Job - Part 3)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
@@ -5979,7 +5979,7 @@ const quests = [
   },
   {
     "id": "wet-job-part-4",
-    "nombre": "21. Trabajo mojado – Parte 4 (Wet Job - Part 4)",
+    "nombre": "21. Trabajo sucio – Parte 4 (Wet Job - Part 4)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
@@ -6007,7 +6007,7 @@ const quests = [
   },
   {
     "id": "wet-job-part-5",
-    "nombre": "22. Trabajo mojado – Parte 5 (Wet Job - Part 5)",
+    "nombre": "22. Trabajo sucio – Parte 5 (Wet Job - Part 5)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
@@ -6036,7 +6036,7 @@ const quests = [
   },
   {
     "id": "wet-job-part-6",
-    "nombre": "23. Trabajo mojado – Parte 6 (Wet Job - Part 6)",
+    "nombre": "23. Trabajo sucio – Parte 6 (Wet Job - Part 6)",
     "trader": "Peacekeeper",
     "traderColor": "peacekeeper",
     "nivel": 14,
