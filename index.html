@@ -908,8 +908,8 @@ body.edge-edit-mode .quest-edge-special {
 <body class="">
 <header>
   <div>
-    <h1>Tarkov Tree 1.0 – Árbol de quests</h1>
-    <div class="subtitle">Progreso guardado en el HTML y en el archivo quests_data.js.</div>
+    <h1 id="page-title">Tarkov Tree 1.0 – Árbol de quests</h1>
+    <div class="subtitle" id="page-subtitle">Progreso guardado en el HTML y en el archivo quests_data.js.</div>
   </div>
   <div class="toolbar">
     <div class="legend">
@@ -952,7 +952,7 @@ body.edge-edit-mode .quest-edge-special {
     </div>
 
 	    <div class="trader-filter">
-	      <span class="level-label">Título</span>
+	      <span class="level-label">Idioma</span>
 	      <select id="title-lang" class="trader-select">
 	        <option value="es">ES (EN)</option>
 	        <option value="en">EN</option>
@@ -996,7 +996,7 @@ body.edge-edit-mode .quest-edge-special {
   <h4>Colores de los traders</h4>
   <div class="legend legend-help">
     <span><span class="legend-dot prapor"></span> Prapor</span>
-    <span><span class="legend-dot therapist"></span> Terapeuta</span>
+    <span><span class="legend-dot therapist"></span> <span id="legend-therapist-label">Terapeuta</span></span>
     <span><span class="legend-dot skier"></span> Skier</span>
     <span><span class="legend-dot peacekeeper"></span> Peacekeeper</span>
     <span><span class="legend-dot ragman"></span> Ragman</span>
@@ -1005,8 +1005,8 @@ body.edge-edit-mode .quest-edge-special {
     <span><span class="legend-dot fence"></span> Fence</span>
     <span><span class="legend-dot ref"></span> Ref</span>
     <span><span class="legend-dot lightkeeper"></span> Lightkeeper</span>
-    <span><span class="legend-dot completed"></span> Completada</span>
-    <span><span class="legend-dot in-progress"></span> En curso</span>
+    <span><span class="legend-dot completed"></span> <span id="legend-completed-label">Completada</span></span>
+    <span><span class="legend-dot in-progress"></span> <span id="legend-inprogress-label">En curso</span></span>
   </div>
 
 </div>
@@ -1029,25 +1029,25 @@ body.edge-edit-mode .quest-edge-special {
     </div>
     <div class="modal-body">
       <p id="modal-desc">Recupera la jeringa sospechosa en Factory para continuar la investigación química.</p>
-      <h3>Objetivos</h3>
+      <h3 id="modal-objectives-title">Objetivos</h3>
       <ul id="modal-objectives"><li>Encontrar la jeringa química en Factory.</li><li>Entregar la jeringa a Skier.</li></ul>
-      <h3>Recompensas</h3>
+      <h3 id="modal-rewards-title">Recompensas</h3>
       <ul id="modal-rewards"><li>EXP.</li><li>Reputación con Skier.</li><li>Rublos y posibles objetos médicos.</li></ul>
       <div class="modal-footer">
         <div class="modal-checkboxes">
           <label class="checkbox-row completed">
             <input type="checkbox" id="modal-completed">
-            Quest completada
+            <span id="modal-completed-label">Quest completada</span>
           </label>
           <label class="checkbox-row in-progress">
             <input type="checkbox" id="modal-inprogress">
-            Quest en curso
+            <span id="modal-inprogress-label">Quest en curso</span>
           </label>
         </div>
         <div class="yt-link">
-          Vídeo guía:
+          <span id="modal-video-label">Vídeo guía:</span>
           <a id="modal-youtube" href="https://www.youtube.com/watch?v=V9QMlL6dPkg" target="_blank" rel="noopener">Abrir en YouTube</a>
-          <div class="hint">Se abre en una pestaña nueva.</div>
+          <div class="hint" id="modal-youtube-hint">Se abre en una pestaña nueva.</div>
         </div>
       </div>
     </div>
@@ -1056,7 +1056,7 @@ body.edge-edit-mode .quest-edge-special {
 
 
 <div class="quest-inline-editor" id="quest-inline-editor" style="left: 1281px; top: 325px;">
-  <div class="quest-inline-editor-header">Editar texto de la quest</div>
+  <div class="quest-inline-editor-header" id="inline-editor-title">Editar texto de la quest</div>
   <textarea id="quest-inline-editor-text"></textarea>
   <div class="editor-actions">
     <button id="quest-inline-editor-cancel">Cancelar</button>
@@ -1103,7 +1103,7 @@ body.edge-edit-mode .quest-edge-special {
     if (user) {
       loginBtn.style.display = "none";
       userInfo.style.display = "inline-flex";
-      userEmail.textContent  = user.email || user.displayName || "Usuario";
+      userEmail.textContent  = user.email || user.displayName || t("user.fallback");
     } else {
       loginBtn.style.display = "inline-block";
       userInfo.style.display = "none";
@@ -1132,7 +1132,7 @@ body.edge-edit-mode .quest-edge-special {
   function showCloudSaveToast() {
     const el = document.getElementById("cloud-save-toast");
     if (!el) return;
-    el.textContent = "Progreso guardado en la nube ✅";
+    el.textContent = t("toast.cloudSaved");
     el.classList.add("visible");
     clearTimeout(showCloudSaveToast._timerId);
     showCloudSaveToast._timerId = setTimeout(() => {
@@ -1225,7 +1225,7 @@ body.edge-edit-mode .quest-edge-special {
       logoutBtn.addEventListener("click", () => {
         auth.signOut().catch(err => {
           console.error("Error al cerrar sesión:", err);
-          alert("No se pudo cerrar sesión:\n" + err.message);
+          alert(t("user.signOutErrorTitle") + "\n" + err.message);
         });
       });
     }
@@ -1266,26 +1266,289 @@ body.edge-edit-mode .quest-edge-special {
     showEnglishOnly = false;
   }
 
-  function getQuestDisplayTitle(q) {
-    const rawName = ((q && q.nombre) ? q.nombre : "").replace(/\r/g, "");
-    if (!showEnglishOnly) return rawName;
 
-    // Base para extraer el prefijo numérico (si existe)
-    let mainPart = rawName.trim();
-    const newlineIdx = rawName.indexOf("\n");
-    const parenIdx = rawName.indexOf(" (");
-    if (newlineIdx !== -1 && (parenIdx === -1 || newlineIdx < parenIdx)) {
-      mainPart = rawName.slice(0, newlineIdx).trim();
-    } else if (parenIdx !== -1) {
-      mainPart = rawName.slice(0, parenIdx).trim();
+  // --- UI i18n (labels that are not part of the quest data) ---
+  const UI_STRINGS = {
+    es: {
+      documentTitle: "Tarkov Tree 1.0 – Árbol de quests",
+      headerTitle: "Tarkov Tree 1.0 – Árbol de quests",
+      headerSubtitle: "Progreso guardado en el HTML y en el archivo quests_data.js.",
+      edgeEditMode: "Modo edición de curvas (E)",
+      traders: {
+        Terapeuta: "Terapeuta"
+      },
+      legend: {
+        completed: "Completada",
+        inProgress: "En curso"
+      },
+      status: {
+        pending: "Pendiente",
+        completed: "Completada",
+        inProgress: "En curso"
+      },
+      modal: {
+        objectives: "Objetivos",
+        rewards: "Recompensas",
+        questCompleted: "Quest completada",
+        questInProgress: "Quest en curso",
+        videoGuide: "Vídeo guía:",
+        openYouTube: "Abrir en YouTube",
+        newTabHint: "Se abre en una pestaña nueva.",
+        close: "Cerrar"
+      },
+      filters: {
+        all: "Todos"
+      },
+      user: {
+        fallback: "Usuario",
+        signOutErrorTitle: "No se pudo cerrar sesión:"
+      },
+      editor: {
+        title: "Editar texto de la quest",
+        cancel: "Cancelar",
+        save: "Guardar"
+      },
+      toast: {
+        cloudSaved: "Progreso guardado en la nube ✅"
+      },
+      toolbar: {
+        signIn: "Entrar con Google",
+        signOut: "Salir",
+        languageLabel: "Idioma",
+        levelLabel: "Nv.",
+        searchPlaceholder: "Buscar quest...",
+        zoomLabel: "Zoom",
+        saveHtml: "Guardar HTML",
+        saveQuests: "Guardar quests_data.txt",
+        saveAll: "Guardar TODO"
+      },
+      help: {
+        title: "Ayuda rápida",
+        line1Html: "<b>Doble click</b> en una quest: abrir detalles.",
+        line2: "Filtro de nivel: muestra destacadas solo las quests dentro del rango.",
+        line3: "Filtro de trader/Kappa: muestra destacadas solo las quests del vendedor elegido o las quest para el Kappa.",
+        line4: "Buscar: centra y resalta la quest cuyo nombre contenga el texto.",
+        line5Text: "Necesario para contenedor seguro Kappa (Collector).",
+        traderColors: "Colores de los traders"
+      }
+    },
+    en: {
+      documentTitle: "Tarkov Tree 1.0 – Quest tree",
+      headerTitle: "Tarkov Tree 1.0 – Quest tree",
+      headerSubtitle: "Progress is saved in the HTML and in quests_data.js.",
+      edgeEditMode: "Curve edit mode (E)",
+      traders: {
+        Terapeuta: "Therapist"
+      },
+      legend: {
+        completed: "Completed",
+        inProgress: "In progress"
+      },
+      status: {
+        pending: "Pending",
+        completed: "Completed",
+        inProgress: "In progress"
+      },
+      modal: {
+        objectives: "Objectives",
+        rewards: "Rewards",
+        questCompleted: "Quest completed",
+        questInProgress: "Quest in progress",
+        videoGuide: "Video guide:",
+        openYouTube: "Open on YouTube",
+        newTabHint: "Opens in a new tab.",
+        close: "Close"
+      },
+      filters: {
+        all: "All"
+      },
+      user: {
+        fallback: "User",
+        signOutErrorTitle: "Sign out failed:"
+      },
+      editor: {
+        title: "Edit quest text",
+        cancel: "Cancel",
+        save: "Save"
+      },
+      toast: {
+        cloudSaved: "Progress saved to the cloud ✅"
+      },
+      toolbar: {
+        signIn: "Sign in with Google",
+        signOut: "Sign out",
+        languageLabel: "Language",
+        levelLabel: "Lvl.",
+        searchPlaceholder: "Search quest...",
+        zoomLabel: "Zoom",
+        saveHtml: "Save HTML",
+        saveQuests: "Save quests_data.txt",
+        saveAll: "Save ALL"
+      },
+      help: {
+        title: "Quick help",
+        line1Html: "<b>Double click</b> on a quest: open details.",
+        line2: "Level filter: highlights only the quests within the range.",
+        line3: "Trader/Kappa filter: highlights only the quests for the selected trader or Kappa quests.",
+        line4: "Search: centers and highlights the quest whose name contains the text.",
+        line5Text: "Required for the Kappa secure container (Collector).",
+        traderColors: "Trader colors"
+      }
     }
+  };
 
-    const en = getEnglishTitle(rawName);
-    if (!en) return mainPart;
-    const numMatch = /^(\d+\.)\s*/.exec(mainPart);
-    const prefix = numMatch ? (numMatch[1] + " ") : "";
-    return (prefix + en).trim();
+  function uiLang() {
+    return showEnglishOnly ? "en" : "es";
   }
+
+  function t(path) {
+    const parts = path.split(".");
+    let node = UI_STRINGS[uiLang()];
+    for (const p of parts) {
+      if (!node || typeof node !== "object") return path;
+      node = node[p];
+    }
+    return (typeof node === "string") ? node : path;
+  }
+
+  function getTraderDisplayName(trader) {
+    if (!trader) return "";
+    if (!showEnglishOnly) return trader;
+    const mapped = UI_STRINGS.en.traders[trader];
+    return mapped || trader;
+  }
+
+  function applyUiTranslations() {
+    // Header / title
+    const h1 = document.getElementById("page-title");
+    if (h1) h1.textContent = t("headerTitle");
+    const sub = document.getElementById("page-subtitle");
+    if (sub) sub.textContent = t("headerSubtitle");
+    try { document.title = t("documentTitle"); } catch (e) {}
+
+    // Trader filter (All + Therapist display)
+    const allOpt = document.querySelector('#trader-filter option[value=""]');
+    if (allOpt) allOpt.textContent = t("filters.all");
+    const thOpt = document.querySelector('#trader-filter option[value="Terapeuta"]');
+    if (thOpt) thOpt.textContent = getTraderDisplayName("Terapeuta");
+
+    // Legend
+    const legTh = document.getElementById("legend-therapist-label");
+    if (legTh) legTh.textContent = getTraderDisplayName("Terapeuta");
+    const legC = document.getElementById("legend-completed-label");
+    if (legC) legC.textContent = t("legend.completed");
+    const legIP = document.getElementById("legend-inprogress-label");
+    if (legIP) legIP.textContent = t("legend.inProgress");
+
+    // Modal static labels
+    const objTitle = document.getElementById("modal-objectives-title");
+    if (objTitle) objTitle.textContent = t("modal.objectives");
+    const rewTitle = document.getElementById("modal-rewards-title");
+    if (rewTitle) rewTitle.textContent = t("modal.rewards");
+    const cLbl = document.getElementById("modal-completed-label");
+    if (cLbl) cLbl.textContent = t("modal.questCompleted");
+    const ipLbl = document.getElementById("modal-inprogress-label");
+    if (ipLbl) ipLbl.textContent = t("modal.questInProgress");
+    const vidLbl = document.getElementById("modal-video-label");
+    if (vidLbl) vidLbl.textContent = t("modal.videoGuide");
+    const yt = document.getElementById("modal-youtube");
+    if (yt) yt.textContent = t("modal.openYouTube");
+    const ytHint = document.getElementById("modal-youtube-hint");
+    if (ytHint) ytHint.textContent = t("modal.newTabHint");
+    const closeBtn = document.getElementById("modal-close");
+    if (closeBtn) closeBtn.setAttribute("aria-label", t("modal.close"));
+
+    // Edge edit indicator
+    const edgeInd = document.getElementById("edge-edit-indicator");
+    if (edgeInd) edgeInd.textContent = t("edgeEditMode");
+
+    // Inline editor
+    const edTitle = document.getElementById("inline-editor-title");
+    if (edTitle) edTitle.textContent = t("editor.title");
+    const btnCancel = document.getElementById("quest-inline-editor-cancel");
+    if (btnCancel) btnCancel.textContent = t("editor.cancel");
+    const btnSave = document.getElementById("quest-inline-editor-save");
+    if (btnSave) btnSave.textContent = t("editor.save");
+
+    // Toolbar labels (auth + language + level + search + zoom)
+    const loginBtn = document.getElementById("login-btn");
+    if (loginBtn) loginBtn.textContent = t("toolbar.signIn");
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) logoutBtn.textContent = t("toolbar.signOut");
+
+    const levelLbl = document.querySelector(".level-filter .level-label");
+    if (levelLbl) levelLbl.textContent = t("toolbar.levelLabel");
+
+    const langLbl = document.querySelector("#title-lang")?.parentElement?.querySelector(".level-label");
+    if (langLbl) langLbl.textContent = t("toolbar.languageLabel");
+
+    const searchInput = document.getElementById("quest-search");
+    if (searchInput) searchInput.setAttribute("placeholder", t("toolbar.searchPlaceholder"));
+
+    const zoomLbl = document.querySelector(".zoom-controls .zoom-label");
+    if (zoomLbl) zoomLbl.textContent = t("toolbar.zoomLabel");
+
+    // Dev buttons (optional)
+    const btnSaveHtml = document.getElementById("save-html");
+    if (btnSaveHtml) btnSaveHtml.textContent = t("toolbar.saveHtml");
+    const btnSaveQ = document.getElementById("save-quests-js");
+    if (btnSaveQ) btnSaveQ.textContent = t("toolbar.saveQuests");
+    const btnSaveAll = document.getElementById("save-all");
+    if (btnSaveAll) btnSaveAll.textContent = t("toolbar.saveAll");
+
+    // Help panel
+    const help = document.getElementById("help-panel");
+    if (help) {
+      const h3 = help.querySelector("h3");
+      if (h3) h3.textContent = t("help.title");
+      const h4 = help.querySelector("h4");
+      if (h4) h4.textContent = t("help.traderColors");
+
+      const lis = help.querySelectorAll("ul li");
+      if (lis && lis.length >= 5) {
+        lis[0].innerHTML = t("help.line1Html");
+        lis[1].textContent = t("help.line2");
+        lis[2].textContent = t("help.line3");
+        lis[3].textContent = t("help.line4");
+
+        const kappaSpan = lis[4].querySelector(".kappa-help");
+        if (kappaSpan) {
+          lis[4].innerHTML = kappaSpan.outerHTML + " " + t("help.line5Text");
+        } else {
+          lis[4].textContent = t("help.line5Text");
+        }
+      }
+    }
+  }
+
+function getQuestDisplayTitle(q) {
+  if (!q) return "";
+  // ES (EN): comportamiento EXACTO como antes (título español + (EN) o salto de línea si existe)
+  if (!showEnglishOnly) {
+    return ((q.nombre) ? q.nombre : "").replace(/\r/g, "");
+  }
+
+  // EN: usar el nuevo campo bilingüe si existe
+  const enName = ((q.nombre_en) ? q.nombre_en : "").replace(/\r/g, "").trim();
+  if (enName) return enName;
+
+  // Fallback: intentar extraer el inglés del formato antiguo "ES (EN)"
+  const rawName = ((q.nombre) ? q.nombre : "").replace(/\r/g, "");
+  let mainPart = rawName.trim();
+  const newlineIdx = rawName.indexOf("\n");
+  const parenIdx = rawName.indexOf(" (");
+  if (newlineIdx !== -1 && (parenIdx === -1 || newlineIdx < parenIdx)) {
+    mainPart = rawName.slice(0, newlineIdx).trim();
+  } else if (parenIdx !== -1) {
+    mainPart = rawName.slice(0, parenIdx).trim();
+  }
+
+  const en = getEnglishTitle(rawName);
+  if (!en) return mainPart;
+  const numMatch = /^(\d+\.)\s*/.exec(mainPart);
+  const prefix = numMatch ? (numMatch[1] + " ") : "";
+  return (prefix + en).trim();
+}
 
   function refreshQuestNodesForTitleLang() {
     // Guardar selección actual
@@ -1309,12 +1572,50 @@ body.edge-edit-mode .quest-edge-special {
       if (node) node.classList.add("search-hit");
     }
 
-    // Si el modal está abierto, actualizamos el título visible
-    if (currentQuestId) {
-      const q = questsById[currentQuestId];
-      if (q) modalTitle.textContent = getQuestDisplayTitle(q);
+    // Si el modal está abierto, actualizamos el contenido visible según idioma
+if (currentQuestId) {
+  const q = questsById[currentQuestId];
+  if (q) {
+    modalTitle.textContent = getQuestDisplayTitle(q);
+    modalTrader.textContent = getTraderDisplayName(q.trader);
+
+    const desc = showEnglishOnly
+      ? (q.descripcion_en || "")
+      : (q.descripcion || "");
+    modalDesc.textContent = desc;
+
+    const objetivos = showEnglishOnly
+      ? (Array.isArray(q.objetivos_en) ? q.objetivos_en : [])
+      : (q.objetivos || []);
+    modalObjectives.innerHTML = "";
+    objetivos.forEach(obj => {
+      const li = document.createElement("li");
+      li.textContent = obj;
+      modalObjectives.appendChild(li);
+    });
+
+    const recompensas = showEnglishOnly
+      ? (Array.isArray(q.recompensas_en) ? q.recompensas_en : [])
+      : (q.recompensas || []);
+    modalRewards.innerHTML = "";
+    recompensas.forEach(r => {
+      const li = document.createElement("li");
+      li.textContent = r;
+      modalRewards.appendChild(li);
+    });
+
+    // Actualizar título para la wiki
+    if (showEnglishOnly) {
+      const t = ((q.nombre_en) ? q.nombre_en : "").replace(/\r/g, "").trim();
+      currentEnglishTitle = t ? t.replace(/^\s*\d+\.\s*/, "").trim() : (getEnglishTitle(q.nombre) || null);
+    } else {
+      currentEnglishTitle = getEnglishTitle(q.nombre);
     }
 
+    updateModalChip();
+    applyUiTranslations();
+  }
+}
     adjustCanvasSize();
   }
 
@@ -1329,6 +1630,7 @@ body.edge-edit-mode .quest-edge-special {
         localStorage.setItem(TITLE_LANG_STORAGE_KEY, showEnglishOnly ? "en" : "es");
       } catch (e) {}
       refreshQuestNodesForTitleLang();
+      applyUiTranslations();
     });
   }
 
@@ -1473,7 +1775,7 @@ body.edge-edit-mode .quest-edge-special {
       currentSearchId = null;
       if (!term) return;
 
-      const match = quests.find(q => (q.nombre || "").toLowerCase().includes(term));
+      const match = quests.find(q => (getQuestDisplayTitle(q) || "").toLowerCase().includes(term));
       if (!match) return;
       currentSearchId = match.id;
       const node = svg.querySelector(`.quest-node[data-id="${match.id}"]`);
@@ -2146,6 +2448,7 @@ function drawEdge(fromQ, toQ) {
 	enableDrag();   // 👈 lo añadiremos ahora
   setupLevelFilterUI();
 	  setupTitleLangUI();
+  applyUiTranslations();
   applyLevelFilter();
   setupSearchUI();
 
@@ -2932,22 +3235,40 @@ function openModal(id) {
     if (!q) return;
     currentQuestId = id;
 
-	    modalTitle.textContent = getQuestDisplayTitle(q);
-    modalTrader.textContent = q.trader;
-    modalDesc.textContent = q.descripcion || "";
+    modalTitle.textContent = getQuestDisplayTitle(q);
+    modalTrader.textContent = getTraderDisplayName(q.trader);
 
-    // guardar el título inglés de la quest actual
-    currentEnglishTitle = getEnglishTitle(q.nombre);
+    // Descripción / objetivos / recompensas según idioma
+    const desc = showEnglishOnly
+      ? (q.descripcion_en || "")
+      : (q.descripcion || "");
+    modalDesc.textContent = desc;
+
+    // Guardar el título inglés para la wiki (sin numeración)
+    if (showEnglishOnly) {
+      const t = ((q.nombre_en) ? q.nombre_en : "").replace(/\r/g, "").trim();
+      currentEnglishTitle = t ? t.replace(/^\s*\d+\.\s*/, "").trim() : (getEnglishTitle(q.nombre) || null);
+    } else {
+      currentEnglishTitle = getEnglishTitle(q.nombre);
+    }
+
+    const objetivos = showEnglishOnly
+      ? (Array.isArray(q.objetivos_en) ? q.objetivos_en : [])
+      : (q.objetivos || []);
 
     modalObjectives.innerHTML = "";
-    (q.objetivos || []).forEach(obj => {
+    objetivos.forEach(obj => {
       const li = document.createElement("li");
       li.textContent = obj;
       modalObjectives.appendChild(li);
     });
 
+    const recompensas = showEnglishOnly
+      ? (Array.isArray(q.recompensas_en) ? q.recompensas_en : [])
+      : (q.recompensas || []);
+
     modalRewards.innerHTML = "";
-    (q.recompensas || []).forEach(r => {
+    recompensas.forEach(r => {
       const li = document.createElement("li");
       li.textContent = r;
       modalRewards.appendChild(li);
@@ -2962,10 +3283,12 @@ function openModal(id) {
     modalInProgress.checked = inProg && !completed;
 
     updateModalChip();
+    applyUiTranslations();
 
     modal.classList.add("open");
     backdrop.classList.add("open");
   }
+
 
   function closeModal() {
     currentQuestId = null;
@@ -2982,13 +3305,13 @@ function openModal(id) {
 
     if (completed) {
       modalChipDot.className = "dot completed";
-      modalChipText.textContent = "Completada";
+      modalChipText.textContent = t("status.completed");
     } else if (inProg) {
       modalChipDot.className = "dot in-progress";
-      modalChipText.textContent = "En curso";
+      modalChipText.textContent = t("status.inProgress");
     } else {
       modalChipDot.className = "dot " + (q.traderColor || "");
-      modalChipText.textContent = "Pendiente";
+      modalChipText.textContent = t("status.pending");
     }
   }
 
@@ -3078,14 +3401,25 @@ function openModal(id) {
 
   // CLICK EN EL TÍTULO → ABRIR WIKI DE TARKOV
   modalTitle.addEventListener("click", () => {
-    const enTitle = currentEnglishTitle || getEnglishTitle(modalTitle.textContent);
-    if (!enTitle) return;
+let enTitle = currentEnglishTitle;
 
-    const url =
-      "https://escapefromtarkov.fandom.com/wiki/Special:Search?query=" +
-      encodeURIComponent(enTitle);
+if (!enTitle) {
+  if (showEnglishOnly) {
+    // En modo EN, el título visible ya es inglés (posible prefijo numérico)
+    enTitle = (modalTitle.textContent || "").replace(/^\s*\d+\.\s*/, "").trim();
+  } else {
+    enTitle = getEnglishTitle(modalTitle.textContent);
+  }
+}
 
-    window.open(url, "_blank", "noopener");
+if (!enTitle) return;
+
+const url =
+  "https://escapefromtarkov.fandom.com/wiki/Special:Search?query=" +
+  encodeURIComponent(enTitle);
+
+window.open(url, "_blank", "noopener");
+
   });
 
   window.addEventListener("keydown", (e) => {
