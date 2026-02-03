@@ -1164,6 +1164,8 @@ body.edge-edit-mode .quest-edge-special {
           });
         }
 
+        applyLevelFilter();
+
         // Guardar este estado vacío en Firestore para este usuario
         syncProgressToFirestore();
         return;
@@ -1193,6 +1195,8 @@ body.edge-edit-mode .quest-edge-special {
           }
         });
       }
+
+      applyLevelFilter();
     }).catch(err => {
       console.error("Error cargando progreso remoto:", err);
     });
@@ -1368,6 +1372,7 @@ body.edge-edit-mode .quest-edge-special {
       const lvl = (q.nivel != null) ? q.nivel : null;
       const trader = q.trader || "";
       const isKappa = !!q.kappa;
+      const completed = isCompleted(id);
 
       let dim = false;
 
@@ -1381,6 +1386,7 @@ body.edge-edit-mode .quest-edge-special {
       if (currentTraderFilter) {
         if (currentTraderFilter === "Kappa") {
           if (!isKappa) dim = true;
+          if (completed) dim = true;
         } else if (trader !== currentTraderFilter) {
           dim = true;
         }
@@ -1842,6 +1848,7 @@ body.edge-edit-mode .quest-edge-special {
     saveCompletion();
     saveInProgress();
     changed.forEach(updateNodeVisual);
+    applyLevelFilter();
   }
 
   function isInProgress(id) { return !!inProgressState[id]; }
@@ -1871,6 +1878,7 @@ body.edge-edit-mode .quest-edge-special {
     saveCompletion();
     saveInProgress();
     changed.forEach(updateNodeVisual);
+    applyLevelFilter();
   }
 
   function createNode(q) {
